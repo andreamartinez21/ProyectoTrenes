@@ -1,0 +1,3 @@
+234J;Bilbao;Londres;20-12-2022;200;45
+879H;Madrid;Malaga;12-11-2022;85;22
+798G;Madrid;Malta;04-12-2022;69;50
