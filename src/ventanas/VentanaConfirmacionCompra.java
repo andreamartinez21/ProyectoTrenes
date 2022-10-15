@@ -32,26 +32,80 @@ public class VentanaConfirmacionCompra extends JFrame{
 
         panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(153, 0, 102));
-        panelArriba = new JPanel(new GridLayout(1, 2));
+        panelArriba = new JPanel(new GridLayout(1, 1));
         panelArriba.setBackground(new Color(153, 0, 102));
-        panelMedio = new JPanel(new GridLayout(2, 2));
+        panelMedio = new JPanel(new GridLayout(4, 2));
         panelMedio.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new GridLayout(1, 2));
+        panelAbajo = new JPanel(new GridLayout(4, 2));
         panelAbajo.setBackground(new Color(153, 0, 102));
 
         contentPane.add(panel);
+        
+        // título
+        
+        JPanel panelLabelTitulo = new JPanel();
+        panelLabelTitulo.setBackground(new Color(153, 0, 102));
+        JLabel labelTitulo = new JLabel("RESUMEN DE LA COMPRA:");
+        labelTitulo.setForeground(Color.WHITE);
+        panelLabelTitulo.add(labelTitulo);
+        
+        panelArriba.add(panelLabelTitulo);
 
-        // METER BORDES
+        // labels datos del viaje
 
-        // label datos del viaje
+        JPanel panelLabelOrigen = new JPanel();
+        panelLabelOrigen.setBackground(new Color(153, 0, 102));
+        JLabel labelOrigen = new JLabel("Origen: Madrid");
+        labelOrigen.setForeground(Color.WHITE);
+        panelLabelOrigen.add(labelOrigen);
+        
+        JPanel panelLabelDestino = new JPanel();
+        panelLabelDestino.setBackground(new Color(153, 0, 102));
+        JLabel labelDestino = new JLabel("Destino: Malta");
+        labelDestino.setForeground(Color.WHITE);
+        panelLabelDestino.add(labelDestino);
+        
+        JPanel panelLabelFechaIda = new JPanel();
+        panelLabelFechaIda.setBackground(new Color(153, 0, 102));
+        JLabel labelFechaIda = new JLabel("Fecha ida: 2022-11-10");
+        labelFechaIda.setForeground(Color.WHITE);
+        panelLabelFechaIda.add(labelFechaIda);
+        
+        JPanel panelLabelFechaVuelta = new JPanel();
+        panelLabelFechaVuelta.setBackground(new Color(153, 0, 102));
+        JLabel labelFechaVuelta = new JLabel("Fecha vuelta: 2022-11-17");
+        labelFechaVuelta.setForeground(Color.WHITE);
+        panelLabelFechaVuelta.add(labelFechaVuelta);
+        
+        JPanel panelLabelPrecio = new JPanel();
+        panelLabelPrecio.setBackground(new Color(153, 0, 102));
+        JLabel labelPrecio = new JLabel("Precio total: 209€");
+        labelPrecio.setForeground(Color.WHITE);
+        panelLabelPrecio.add(labelPrecio);
+        
+        JPanel panelLabelBlanco = new JPanel();
+        panelLabelBlanco.setBackground(new Color(153, 0, 102));
+        JLabel labelBlanco = new JLabel("");
+        labelBlanco.setForeground(Color.WHITE);
+        panelLabelBlanco.add(labelBlanco);
 
-        JPanel panelLabelDatos = new JPanel();
-        panelLabelDatos.setBackground(new Color(153, 0, 102));
-        JLabel labelDatos = new JLabel("DATOS DEL VIAJE:\n CONFIRMACIÓN DE COMPRA");
-        labelDatos.setForeground(Color.WHITE);
-        panelLabelDatos.add(labelDatos);
-
-        panelArriba.add(panelLabelDatos);
+        panelMedio.add(panelLabelOrigen);
+        panelMedio.add(panelLabelDestino);
+        panelMedio.add(panelLabelFechaIda);
+        panelMedio.add(panelLabelFechaVuelta);
+        panelMedio.add(panelLabelPrecio);
+        panelMedio.add(panelLabelBlanco);
+        panelMedio.add(panelLabelBlanco);
+        panelMedio.add(panelLabelBlanco);
+        
+        JPanel panelLabelConfirmar = new JPanel();
+        panelLabelConfirmar.setBackground(new Color(153, 0, 102));
+        JLabel labelConfirmar = new JLabel("Confirme la compra: ");
+        labelConfirmar.setForeground(Color.WHITE);
+        panelLabelConfirmar.add(labelConfirmar);
+        
+        panelAbajo.add(panelLabelConfirmar);
+        panelAbajo.add(panelLabelBlanco);
 
         // label usuario
 
@@ -67,8 +121,8 @@ public class VentanaConfirmacionCompra extends JFrame{
         textoUsuario.setPreferredSize(new Dimension(150, 25));
         panelTextoUsuario.add(textoUsuario);
 
-        panelMedio.add(panelLabelUsuario);
-        panelMedio.add(panelTextoUsuario);
+        panelAbajo.add(panelLabelUsuario);
+        panelAbajo.add(panelTextoUsuario);
 
         // label contraseña
 
@@ -84,8 +138,8 @@ public class VentanaConfirmacionCompra extends JFrame{
         textoContrasenya.setPreferredSize(new Dimension(150, 25));
         panelTextoContrasenya.add(textoContrasenya);
 
-        panelMedio.add(panelLabelContrasenya);
-        panelMedio.add(panelTextoContrasenya);
+        panelAbajo.add(panelLabelContrasenya);
+        panelAbajo.add(panelTextoContrasenya);
 
         // botón volver
 
