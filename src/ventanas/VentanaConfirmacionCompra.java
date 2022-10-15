@@ -93,7 +93,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.DARK_GRAY);
+        botonVolver.setBackground(Color.GRAY);
         botonVolver.setForeground(Color.WHITE);
         botonVolver.setPreferredSize(new Dimension(150, 30));
         panelBotonVolver.add(botonVolver);
@@ -118,7 +118,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelBotonTicket.setBackground(new Color(153, 0, 102));
         JButton botonTicket = new JButton("Aceptar compra e imprimir ticket");
         botonTicket.setFont(new Font("Yu Gothic UI", Font.PLAIN, 11));
-        botonTicket.setBackground(Color.DARK_GRAY);
+        botonTicket.setBackground(Color.GRAY);
         botonTicket.setForeground(Color.WHITE);
         botonTicket.setPreferredSize(new Dimension(195, 30));
         panelBotonTicket.add(botonTicket);

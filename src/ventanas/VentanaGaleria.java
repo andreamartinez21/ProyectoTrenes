@@ -1,6 +1,5 @@
 package ventanas;
 
-// import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,39 +10,26 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-// import java.util.logging.Level;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
-// import BD.BD;
-// import clases.Actividad;
 
 public class VentanaGaleria extends JFrame {
 
-    // public BD bd = new BD();
-    // private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
     private JScrollPane scroll;
     private JPanel panel;
     private JPanel panelArriba;
-    private JPanel panelAbajo;
     private JPanel panelFotoBoton;
     private JPanel panelFotoBoton2;
     
     JMenuBar menuBar;
 	JMenu menu;
 	JMenuItem itemInicio, itemGaleria, itemAdmin;
-
-    // private String nombre = "NOMBRE ACTIVIDAD";
-    // private String instructor = "Instructor";
-
-    // private ArrayList<Actividad> listaActividades;
-
-    // private Actividad actividad;
 
     public VentanaGaleria() throws IOException {
 
@@ -106,9 +92,6 @@ public class VentanaGaleria extends JFrame {
         scroll = new JScrollPane(panelArriba);
         scroll.setPreferredSize(new Dimension(990, 600));
         scroll.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new BorderLayout());
-        panelAbajo.setBackground(new Color(153, 0, 102));
-
 
         for (int i = 0; i < numFotos; i++) {
             // Actividad actividad = listaActividades.get(i);
@@ -121,7 +104,9 @@ public class VentanaGaleria extends JFrame {
             JPanel panelBotonActividad = new JPanel();
             panelBotonActividad.setBackground(new Color(153, 0, 102));
             JButton botonActividad = new JButton("Destino " + i/*actividad.getNombre() + " - " + actividad.getUbicacion()*/);
-            botonActividad.setPreferredSize(new Dimension(200, 40));
+            botonActividad.setPreferredSize(new Dimension(200, 30));
+            botonActividad.setBackground(Color.GRAY);
+            botonActividad.setForeground(Color.WHITE);
             panelBotonActividad.add(botonActividad);
 
             // botonActividad.addActionListener(new ActionListener() {
@@ -158,6 +143,8 @@ public class VentanaGaleria extends JFrame {
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setPreferredSize(new Dimension(200, 30));
+        botonVolver.setBackground(Color.GRAY);
+        botonVolver.setForeground(Color.WHITE);
         panelBotonVolver.add(botonVolver);
 
         botonVolver.addActionListener(new ActionListener() {
@@ -177,9 +164,7 @@ public class VentanaGaleria extends JFrame {
             }
         });
 
-        panelAbajo.add(panelBotonVolver);
         panel.add(scroll, BorderLayout.NORTH);
-        panel.add(panelAbajo, BorderLayout.SOUTH);
         contentPane.setVisible(true);
         panel.setVisible(true);
         contentPane.add(panel);

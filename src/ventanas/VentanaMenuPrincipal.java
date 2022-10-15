@@ -61,7 +61,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panelBotonComprarBilletes.setBackground(new Color(153, 0, 102));
         JButton botonComprarBilletes = new JButton("Comprar billetes");
         botonComprarBilletes.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonComprarBilletes.setBackground(Color.DARK_GRAY);
+        botonComprarBilletes.setBackground(Color.GRAY);
         botonComprarBilletes.setForeground(Color.WHITE);
         botonComprarBilletes.setPreferredSize(new Dimension(190, 35));
         panelBotonComprarBilletes.add(botonComprarBilletes);
@@ -89,7 +89,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panelBotonPerfil.setBackground(new Color(153, 0, 102));
         JButton botonPerfil = new JButton("Perfil");
         botonPerfil.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonPerfil.setBackground(Color.DARK_GRAY);
+        botonPerfil.setBackground(Color.GRAY);
         botonPerfil.setForeground(Color.WHITE);
         botonPerfil.setPreferredSize(new Dimension(160, 35));
         panelBotonPerfil.add(botonPerfil);
@@ -116,7 +116,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panelBotonMisViajes.setBackground(new Color(153, 0, 102));
         JButton botonMisViajes = new JButton("Mis viajes");
         botonMisViajes.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonMisViajes.setBackground(Color.DARK_GRAY);
+        botonMisViajes.setBackground(Color.GRAY);
         botonMisViajes.setForeground(Color.WHITE);
         botonMisViajes.setPreferredSize(new Dimension(160, 35));
         panelBotonMisViajes.add(botonMisViajes);
@@ -143,7 +143,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panelBotonCerrarSesion.setBackground(new Color(153, 0, 102));
         JButton botonCerrarSesion = new JButton("Cerrar sesión");
         botonCerrarSesion.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonCerrarSesion.setBackground(Color.DARK_GRAY);
+        botonCerrarSesion.setBackground(Color.GRAY);
         botonCerrarSesion.setForeground(Color.WHITE);
         botonCerrarSesion.setPreferredSize(new Dimension(130, 30));
         panelBotonCerrarSesion.add(botonCerrarSesion);

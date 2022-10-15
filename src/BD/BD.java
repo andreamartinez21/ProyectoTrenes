@@ -191,7 +191,7 @@ public class BD {
 	
 	// método borrar viajes
 	
-	public static boolean borrarViajes() {
+	public static boolean borrarViajesBD() {
 		try {
 			String consulta = "DELETE * FROM viaje;";
 			Statement ps = conn.createStatement();

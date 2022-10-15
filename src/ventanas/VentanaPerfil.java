@@ -166,7 +166,7 @@ public class VentanaPerfil extends JFrame{
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.DARK_GRAY);
+        botonVolver.setBackground(Color.GRAY);
         botonVolver.setForeground(Color.WHITE);
         botonVolver.setPreferredSize(new Dimension(140, 30));
         panelBotonVolver.add(botonVolver);
@@ -193,7 +193,7 @@ public class VentanaPerfil extends JFrame{
         panelBotonActualizarInfo.setBackground(new Color(153, 0, 102));
         JButton botonActualizarInfo = new JButton("Actualizar información");
         botonActualizarInfo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 13));
-        botonActualizarInfo.setBackground(Color.DARK_GRAY);
+        botonActualizarInfo.setBackground(Color.GRAY);
         botonActualizarInfo.setForeground(Color.WHITE);
         botonActualizarInfo.setPreferredSize(new Dimension(165, 30));
         panelBotonActualizarInfo.add(botonActualizarInfo);

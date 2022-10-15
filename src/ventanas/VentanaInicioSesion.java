@@ -42,8 +42,6 @@ public class VentanaInicioSesion extends JFrame{
 
         // panel
 
-        // METER BORDES
-
         // label usuario
 
         JPanel panelLabelUsuario = new JPanel();
@@ -84,7 +82,7 @@ public class VentanaInicioSesion extends JFrame{
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.DARK_GRAY);
+        botonVolver.setBackground(Color.GRAY);
         botonVolver.setForeground(Color.WHITE);
         botonVolver.setPreferredSize(new Dimension(150, 30));
         panelBotonVolver.add(botonVolver);
@@ -109,7 +107,7 @@ public class VentanaInicioSesion extends JFrame{
         panelBotonAcceder.setBackground(new Color(153, 0, 102));
         JButton botonAcceder = new JButton("Acceder");
         botonAcceder.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonAcceder.setBackground(Color.DARK_GRAY);
+        botonAcceder.setBackground(Color.GRAY);
         botonAcceder.setForeground(Color.WHITE);
         botonAcceder.setPreferredSize(new Dimension(150, 30));
         panelBotonAcceder.add(botonAcceder);

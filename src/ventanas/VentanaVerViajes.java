@@ -114,7 +114,7 @@ public class VentanaVerViajes extends JFrame{
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.DARK_GRAY);
+        botonVolver.setBackground(Color.GRAY);
         botonVolver.setForeground(Color.WHITE);
         botonVolver.setPreferredSize(new Dimension(160, 35));
         panelBotonVolver.add(botonVolver);

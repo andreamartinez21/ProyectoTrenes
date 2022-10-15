@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		if(BD.connect() != null) {
-//			BD.borrarViajes();
+//			BD.borrarViajesBD();
 			Metodos.leeFichero();
 			new VentanaInicio();
 		} else {
@@ -18,3 +18,10 @@ public class Main {
 		}
 	}
 }
+
+
+
+// que funcione el método borrarViajesBD
+// logger
+// arreglar ventanaCompra (y hashSet en bd)
+// en loginBD meter todo lo de cliente

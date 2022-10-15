@@ -187,7 +187,7 @@ public class VentanaRegistro extends JFrame{
         panelBotonVolver.setBackground(new Color(153, 0, 102));
         JButton botonVolver = new JButton("Volver");
         botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.DARK_GRAY);
+        botonVolver.setBackground(Color.GRAY);
         botonVolver.setForeground(Color.WHITE);
         botonVolver.setPreferredSize(new Dimension(150, 30));
         panelBotonVolver.add(botonVolver);
@@ -212,7 +212,7 @@ public class VentanaRegistro extends JFrame{
         panelBotonRegistrarme.setBackground(new Color(153, 0, 102));
         JButton botonRegistrarme = new JButton("Registrarme");
         botonRegistrarme.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonRegistrarme.setBackground(Color.DARK_GRAY);
+        botonRegistrarme.setBackground(Color.GRAY);
         botonRegistrarme.setForeground(Color.WHITE);
         botonRegistrarme.setPreferredSize(new Dimension(150, 30));
         panelBotonRegistrarme.add(botonRegistrarme);
