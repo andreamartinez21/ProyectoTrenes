@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -88,11 +89,11 @@ public class Metodos {
       return true;
    }
    
-   public static Map<String, List<String>> obtenerMapaOrigenDestino() {
-	   List<Viaje> listaViajes = new ArrayList<>();
-	   List<String> listaOrigen = new ArrayList<>();
-	   List<String> listaDestino = new ArrayList<>();
-	   Map<String, List<String>> mapaOrigenDestino = new HashMap<>();
+   public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
+	   HashSet<Viaje> listaViajes = new HashSet<>();
+	   HashSet<String> listaOrigen = new HashSet<>();
+	   HashSet<String> listaDestino = new HashSet<>();
+	   Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<>();
 	   	   
 	   listaViajes = BD.getViajesBD();
 	  

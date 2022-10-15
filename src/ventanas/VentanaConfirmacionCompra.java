@@ -36,7 +36,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelArriba.setBackground(new Color(153, 0, 102));
         panelMedio = new JPanel(new GridLayout(4, 2));
         panelMedio.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new GridLayout(4, 2));
+        panelAbajo = new JPanel(new GridLayout(3, 2));
         panelAbajo.setBackground(new Color(153, 0, 102));
 
         contentPane.add(panel);
@@ -107,24 +107,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelAbajo.add(panelLabelConfirmar);
         panelAbajo.add(panelLabelBlanco);
 
-        // label usuario
-
-        JPanel panelLabelUsuario = new JPanel();
-        panelLabelUsuario.setBackground(new Color(153, 0, 102));
-        JLabel labelUsuario = new JLabel("Usuario: ");
-        labelUsuario.setForeground(Color.WHITE);
-        panelLabelUsuario.add(labelUsuario);
-
-        JPanel panelTextoUsuario = new JPanel(); 
-        panelTextoUsuario.setBackground(new Color(153, 0, 102));
-        JTextField textoUsuario = new JTextField();
-        textoUsuario.setPreferredSize(new Dimension(150, 25));
-        panelTextoUsuario.add(textoUsuario);
-
-        panelAbajo.add(panelLabelUsuario);
-        panelAbajo.add(panelTextoUsuario);
-
-        // label contraseña
+        // label y texto contraseña
 
         JPanel panelLabelContrasenya = new JPanel();
         panelLabelContrasenya.setBackground(new Color(153, 0, 102));

@@ -2,6 +2,7 @@ package BD;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import clases.Billete;
@@ -211,7 +212,7 @@ public class BD {
 	
 	// método get viajes
 	
-	public static List<Viaje> getViajesBD() {
+	public static HashSet<Viaje> getViajesBD() {
 		try {
 			ResultSet rs;
 			
@@ -221,7 +222,8 @@ public class BD {
 			
 			rs = ps.executeQuery();
 			
-			List<Viaje> listaViajes = new ArrayList<Viaje>(); // hacerlo con un hashset
+			// List<Viaje> listaViajes = new ArrayList<Viaje>();
+			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); 
 			
 			while(rs.next()) {
 				

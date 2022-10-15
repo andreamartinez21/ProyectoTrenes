@@ -73,6 +73,10 @@ public class VentanaVerViajes extends JFrame{
         
         //create table with data
         JTable table = new JTable(data, columns);
+        
+//      table.setBackground(Color.GRAY);
+        
+        // poner la tabla no editable
          
         //add the table to the frame
         JScrollPane scrollPane = new JScrollPane(table);

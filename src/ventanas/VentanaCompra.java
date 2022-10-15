@@ -9,6 +9,7 @@ import clases.Viaje;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -115,7 +116,7 @@ public class VentanaCompra extends JFrame{
 
         // combo origen
 
-        List<String> listaOrigen = new ArrayList<>();
+        HashSet<String> listaOrigen = new HashSet<>();
  	    listaOrigen = Metodos.obtenerMapaOrigenDestino().get("Origen");
         JPanel panelComboOrigen = new JPanel();
         panelComboOrigen.setBackground(new Color(153, 0, 102));
@@ -131,7 +132,7 @@ public class VentanaCompra extends JFrame{
 
         // combo destino
 
-        List<String> listaDestino = new ArrayList<>();
+        HashSet<String> listaDestino = new HashSet<>();
         listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
         JPanel panelComboDestino = new JPanel();
         panelComboDestino.setBackground(new Color(153, 0, 102));
