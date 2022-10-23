@@ -1,8 +1,13 @@
 package ventanas;
 
 import javax.swing.*;
+
+import log.Log;
+
 import java.awt.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -120,7 +125,7 @@ public class VentanaInicioSesion extends JFrame{
                 	if(Metodos.login(textoUsuario.getText(), textoContrasenya.getText())) {
                 		new VentanaMenuPrincipal();
                 		dispose();
-                		System.out.println("Se ha iniciado sesión correctamente.");
+                		Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");
                 	} else {
                 		JOptionPane.showMessageDialog(null, "Ha habido un error en el inicio de sesión.");
                 		System.out.println("Ha habido un error en el inicio de sesión.");

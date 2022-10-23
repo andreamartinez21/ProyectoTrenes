@@ -3,10 +3,12 @@ package ventanas;
 import javax.swing.JFrame;
 
 import clases.Cliente;
+import log.Log;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -73,7 +75,7 @@ public class VentanaInicio extends JFrame{
                     dispose();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	Log.logger.log(Level.SEVERE, e.toString());
                 }
             }
         });

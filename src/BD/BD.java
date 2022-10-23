@@ -4,12 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
 
 import clases.Billete;
 import clases.BilletePrimera;
 import clases.BilleteSegunda;
 import clases.Cliente;
 import clases.Viaje;
+import log.Log;
 
 public class BD {
 	private static Connection conn = null;
@@ -19,9 +21,9 @@ public class BD {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:database.db");
-			System.out.println("Conexión con BD establecida.");
+			Log.logger.log(Level.INFO, "Conexión con BD establecida.");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Error cargando el driver de la BD");
+			Log.logger.log(Level.SEVERE, "Error cargando el driver de la BD");
 		} catch (SQLException e) {
 			System.out.println("Error al conectar con BD");
 		}
