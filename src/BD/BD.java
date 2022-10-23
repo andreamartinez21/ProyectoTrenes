@@ -21,11 +21,11 @@ public class BD {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:database.db");
-			Log.logger.log(Level.INFO, "Conexión con BD establecida.");
+			Log.logger.log(Level.INFO, "Conexión con la BD establecida.");
 		} catch (ClassNotFoundException e) {
 			Log.logger.log(Level.SEVERE, "Error cargando el driver de la BD");
 		} catch (SQLException e) {
-			System.out.println("Error al conectar con BD");
+			Log.logger.log(Level.SEVERE, "Error al conectar con la BD");
 		}
 		return conn;
 	}
@@ -33,9 +33,9 @@ public class BD {
 	public static void disconnect() {
 		try {
 			conn.close();
-			System.out.println("Desconectado de la BD");
+			Log.logger.log(Level.INFO, "Desconectado de la BD");
 		} catch (SQLException e) {
-			System.out.println("No se ha podido desconectar");
+			Log.logger.log(Level.SEVERE, "No se ha podido desconectar");
 		}
 	}
 	
@@ -58,12 +58,11 @@ public class BD {
 			ps.executeUpdate();
 			ps.close();
 			
-			System.out.println("Los datos se han introducido correctamente.");
-			
+			Log.logger.log(Level.INFO, "Los datos se han introducido correctamente.");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("No se ha podido insertar los datos.");
+			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos.");
 			return false;
 		}
 	}
@@ -129,7 +128,7 @@ public class BD {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("No se ha podido comprobar.");
+			Log.logger.log(Level.SEVERE, "No se ha podido comprobar.");
 		}
 		return false;
 	}
@@ -153,17 +152,14 @@ public class BD {
 			ps.executeUpdate();
 			ps.close();
 			
-			System.out.println("Los datos se han actualizado correctamente.");
-			
+			Log.logger.log(Level.INFO, "Los datos se han actualizado correctamente.");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("No se ha podido editar.");
-			
+			Log.logger.log(Level.SEVERE, "No se ha podido editar.");
 			return false;
 		}
 	}
-	
 	
 	// método añadir viaje
 	
@@ -182,12 +178,11 @@ public class BD {
 			ps.executeUpdate();
 			ps.close();
 			
-			System.out.println("Los datos se han introducido correctamente en la BD.");
-			
+			Log.logger.log(Level.INFO, "Los datos se han introducido correctamente en la BD.");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("No se ha podido insertar los datos en la BD.");
+			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos en la BD.");
 			return false;
 		}
 	}
@@ -202,12 +197,11 @@ public class BD {
 			ps.executeUpdate(consulta);
 			ps.close();
 			
-			System.out.println("Se han eliminado los datos correctamente.");
-			
+			Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("No se han podido borrar los datos.");
+			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos.");
 			return false;
 		}
 	}
@@ -234,11 +228,42 @@ public class BD {
 				listaViajes.add(viaje);				
 			}
 			
+			Log.logger.log(Level.INFO, "Se han obtenido los viajes correctamente.");
 			return listaViajes;
 			
 		} catch (Exception e) {
-			System.out.println("No se han podido obtener los viajes.");
+			Log.logger.log(Level.SEVERE, "No se han podido obtener los viajes.");
 		}
 		return null;
 	}
+	
+	// método get billetes usuario
+	
+//	public static List<Billete> getBilletesUsuarioBD() {
+//		try {
+//			ResultSet rs;
+//			
+//			String consulta = "SELECT * FROM billete WHERE usuario = ?;";
+//			
+//			PreparedStatement ps = conn.prepareStatement(consulta);
+//			
+//			rs = ps.executeQuery();
+//			
+//			List<Billete> listaBilletesUsuario = new ArrayList<Billete>();
+//			
+//			while(rs.next()) {
+//				
+//				Billete billete = new Billete(rs.getInt("id"), rs.getString("usuarioCliente"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+//				
+//				listaViajes.add(viaje);				
+//			}
+//			
+//			Log.logger.log(Level.INFO, "Se han obtenido los billetes correctamente.");
+//			return listaViajes;
+//			
+//		} catch (Exception e) {
+//			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes.");
+//		}
+//		return null;
+//	}
 }

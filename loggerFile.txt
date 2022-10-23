@@ -1,6 +1,6 @@
-oct. 23, 2022 3:41:48 P. M. log.Log iniciarLog
+oct. 23, 2022 8:57:03 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-oct. 23, 2022 3:41:49 P. M. BD.BD connect
+oct. 23, 2022 8:57:03 P. M. BD.BD connect
 INFORMACIÓN: Conexión con BD establecida.
-oct. 23, 2022 3:41:57 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+oct. 23, 2022 8:57:49 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
 INFORMACIÓN: Se ha iniciado sesión correctamente.

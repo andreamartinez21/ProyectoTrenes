@@ -3,10 +3,12 @@ package ventanas;
 import javax.swing.JFrame;
 
 import clases.Cliente;
+import log.Log;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -42,8 +44,6 @@ public class VentanaRegistro extends JFrame{
         contentPane.add(panel);
 
         // panel
-
-        // METER BORDES
 
         // label texto nombre
 
@@ -225,23 +225,22 @@ public class VentanaRegistro extends JFrame{
                 	if(Metodos.register(textoNombre.getText(), textoApellido.getText(), textoUsuario.getText(), textoContrasenya.getText(), textoDni.getText(), textoEmail.getText(), textoNumTelefono.getText(), textoCuentaBancaria.getText())) {
                 		new VentanaInicio();
                 		dispose();
-                		System.out.println("Se ha registrado correctamente.");
                 		JOptionPane.showMessageDialog(null, "Se ha registrado correctamente.");
+                		Log.logger.log(Level.INFO, "Se ha registrado correctamente.");
                 	} else {
                 		JOptionPane.showMessageDialog(null, "Ha habido un error en el registo.");
-                		System.out.println("Ha habido un error en el registo.");
+                		Log.logger.log(Level.SEVERE, "Ha habido un error en el registo.");
                 	}
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error");
-                    System.out.println("Error");
+                    Log.logger.log(Level.SEVERE, "Error.");
                 }
             }
         });
 
-        // PONER UN COMENTARIO DE REGISTRO REALIZADO CON ÉXITO
-        // Y OTRO DE USUARIO YA REGISTRADO
+        // USUARIO YA REGISTRADO
 
         panelAbajo.add(panelBotonVolver);
         panelAbajo.add(panelBotonRegistrarme);

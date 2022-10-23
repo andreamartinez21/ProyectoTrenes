@@ -128,13 +128,13 @@ public class VentanaInicioSesion extends JFrame{
                 		Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");
                 	} else {
                 		JOptionPane.showMessageDialog(null, "Ha habido un error en el inicio de sesión.");
-                		System.out.println("Ha habido un error en el inicio de sesión.");
+                		Log.logger.log(Level.SEVERE, "Ha habido un error en el inicio de sesión.");
                 	}
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error");
-                    System.out.println("Error");
+                    Log.logger.log(Level.SEVERE, "Error");
                 }
             }
         });

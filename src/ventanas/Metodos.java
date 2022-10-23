@@ -8,10 +8,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import BD.BD;
 import clases.Cliente;
 import clases.Viaje;
+import log.Log;
 
 public class Metodos {
 	
@@ -68,7 +70,7 @@ public class Metodos {
          	double precio = Double.valueOf(data[5]);
          	
          	if(BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio)) {
-         		System.out.println("Se ha añadido el viaje corrrectamente.");
+         		Log.logger.log(Level.INFO, "Se ha añadido el viaje corrrectamente.");
          	}
          }
       }
