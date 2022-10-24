@@ -12,7 +12,7 @@ public class Cliente {
     protected String email;
     protected String numTelefono;
     protected String cuentaBancaria;
-    protected List<Billete> listaBilletes;
+    protected List<Billete> listaBilletes; // mirar si tengo que hacer una lista para cada tipo de billete
     
 	public Cliente(String usuario, String contrasenya, String nombre, String apellido, String dni, String email,
 			String numTelefono, String cuentaBancaria, List<Billete> listaBilletes) {

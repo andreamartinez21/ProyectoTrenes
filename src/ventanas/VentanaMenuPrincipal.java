@@ -4,10 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import BD.BD;
+import log.Log;
 
 public class VentanaMenuPrincipal extends JFrame{
 
@@ -156,7 +158,7 @@ public class VentanaMenuPrincipal extends JFrame{
                     new VentanaInicio();
                     dispose();
                     BD.clienteActual = null;
-                    System.out.println("Se ha cerrado la sesión correctamente.");
+                    Log.logger.log(Level.INFO, "Se ha cerrado la sesión correctamente.");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

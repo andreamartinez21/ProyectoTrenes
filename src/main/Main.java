@@ -24,4 +24,3 @@ public class Main {
 
 
 // que funcione el método borrarViajesBD
-// en loginBD meter todo lo de cliente

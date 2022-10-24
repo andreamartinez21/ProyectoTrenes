@@ -99,36 +99,12 @@ public class BD {
 					
 					ps.close();
 					
-//					ps = conn.prepareStatement(consulta2);
-//					ps.setString(1, usuario);
-//					rs2 = ps.executeQuery(); // aquí estarian todos los billetes de ese usuario
-					
-//					while(rs2.next()) {
-//						if(rs2.getString("usuarioCliente").equals(usuario)) {
-//							
-//							// coger los atributos de billetes y meterselos al constructor
-//							String id = String.valueOf(rs2.getInt("id"));
-//							
-//							
-//							int clase = rs2.getInt("clase");
-//							
-//							if(clase == 0) {
-//								BilletePrimera billetePrimera = new BilletePrimera();	
-//								billetePrimera.setId(id);
-//								clienteActual.anyadirBillete(billetePrimera);
-//							} else {
-//								BilleteSegunda billeteSegunda = new BilleteSegunda();
-//								billeteSegunda.setId(id);
-//								clienteActual.anyadirBillete(billeteSegunda);
-//							}
-//						}
-//						
-//					}
+					Log.logger.log(Level.INFO, "Usuario y contraseña encontrados en la BD.");
 					return true;
 				}
 			}
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido comprobar.");
+			Log.logger.log(Level.SEVERE, "Usuario y contraseña no encontrados en la BD.");
 		}
 		return false;
 	}
@@ -219,7 +195,7 @@ public class BD {
 			rs = ps.executeQuery();
 			
 			// List<Viaje> listaViajes = new ArrayList<Viaje>();
-			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); 
+			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); // cambiar nombre
 			
 			while(rs.next()) {
 				
@@ -239,7 +215,7 @@ public class BD {
 	
 	// método get billetes usuario
 	
-//	public static List<Billete> getBilletesUsuarioBD() {
+//	public static List<Billete> getBilletesUsuarioBD() { // que me devuelva void y lo que haga sea meter la lista de billetes en el clienteActual
 //		try {
 //			ResultSet rs;
 //			
