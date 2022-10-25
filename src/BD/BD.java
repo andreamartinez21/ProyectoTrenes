@@ -2,8 +2,10 @@ package BD;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 import clases.Billete;
@@ -215,31 +217,82 @@ public class BD {
 	
 	// método get billetes usuario
 	
-//	public static List<Billete> getBilletesUsuarioBD() { // que me devuelva void y lo que haga sea meter la lista de billetes en el clienteActual
-//		try {
-//			ResultSet rs;
-//			
-//			String consulta = "SELECT * FROM billete WHERE usuario = ?;";
-//			
-//			PreparedStatement ps = conn.prepareStatement(consulta);
-//			
-//			rs = ps.executeQuery();
-//			
-//			List<Billete> listaBilletesUsuario = new ArrayList<Billete>();
-//			
-//			while(rs.next()) {
-//				
-//				Billete billete = new Billete(rs.getInt("id"), rs.getString("usuarioCliente"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
-//				
-//				listaViajes.add(viaje);				
-//			}
-//			
-//			Log.logger.log(Level.INFO, "Se han obtenido los billetes correctamente.");
-//			return listaViajes;
-//			
-//		} catch (Exception e) {
-//			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes.");
-//		}
-//		return null;
-//	}
+	public static void getBilletesUsuarioBD(Cliente clienteActual) {
+		try {
+			ResultSet rs, rs2, rs3;
+			
+			String consulta = "SELECT * FROM billete WHERE usuario = ?;";
+			
+			PreparedStatement ps = conn.prepareStatement(consulta);
+			ps.setString(1, clienteActual.getUsuario());
+			
+			rs = ps.executeQuery();
+			
+			List<Billete> listaBilletesUsuario = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
+			List<String> listaLocalizadoresIda = new ArrayList<>();
+			List<String> listaLocalizadoresVuelta = new ArrayList<>();
+			
+			while(rs.next()) {
+				Viaje viajeIda = new Viaje();
+				Viaje viajeVuelta = new Viaje();
+				
+				if(rs.getInt("clase") == 1) {
+					BilletePrimera billetePrimera = new BilletePrimera(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getString("asiento"), rs.getInt("comida"), rs.getInt("asientoIndividual"));
+					listaBilletesUsuario.add(billetePrimera);
+				} else if(rs.getInt("clase") == 2) {
+					BilleteSegunda billeteSegunda = new BilleteSegunda(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getString("asiento"), rs.getInt("seguroViaje"), rs.getInt("mesa"));
+					listaBilletesUsuario.add(billeteSegunda);
+				}
+				
+				listaLocalizadoresIda.add(rs.getString("localizadorViajeIda"));
+				listaLocalizadoresVuelta.add(rs.getString("localizadorViajeVuelta"));
+			}
+			
+			for (String localizador : listaLocalizadoresIda) {
+				try {
+					String consulta2 = "SELECT * FROM viaje WHERE localizador = ?;";
+					ps = conn.prepareStatement(consulta2);
+					ps.setString(1, localizador);
+					
+					rs2 = ps.executeQuery();
+					
+					while(rs2.next()) {
+						int i = 0;
+						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+						listaBilletesUsuario.get(i).setViajeIda(viaje);
+						i++;
+					}
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "Error.");
+				}
+			}
+			
+			for (String localizador : listaLocalizadoresVuelta) {
+				// mirar si se puede hacer con la consulta anterior
+				try {
+					String consulta3 = "SELECT * FROM viaje WHERE localizador = ?;";
+					ps = conn.prepareStatement(consulta3);
+					ps.setString(1, localizador);
+					
+					rs3 = ps.executeQuery();
+					
+					while(rs3.next()) {
+						int i = 0;
+						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+						listaBilletesUsuario.get(i).setViajeVuelta(viaje);
+						i++;
+					}
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "Error.");
+				}
+			}
+			
+			clienteActual.setListaBilletes(listaBilletesUsuario);
+			
+			Log.logger.log(Level.INFO, "Se han obtenido los billetes correctamente.");
+			
+		} catch (Exception e) {
+			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes.");
+		}
+	}
 }

@@ -1,7 +1,6 @@
 package main;
 
 import java.io.IOException;
-
 import BD.BD;
 import log.Log;
 import ventanas.Metodos;

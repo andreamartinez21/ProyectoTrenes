@@ -8,11 +8,11 @@ public class Cliente {
     protected String contrasenya;
     protected String nombre;
     protected String apellido;
-    protected String dni; // restringir constructor (probar algoritmo)
+    protected String dni; // comprobar si es correcto el dni
     protected String email;
     protected String numTelefono;
     protected String cuentaBancaria;
-    protected List<Billete> listaBilletes; // mirar si tengo que hacer una lista para cada tipo de billete
+    protected List<Billete> listaBilletes;
     
 	public Cliente(String usuario, String contrasenya, String nombre, String apellido, String dni, String email,
 			String numTelefono, String cuentaBancaria, List<Billete> listaBilletes) {
@@ -120,6 +120,6 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [usuario=" + usuario + ", contrasenya=" + contrasenya + ", nombre=" + nombre + ", apellido="
 				+ apellido + ", dni=" + dni + ", email=" + email + ", numTelefono=" + numTelefono + ", cuentaBancaria="
-				+ cuentaBancaria + ", listaBilletes=" + listaBilletes + "]";
+				+ cuentaBancaria + ", listaBilletesPrimera=" + listaBilletes + "]";
 	}
 }

@@ -2,11 +2,11 @@ package clases;
 
 public class BilletePrimera extends Billete {
 
-	protected boolean comida;
-	protected boolean asientoIndividual;
+	protected int comida; // poner boolean
+	protected int asientoIndividual; // poner boolean
 		
 	public BilletePrimera(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, String asiento,
-			boolean comida, boolean asientoIndividual) {
+			int comida, int asientoIndividual) {
 		super(cliente, viajeIda, viajeVuelta, precio, asiento);
 		this.comida = comida;
 		this.asientoIndividual = asientoIndividual;
@@ -14,20 +14,20 @@ public class BilletePrimera extends Billete {
 	
 	public BilletePrimera() {
 		super();
-		this.comida = false;
-		this.asientoIndividual = false;
+		this.comida = 0;
+		this.asientoIndividual = 0;
 	}
 	
-	public boolean isComida() {
+	public int isComida() {
 		return comida;
 	}
-	public void setComida(boolean comida) {
+	public void setComida(int comida) {
 		this.comida = comida;
 	}
-	public boolean isAsientoIndividual() {
+	public int isAsientoIndividual() {
 		return asientoIndividual;
 	}
-	public void setAsientoIndividual(boolean asientoIndividual) {
+	public void setAsientoIndividual(int asientoIndividual) {
 		this.asientoIndividual = asientoIndividual;
 	}
 

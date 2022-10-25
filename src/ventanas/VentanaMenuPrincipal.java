@@ -144,7 +144,7 @@ public class VentanaMenuPrincipal extends JFrame{
         JPanel panelBotonCerrarSesion = new JPanel();
         panelBotonCerrarSesion.setBackground(new Color(153, 0, 102));
         JButton botonCerrarSesion = new JButton("Cerrar sesión");
-        botonCerrarSesion.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
+        botonCerrarSesion.setFont(new Font("Yu Gothic UI", Font.PLAIN, 16));
         botonCerrarSesion.setBackground(Color.GRAY);
         botonCerrarSesion.setForeground(Color.WHITE);
         botonCerrarSesion.setPreferredSize(new Dimension(130, 30));

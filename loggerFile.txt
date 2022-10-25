@@ -1,20 +1,18 @@
-oct. 24, 2022 10:25:53 P. M. log.Log iniciarLog
+oct. 25, 2022 10:44:20 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-oct. 24, 2022 10:25:53 P. M. BD.BD connect
+oct. 25, 2022 10:44:20 P. M. BD.BD connect
 INFORMACIÓN: Conexión con la BD establecida.
-oct. 24, 2022 10:25:53 P. M. BD.BD anyadirViajeBD
+oct. 25, 2022 10:44:20 P. M. BD.BD anyadirViajeBD
 GRAVE: No se ha podido insertar los datos en la BD.
-oct. 24, 2022 10:25:53 P. M. BD.BD anyadirViajeBD
+oct. 25, 2022 10:44:20 P. M. BD.BD anyadirViajeBD
 GRAVE: No se ha podido insertar los datos en la BD.
-oct. 24, 2022 10:25:53 P. M. BD.BD anyadirViajeBD
+oct. 25, 2022 10:44:20 P. M. BD.BD anyadirViajeBD
 GRAVE: No se ha podido insertar los datos en la BD.
-oct. 24, 2022 10:25:53 P. M. BD.BD anyadirViajeBD
+oct. 25, 2022 10:44:20 P. M. BD.BD anyadirViajeBD
 GRAVE: No se ha podido insertar los datos en la BD.
-oct. 24, 2022 10:25:56 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-oct. 24, 2022 10:25:56 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-oct. 24, 2022 10:26:31 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-oct. 24, 2022 10:26:31 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
+oct. 25, 2022 10:44:34 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+oct. 25, 2022 10:44:34 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.
+oct. 25, 2022 10:44:45 P. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
+INFORMACIÓN: Se ha cerrado la sesión correctamente.
