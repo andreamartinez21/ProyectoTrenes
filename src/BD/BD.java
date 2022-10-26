@@ -2,10 +2,8 @@ package BD;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 import clases.Billete;
@@ -215,7 +213,7 @@ public class BD {
 		return null;
 	}
 	
-	// método get billetes usuario
+	// método get billetes usuario // NO FUNCIONA
 	
 	public static void getBilletesUsuarioBD(Cliente clienteActual) {
 		try {

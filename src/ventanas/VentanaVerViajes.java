@@ -4,13 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
+import BD.BD;
+import clases.Billete;
 
 public class VentanaVerViajes extends JFrame{
 
@@ -48,14 +50,19 @@ public class VentanaVerViajes extends JFrame{
         
         // JTable
         
-        //headers for the table
+        // array con título tabla
         String[] columns = new String[] {
             "ORIGEN", "DESTINO", "IDA Y VUELTA", "PRECIO"
         };
          
-        //actual data for the table in a 2d array
+        // array con datos tabla
+        
+//        BD.getBilletesUsuarioBD(BD.clienteActual);
+//        List<Billete> listaBilletesUsuario = new ArrayList<Billete>();
+//        listaBilletesUsuario = BD.clienteActual.getListaBilletes();
+        
         Object[][] data = new Object[][] {
-            {"Bilbao", "Málaga", "No", 150},
+            {/*listaBilletesUsuario.get(0).getViajeIda().getOrigen()*/ "Bilbao", "Málaga", "No", 150},
             {"Bilbao", "París", "Sí", 80},
             {"Madrid", "Londres", "No", 55},
             {"Madrid", "Londres", "No", 55},
@@ -71,18 +78,20 @@ public class VentanaVerViajes extends JFrame{
             {"Madrid", "Londres", "No", 55},
         };
         
-        //create table with data
+        // crear tabla
         JTable table = new JTable(data, columns);
+        
+        for(int i = 0; i < data.length; i++) {
+        	table.setRowHeight(i, 30);
+        }
         
 //      table.setBackground(Color.GRAY);
         
         // poner la tabla no editable
          
-        //add the table to the frame
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(450, 220));
         panelArriba.add(scrollPane);
-        
         
 //        DefaultTableModel tableModel = new DefaultTableModel() { 
 //        	
@@ -95,23 +104,6 @@ public class VentanaVerViajes extends JFrame{
 //       
 //        table.setModel(tableModel);
 
-        
-//        // labels viajes
-//
-//        for (int i = 0; i < viajes.length; i++) {
-//
-//            JPanel panelLabelIniciarSesion = new JPanel();
-//            panelLabelIniciarSesion.setBackground(new Color(0, 0, 51));
-//            JLabel labelIniciarSesion = new JLabel(viajes[i]);
-//            labelIniciarSesion.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-//            labelIniciarSesion.setBackground(Color.DARK_GRAY);
-//            labelIniciarSesion.setForeground(Color.WHITE);
-//            labelIniciarSesion.setPreferredSize(new Dimension(190, 35));
-//            panelLabelIniciarSesion.add(labelIniciarSesion);
-//
-//            panelArriba.add(panelLabelIniciarSesion);
-//        }
-//
         // botón volver
 
         JPanel panelBotonVolver = new JPanel();

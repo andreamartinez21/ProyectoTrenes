@@ -120,6 +120,6 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [usuario=" + usuario + ", contrasenya=" + contrasenya + ", nombre=" + nombre + ", apellido="
 				+ apellido + ", dni=" + dni + ", email=" + email + ", numTelefono=" + numTelefono + ", cuentaBancaria="
-				+ cuentaBancaria + ", listaBilletesPrimera=" + listaBilletes + "]";
+				+ cuentaBancaria + ", listaBilletes=" + listaBilletes + "]";
 	}
 }
