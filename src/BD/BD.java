@@ -39,6 +39,8 @@ public class BD {
 		}
 	}
 	
+	// MÉTODOS CLIENTE
+	
 	// método register
 	
 	public static boolean registerBD(String nombre, String apellido, String usuario, String contrasenya, String dni, String email, String numTelefono, String cuentaBancaria) {
@@ -73,10 +75,8 @@ public class BD {
 		
 		try {
 			ResultSet rs;
-//			ResultSet rs2;
 			
 			String consulta = "SELECT * FROM cliente WHERE usuario = ? AND contrasenya = ?;";
-//			String consulta2 = "SELECT * FROM billete WHERE usuarioCliente = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(consulta);
 			ps.setString(1, usuario);
@@ -109,9 +109,9 @@ public class BD {
 		return false;
 	}
 	
-	// método editar
+	// método editar cliente
 	
-	public static boolean editarBD(Cliente clienteActual, String nombre, String apellido, String dni, String email, String numTelefono, String cuentaBancaria) {
+	public static boolean editarClienteBD(Cliente clienteActual, String nombre, String apellido, String dni, String email, String numTelefono, String cuentaBancaria) {
 		try {
 			String consulta = "UPDATE cliente SET nombre = ?, apellido = ?, dni = ?, email = ?, numTelefono = ?, cuentaBancaria = ? WHERE usuario = ? AND contrasenya = ?;";
 			
@@ -136,6 +136,27 @@ public class BD {
 			return false;
 		}
 	}
+	
+	// método borrar cliente
+	
+	public static boolean borrarClienteBD(Cliente clienteActual) {
+		try {
+			String consulta = "DELETE * FROM cliente WHERE usuario = '" + clienteActual.getUsuario() + "';";
+			Statement ps = conn.createStatement();
+			
+			ps.executeUpdate(consulta);
+			ps.close();
+			
+			Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
+			return true;
+			
+		} catch (Exception e) {
+			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos.");
+			return false;
+		}
+	}
+	
+	// MÉTODOS VIAJE
 	
 	// método añadir viaje
 	
@@ -212,6 +233,8 @@ public class BD {
 		}
 		return null;
 	}
+	
+	// MÉTODOS BILLETE
 	
 	// método get billetes usuario // NO FUNCIONA
 	

@@ -37,7 +37,7 @@ public class Metodos {
 	
 	public static boolean editar(Cliente clienteActual, String nombre, String apellido, String dni, String email, String numTelefono, String cuentaBancaria) {
 		
-		if(BD.editarBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
+		if(BD.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
 			return true;
 		} else {
 			return false;

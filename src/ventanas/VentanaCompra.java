@@ -87,19 +87,19 @@ public class VentanaCompra extends JFrame{
         
         JPanel panelLabelAdultos = new JPanel();
         panelLabelAdultos.setBackground(new Color(153, 0, 102));
-        JLabel labelAdultos = new JLabel("Adulto");
+        JLabel labelAdultos = new JLabel("Segunda clase");
         labelAdultos.setForeground(Color.WHITE);
         panelLabelAdultos.add(labelAdultos);
         
         JPanel panelSpinnerAdultos = new JPanel();
         panelSpinnerAdultos.setBackground(new Color(153, 0, 102));
         JSpinner spinnerAdultos = new JSpinner();
-        spinnerAdultos.setModel(new SpinnerNumberModel(1, 1, 6, 1));
+        spinnerAdultos.setModel(new SpinnerNumberModel(1, 0, 6, 1));
         panelSpinnerAdultos.add(spinnerAdultos);
 
         JPanel panelLabelNinyos = new JPanel(); 
         panelLabelNinyos.setBackground(new Color(153, 0, 102));
-        JLabel labelNinyos = new JLabel("Niño (descuento 20%)");
+        JLabel labelNinyos = new JLabel("Primera clase");
         labelNinyos.setForeground(Color.WHITE);
         panelLabelNinyos.add(labelNinyos);
         

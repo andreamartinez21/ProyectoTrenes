@@ -20,6 +20,3 @@ public class Main {
 		}
 	}
 }
-
-
-// que funcione el método borrarViajesBD

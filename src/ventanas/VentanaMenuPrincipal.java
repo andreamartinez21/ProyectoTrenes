@@ -1,6 +1,5 @@
 package ventanas;
 
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panelArriba.setBackground(new Color(153, 0, 102));
         panelMedio = new JPanel(new GridLayout(3, 1));
         panelMedio.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new BorderLayout());
+        panelAbajo = new JPanel(new GridLayout(2, 1));
         panelAbajo.setBackground(new Color(153, 0, 102));
 
         contentPane.add(panel);
@@ -167,6 +166,37 @@ public class VentanaMenuPrincipal extends JFrame{
         });
 
         panelAbajo.add(panelBotonCerrarSesion);
+        
+        // botón eliminar cuenta
+        
+        JPanel panelBotonEliminarCuenta = new JPanel();
+        panelBotonEliminarCuenta.setBackground(new Color(153, 0, 102));
+        JButton botonEliminarCuenta = new JButton("Eliminar cuenta");
+        botonEliminarCuenta.setFont(new Font("Yu Gothic UI", Font.PLAIN, 10));
+        botonEliminarCuenta.setBackground(Color.GRAY);
+        botonEliminarCuenta.setForeground(Color.WHITE);
+        botonEliminarCuenta.setPreferredSize(new Dimension(103, 19));
+        panelBotonEliminarCuenta.add(botonEliminarCuenta);
+        
+        botonEliminarCuenta.addActionListener(new ActionListener() {
+			
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                try {
+                    new VentanaInicio();
+                    dispose();
+                    BD.clienteActual = null;
+                    BD.borrarClienteBD(BD.clienteActual);
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado la cuenta correctamente.");
+                    Log.logger.log(Level.INFO, "Se ha eliminado la cuenta correctamente.");
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        panelAbajo.add(panelBotonEliminarCuenta);
 
         //
 
