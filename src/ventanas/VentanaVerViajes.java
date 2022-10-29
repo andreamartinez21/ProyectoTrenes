@@ -23,8 +23,6 @@ public class VentanaVerViajes extends JFrame{
     private JPanel panelAbajo;
     
 	public VentanaVerViajes() throws IOException {
-
-//        String[] viajes = {"Bilbao - Málaga", "Bilbao - París", "Madrid - Londres", "Alicante - Valencia"};
     	
         setBackground(new Color(0, 0, 51));
 

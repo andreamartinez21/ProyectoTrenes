@@ -182,13 +182,17 @@ public class VentanaMenuPrincipal extends JFrame{
 			
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                try {
-                    new VentanaInicio();
-                    dispose();
-                    BD.clienteActual = null;
-                    BD.borrarClienteBD(BD.clienteActual);
-                    JOptionPane.showMessageDialog(null, "Se ha eliminado la cuenta correctamente.");
-                    Log.logger.log(Level.INFO, "Se ha eliminado la cuenta correctamente.");
+                try {                    
+                    if(Metodos.borrarCliente(BD.clienteActual)){
+                    	new VentanaInicio();
+                    	dispose();
+                    	BD.clienteActual = null;
+                    	JOptionPane.showMessageDialog(null, "Se ha eliminado la cuenta correctamente");
+                    	Log.logger.log(Level.INFO, "Se ha eliminado la cuenta correctamente.");
+                    } else {
+                    	JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cuenta");
+                    	Log.logger.log(Level.SEVERE, "No se ha podido eliminar la cuenta.");
+                    }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

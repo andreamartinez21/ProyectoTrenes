@@ -141,10 +141,12 @@ public class BD {
 	
 	public static boolean borrarClienteBD(Cliente clienteActual) {
 		try {
-			String consulta = "DELETE * FROM cliente WHERE usuario = '" + clienteActual.getUsuario() + "';";
-			Statement ps = conn.createStatement();
+			String consulta = "DELETE FROM cliente WHERE usuario = ?;";
 			
-			ps.executeUpdate(consulta);
+			PreparedStatement ps = conn.prepareStatement(consulta);
+			ps.setString(1, clienteActual.getUsuario());
+			
+			ps.executeUpdate();
 			ps.close();
 			
 			Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
@@ -188,7 +190,7 @@ public class BD {
 	
 	public static boolean borrarViajesBD() {
 		try {
-			String consulta = "DELETE * FROM viaje;";
+			String consulta = "DELETE FROM viaje;";
 			Statement ps = conn.createStatement();
 			
 			ps.executeUpdate(consulta);

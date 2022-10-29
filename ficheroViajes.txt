@@ -2,3 +2,4 @@
 879H;Madrid;Malaga;12-11-2022;85;22
 798G;Madrid;Malta;04-12-2022;69;50
 423H;Barcelona;Paris;04-12-2022;50;70
+864B;Vitoria;Milan;09-11-2022;45;99

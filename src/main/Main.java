@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Log.iniciarLog();
 		if(BD.connect() != null) {
-//			BD.borrarViajesBD();
+			BD.borrarViajesBD();
 			Metodos.leeFichero();
 			new VentanaInicio();
 		} else {

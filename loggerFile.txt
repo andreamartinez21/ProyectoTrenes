@@ -1,16 +1,38 @@
-oct. 28, 2022 2:48:22 P. M. log.Log iniciarLog
+oct. 29, 2022 6:48:48 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-oct. 28, 2022 2:48:23 P. M. BD.BD connect
+oct. 29, 2022 6:48:49 P. M. BD.BD connect
 INFORMACIÓN: Conexión con la BD establecida.
-oct. 28, 2022 2:48:23 P. M. BD.BD anyadirViajeBD
-GRAVE: No se ha podido insertar los datos en la BD.
-oct. 28, 2022 2:48:23 P. M. BD.BD anyadirViajeBD
-GRAVE: No se ha podido insertar los datos en la BD.
-oct. 28, 2022 2:48:23 P. M. BD.BD anyadirViajeBD
-GRAVE: No se ha podido insertar los datos en la BD.
-oct. 28, 2022 2:48:23 P. M. BD.BD anyadirViajeBD
-GRAVE: No se ha podido insertar los datos en la BD.
-oct. 28, 2022 2:48:30 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-oct. 28, 2022 2:48:30 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD borrarViajesBD
+INFORMACIÓN: Se han eliminado los datos correctamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD anyadirViajeBD
+INFORMACIÓN: Los datos se han introducido correctamente en la BD.
+oct. 29, 2022 6:48:49 P. M. ventanas.Metodos leeFichero
+INFORMACIÓN: Se ha añadido el viaje corrrectamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD anyadirViajeBD
+INFORMACIÓN: Los datos se han introducido correctamente en la BD.
+oct. 29, 2022 6:48:49 P. M. ventanas.Metodos leeFichero
+INFORMACIÓN: Se ha añadido el viaje corrrectamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD anyadirViajeBD
+INFORMACIÓN: Los datos se han introducido correctamente en la BD.
+oct. 29, 2022 6:48:49 P. M. ventanas.Metodos leeFichero
+INFORMACIÓN: Se ha añadido el viaje corrrectamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD anyadirViajeBD
+INFORMACIÓN: Los datos se han introducido correctamente en la BD.
+oct. 29, 2022 6:48:49 P. M. ventanas.Metodos leeFichero
+INFORMACIÓN: Se ha añadido el viaje corrrectamente.
+oct. 29, 2022 6:48:49 P. M. BD.BD anyadirViajeBD
+INFORMACIÓN: Los datos se han introducido correctamente en la BD.
+oct. 29, 2022 6:48:49 P. M. ventanas.Metodos leeFichero
+INFORMACIÓN: Se ha añadido el viaje corrrectamente.
+oct. 29, 2022 6:48:58 P. M. BD.BD registerBD
+INFORMACIÓN: Los datos se han introducido correctamente.
+oct. 29, 2022 6:48:59 P. M. ventanas.VentanaRegistro$2 actionPerformed
+INFORMACIÓN: Se ha registrado correctamente.
+oct. 29, 2022 6:49:03 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+oct. 29, 2022 6:49:03 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.
+oct. 29, 2022 6:49:14 P. M. BD.BD borrarClienteBD
+INFORMACIÓN: Se han eliminado los datos correctamente.
+oct. 29, 2022 6:49:15 P. M. ventanas.VentanaMenuPrincipal$5 actionPerformed
+INFORMACIÓN: Se ha eliminado la cuenta correctamente.

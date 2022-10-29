@@ -44,6 +44,14 @@ public class Metodos {
 		}
 	}
 	
+	public static boolean borrarCliente(Cliente clienteActual) {
+		if(BD.borrarClienteBD(clienteActual)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
    public static boolean leeFichero() { // tabular bien
 	   
       File archivo = null;
