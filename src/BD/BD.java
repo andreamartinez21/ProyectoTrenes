@@ -12,15 +12,16 @@ import clases.BilleteSegunda;
 import clases.Cliente;
 import clases.Viaje;
 import log.Log;
+import properties.PropertiesClass;
 
 public class BD {
 	private static Connection conn = null;
 	public static Cliente clienteActual = new Cliente();
-					
+
 	public static Connection connect() {
 		try {
-			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+			Class.forName(PropertiesClass.properties.getProperty("driver"));
+			conn = DriverManager.getConnection(PropertiesClass.properties.getProperty("connection"));
 			Log.logger.log(Level.INFO, "Conexión con la BD establecida.");
 		} catch (ClassNotFoundException e) {
 			Log.logger.log(Level.SEVERE, "Error cargando el driver de la BD");
@@ -238,7 +239,7 @@ public class BD {
 	
 	// MÉTODOS BILLETE
 	
-	// método get billetes usuario // NO FUNCIONA
+	// método get billetes usuario
 	
 	public static void getBilletesUsuarioBD(Cliente clienteActual) {
 		try {
@@ -271,9 +272,10 @@ public class BD {
 				listaLocalizadoresVuelta.add(rs.getString("localizadorViajeVuelta"));
 			}
 			
+			String consulta2 = "SELECT * FROM viaje WHERE localizador = ?;";
+			
 			for (String localizador : listaLocalizadoresIda) {
 				try {
-					String consulta2 = "SELECT * FROM viaje WHERE localizador = ?;";
 					ps = conn.prepareStatement(consulta2);
 					ps.setString(1, localizador);
 					
@@ -291,10 +293,8 @@ public class BD {
 			}
 			
 			for (String localizador : listaLocalizadoresVuelta) {
-				// mirar si se puede hacer con la consulta anterior
 				try {
-					String consulta3 = "SELECT * FROM viaje WHERE localizador = ?;";
-					ps = conn.prepareStatement(consulta3);
+					ps = conn.prepareStatement(consulta2);
 					ps.setString(1, localizador);
 					
 					rs3 = ps.executeQuery();
