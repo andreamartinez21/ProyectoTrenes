@@ -4,13 +4,9 @@ import javax.swing.*;
 
 import com.toedter.calendar.JCalendar;
 
-import clases.Viaje;
-
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

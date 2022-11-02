@@ -18,13 +18,13 @@ public class BilletePrimera extends Billete {
 		this.asientoIndividual = 0;
 	}
 	
-	public int isComida() {
+	public int getComida() {
 		return comida;
 	}
 	public void setComida(int comida) {
 		this.comida = comida;
 	}
-	public int isAsientoIndividual() {
+	public int getAsientoIndividual() {
 		return asientoIndividual;
 	}
 	public void setAsientoIndividual(int asientoIndividual) {

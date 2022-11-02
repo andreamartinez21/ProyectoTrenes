@@ -18,7 +18,7 @@ public class BilleteSegunda extends Billete {
 		this.mesa = 0;
 	}
 
-	public int isSeguroViaje() {
+	public int getSeguroViaje() {
 		return seguroViaje;
 	}
 
@@ -26,7 +26,7 @@ public class BilleteSegunda extends Billete {
 		this.seguroViaje = seguroViaje;
 	}
 
-	public int isMesa() {
+	public int getMesa() {
 		return mesa;
 	}
 
