@@ -1,10 +1,7 @@
 package ventanas;
 
 import javax.swing.JFrame;
-
-import clases.Cliente;
 import log.Log;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;

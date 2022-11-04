@@ -4,15 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import BD.BD;
-import clases.Billete;
 
 public class VentanaVerViajes extends JFrame{
 

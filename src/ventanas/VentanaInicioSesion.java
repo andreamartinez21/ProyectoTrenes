@@ -2,12 +2,14 @@ package ventanas;
 
 import javax.swing.*;
 
+import BD.BD;
+import clases.Billete;
 import log.Log;
-
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -126,6 +128,14 @@ public class VentanaInicioSesion extends JFrame{
                 		new VentanaMenuPrincipal();
                 		dispose();
                 		Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");
+                		
+//                		BD.getBilletesUsuarioBD(BD.clienteActual);
+//                		List<Billete> listaBilletes = new ArrayList<Billete>();
+//                		listaBilletes = BD.clienteActual.getListaBilletes();
+//                		for (Billete billete : listaBilletes) {
+//                			billete.toString();
+//                		}
+                		
                 	} else {
                 		JOptionPane.showMessageDialog(null, "Ha habido un error en el inicio de sesión.");
                 		Log.logger.log(Level.SEVERE, "Ha habido un error en el inicio de sesión.");

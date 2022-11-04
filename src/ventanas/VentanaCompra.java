@@ -1,8 +1,13 @@
 package ventanas;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,8 +22,8 @@ public class VentanaCompra extends JFrame{
     private JPanel panel;
     private JPanel panelArriba;
     private JPanel panelMedio;
-    private JPanel panelMedioIzquierda;
-    private JPanel panelMedioDerecha;
+//    private JPanel panelMedioIzquierda;
+//    private JPanel panelMedioDerecha;
     private JPanel panelAbajo;
     
     private JCalendar calendarioIda;
@@ -30,7 +35,7 @@ public class VentanaCompra extends JFrame{
 
         setTitle("Compra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(530, 380));
+        setPreferredSize(new Dimension(530, 575));
         setVisible(true);
         pack();
 
@@ -40,76 +45,34 @@ public class VentanaCompra extends JFrame{
 
         panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(153, 0, 102));
-        panelArriba = new JPanel(new GridLayout(1, 2));
+        panelArriba = new JPanel(new GridLayout(2, 2));
         panelArriba.setBackground(new Color(153, 0, 102));
-        panelMedio = new JPanel(new BorderLayout());
+        panelMedio = new JPanel(new GridLayout(2, 1));
         panelMedio.setBackground(new Color(153, 0, 102));
-        panelMedioIzquierda = new JPanel(new GridLayout(2, 1));
-        panelMedioIzquierda.setBackground(new Color(153, 0, 102));
-        panelMedioDerecha = new JPanel(new GridLayout(2, 2));
-        panelMedioDerecha.setBackground(new Color(153, 0, 102));
         panelAbajo = new JPanel(new GridLayout(2, 2));
         panelAbajo.setBackground(new Color(153, 0, 102));
+        
+        JPanel panelCalendarioVuelta = new JPanel();
 
         contentPane.add(panel);
-
-        // radio button ida y vuelta
-
-        JPanel panelRadioIdaVuelta = new JPanel();
-        panelRadioIdaVuelta.setBackground(new Color(153, 0, 102));
-        JRadioButton radioIdaVuelta = new JRadioButton("Ida y vuelta", true);
-        radioIdaVuelta.setBackground(Color.WHITE);
-        panelRadioIdaVuelta.add(radioIdaVuelta);
-
-        panelMedioIzquierda.add(panelRadioIdaVuelta);
-
-        // radio button ida
-
-        JPanel panelRadioIda = new JPanel();
-        panelRadioIda.setBackground(new Color(153, 0, 102));
-        JRadioButton radioIda = new JRadioButton("Ida", false);
-        radioIda.setBackground(Color.WHITE);
-        panelRadioIda.add(radioIda);
-
-        panelMedioIzquierda.add(panelRadioIda);
-
-        if(radioIdaVuelta.isSelected() == true){
-            radioIda.setSelected(false);
-        } else if(radioIda.isSelected() == true){
-            radioIdaVuelta.setSelected(false);
-        }
         
-        // labels y spinners
+        ////// labels
         
-        JPanel panelLabelAdultos = new JPanel();
-        panelLabelAdultos.setBackground(new Color(153, 0, 102));
-        JLabel labelAdultos = new JLabel("Segunda clase");
-        labelAdultos.setForeground(Color.WHITE);
-        panelLabelAdultos.add(labelAdultos);
+//        JPanel panelLabelDesde = new JPanel();
+//        panelLabelDesde.setBackground(new Color(153, 0, 102));
+//        JLabel labelDesde = new JLabel("Desde:");
+//        labelDesde.setForeground(Color.WHITE);
+//        panelLabelDesde.add(labelDesde);
+//        
+//        JPanel panelLabelA = new JPanel();
+//        panelLabelA.setBackground(new Color(153, 0, 102));
+//        JLabel labelA = new JLabel("A:");
+//        labelA.setForeground(Color.WHITE);
+//        panelLabelA.add(labelA);
+//        
+//        panelArriba.add(panelLabelDesde);
+//        panelArriba.add(panelLabelA);
         
-        JPanel panelSpinnerAdultos = new JPanel();
-        panelSpinnerAdultos.setBackground(new Color(153, 0, 102));
-        JSpinner spinnerAdultos = new JSpinner();
-        spinnerAdultos.setModel(new SpinnerNumberModel(1, 0, 6, 1));
-        panelSpinnerAdultos.add(spinnerAdultos);
-
-        JPanel panelLabelNinyos = new JPanel(); 
-        panelLabelNinyos.setBackground(new Color(153, 0, 102));
-        JLabel labelNinyos = new JLabel("Primera clase");
-        labelNinyos.setForeground(Color.WHITE);
-        panelLabelNinyos.add(labelNinyos);
-        
-        JPanel panelSpinnerNinyos = new JPanel();
-        panelSpinnerNinyos.setBackground(new Color(153, 0, 102));
-        JSpinner spinnerNinyos = new JSpinner();
-        spinnerNinyos.setModel(new SpinnerNumberModel(0, 0, 6, 1));
-        panelSpinnerNinyos.add(spinnerNinyos);
-
-        panelMedioDerecha.add(panelLabelAdultos);
-        panelMedioDerecha.add(panelSpinnerAdultos);
-        panelMedioDerecha.add(panelLabelNinyos);
-        panelMedioDerecha.add(panelSpinnerNinyos);
-
         // combo origen
 
         HashSet<String> listaOrigen = new HashSet<>();
@@ -122,6 +85,14 @@ public class VentanaCompra extends JFrame{
 			comboOrigen.addItem(ciudad);
 		}
         comboOrigen.setBackground(Color.WHITE);
+        
+        Border bordejpanel5 = new TitledBorder(new MatteBorder(null), "DESDE:");
+        panelComboOrigen.setBorder(bordejpanel5);
+        
+        
+//        JLabel labelDesde = new JLabel("Desde:");
+//        labelDesde.setForeground(Color.WHITE);
+        
         panelComboOrigen.add(comboOrigen);
 
         panelArriba.add(panelComboOrigen);
@@ -138,48 +109,189 @@ public class VentanaCompra extends JFrame{
 			comboDestino.addItem(ciudad);
 		}
         comboDestino.setBackground(Color.WHITE);
+        
+        Border bordejpanel6 = new TitledBorder(new MatteBorder(null), "A:");
+        panelComboDestino.setBorder(bordejpanel6);
+        
         panelComboDestino.add(comboDestino);
 
         panelArriba.add(panelComboDestino);
+        
+        // radio button ida y vuelta
+
+        JPanel panelRadioIdaVueltaIda = new JPanel(new GridLayout(2, 1));
+        panelRadioIdaVueltaIda.setBackground(new Color(153, 0, 102));
+        JRadioButton radioIdaVuelta = new JRadioButton("Ida y vuelta", true);
+        radioIdaVuelta.setBackground(new Color(153, 0, 102));
+        radioIdaVuelta.setForeground(Color.WHITE);
+        
+        
+
+        // radio button ida
+
+        JRadioButton radioIda = new JRadioButton("Ida", false);
+        radioIda.setBackground(new Color(153, 0, 102));
+        radioIda.setForeground(Color.WHITE);
+        
+        panelRadioIdaVueltaIda.add(radioIdaVuelta);
+        panelRadioIdaVueltaIda.add(radioIda);
+        
+        Border bordejpanel = new TitledBorder(new EtchedBorder(), "Tipo de billete");
+        panelRadioIdaVueltaIda.setBorder(bordejpanel); 
 
         radioIdaVuelta.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				comboDestino.setVisible(true);
-                radioIda.setSelected(false);
-                calendarioVuelta.setVisible(true);
+				radioIda.setSelected(false);
+                panelCalendarioVuelta.setVisible(true);
 			}
 		});
+        
         radioIda.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				comboDestino.setVisible(false);
-                radioIdaVuelta.setSelected(false);
-                calendarioVuelta.setVisible(false);
+				radioIdaVuelta.setSelected(false);
+                panelCalendarioVuelta.setVisible(false);
 			}
 		});
+        
+        // label y spinner num billetes
+        
+        JPanel panelLabelNumBilletes = new JPanel();
+        panelLabelNumBilletes.setBackground(new Color(153, 0, 102));
+        JLabel labelNumBilletes = new JLabel("Número de billetes:");
+        labelNumBilletes.setForeground(Color.WHITE);
+        panelLabelNumBilletes.add(labelNumBilletes);
+        
+        JPanel panelSpinnerNumBilletes = new JPanel();
+        panelSpinnerNumBilletes.setBackground(new Color(153, 0, 102));
+        JSpinner spinnerNumBilletes = new JSpinner();
+        spinnerNumBilletes.setModel(new SpinnerNumberModel(1, 1, 6, 1));
+        panelSpinnerNumBilletes.add(spinnerNumBilletes);
+        
+        JPanel panelNumBilletes = new JPanel(new GridLayout(1, 2));
+        panelNumBilletes.setBackground(new Color(153, 0, 102));
+        
+        panelNumBilletes.add(panelLabelNumBilletes);
+        panelNumBilletes.add(panelSpinnerNumBilletes);
+        
+        // radio button primera y segunda clase
+        
+        JPanel panelRadioClase = new JPanel(new GridLayout(1, 2));
+        panelRadioClase.setBackground(new Color(153, 0, 102));
+        
+        JRadioButton radioSegundaClase = new JRadioButton("Segunda clase (+0.00€)", true);
+        radioSegundaClase.setBackground(new Color(153, 0, 102));
+        radioSegundaClase.setForeground(Color.WHITE);
+        
+        JRadioButton radioPrimeraClase = new JRadioButton("Primera clase (+12.00€)", false);
+        radioPrimeraClase.setBackground(new Color(153, 0, 102));
+        radioPrimeraClase.setForeground(Color.WHITE);
+        
+        
+        
+        Border bordejpanel2 = new TitledBorder(new EtchedBorder(), "Clase");
+        panelRadioClase.setBorder(bordejpanel2); 
+        
+        panelRadioClase.add(radioSegundaClase);
+        panelRadioClase.add(radioPrimeraClase);
+        
+        // JCheckBox extras
+        
+        JPanel panelCheckExtras = new JPanel(new GridLayout(2, 1));
+        panelCheckExtras.setBackground(new Color(153, 0, 102));
+        
+        JPanel panelCheckExtras2 = new JPanel(new GridLayout(2, 1));
+        panelCheckExtras2.setBackground(new Color(153, 0, 102));
+        
+        JCheckBox checkComida = new JCheckBox("Comida (+15.00€)");
+        checkComida.setBackground(new Color(153, 0, 102));
+        checkComida.setForeground(Color.WHITE);
+        
+        JCheckBox checkAsientoIndividual = new JCheckBox("Asiento individual (+9.00€)");
+        checkAsientoIndividual.setBackground(new Color(153, 0, 102));
+        checkAsientoIndividual.setForeground(Color.WHITE);
+        
+        JCheckBox checkSeguro = new JCheckBox("Seguro viaje (+3.00€)");
+        checkSeguro.setBackground(new Color(153, 0, 102));
+        checkSeguro.setForeground(Color.WHITE);
+        
+        JCheckBox checkMesa = new JCheckBox("Mesa (+2.00€)");
+        checkMesa.setBackground(new Color(153, 0, 102));
+        checkMesa.setForeground(Color.WHITE);
+        
+        Border bordejpanel3 = new TitledBorder(new EtchedBorder(), "Extras");
+        panelCheckExtras.setBorder(bordejpanel3);
+        
+        Border bordejpanel4 = new TitledBorder(new EtchedBorder(), "Extras");
+        panelCheckExtras2.setBorder(bordejpanel4);
+        panelCheckExtras2.setVisible(false);
+        
+        panelCheckExtras.add(checkSeguro);
+    	panelCheckExtras.add(checkMesa);
+    	panelCheckExtras2.add(checkComida);
+    	panelCheckExtras2.add(checkAsientoIndividual);
+        
+        
+        
+        JPanel panelPrueba = new JPanel(new GridLayout(1, 2));
+        panelPrueba.setBackground(new Color(153, 0, 102));
+        
+        panelPrueba.add(panelCheckExtras);
+        panelPrueba.add(panelCheckExtras2);
+        
+        
+        radioSegundaClase.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioPrimeraClase.setSelected(false);
+				panelCheckExtras.setVisible(true);
+				panelCheckExtras2.setVisible(false);
+			}
+		});
+        
+        radioPrimeraClase.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioSegundaClase.setSelected(false);
+				panelCheckExtras.setVisible(false);
+				panelCheckExtras2.setVisible(true);
+				
+				
+			}
+		});
+        
+        panelArriba.add(panelRadioIdaVueltaIda);
+        panelArriba.add(panelNumBilletes);
+        panelMedio.add(panelRadioClase);
+        panelMedio.add(panelPrueba);
         
         // calendario ida
         
         JPanel panelCalendarioIda = new JPanel();
         panelCalendarioIda.setBackground(new Color(153, 0, 102));
+//        calendarioIda = new JDateChooser();
         calendarioIda = new JCalendar();
         // calendarioIda.setTodayButtonVisible(true);
         calendarioIda.setWeekOfYearVisible(false);
         panelCalendarioIda.add(calendarioIda);
         
+        Border bordejpanel7 = new TitledBorder(new MatteBorder(null), "Ida:");
+        panelCalendarioIda.setBorder(bordejpanel7);
+        
         panelAbajo.add(panelCalendarioIda);
         
-        // calendario ida
+        // calendario vuelta
         
-        JPanel panelCalendarioVuelta = new JPanel();
         panelCalendarioVuelta.setBackground(new Color(153, 0, 102));
+//        calendarioVuelta = new JDateChooser();
         calendarioVuelta = new JCalendar();
         // calendarioVuelta.setTodayButtonVisible(true);
         calendarioVuelta.setWeekOfYearVisible(false);
         panelCalendarioVuelta.add(calendarioVuelta);
+        
+        Border bordejpanel8 = new TitledBorder(new MatteBorder(null), "Vuelta:");
+        panelCalendarioVuelta.setBorder(bordejpanel8);
         
         panelAbajo.add(panelCalendarioVuelta);
 
@@ -246,8 +358,8 @@ public class VentanaCompra extends JFrame{
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);
         panel.add(panelAbajo, BorderLayout.SOUTH);
-        panelMedio.add(panelMedioIzquierda, BorderLayout.WEST);
-        panelMedio.add(panelMedioDerecha, BorderLayout.EAST);
+//        panelMedio.add(panelMedioIzquierda, BorderLayout.WEST);
+//        panelMedio.add(panelMedioDerecha, BorderLayout.EAST);
 
         contentPane.setVisible(true);
         panel.setVisible(true);

@@ -34,7 +34,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panel.setBackground(new Color(153, 0, 102));
         panelArriba = new JPanel(new GridLayout(1, 1));
         panelArriba.setBackground(new Color(153, 0, 102));
-        panelMedio = new JPanel(new GridLayout(4, 2));
+        panelMedio = new JPanel(new GridLayout(5, 2));
         panelMedio.setBackground(new Color(153, 0, 102));
         panelAbajo = new JPanel(new GridLayout(3, 2));
         panelAbajo.setBackground(new Color(153, 0, 102));
@@ -77,32 +77,50 @@ public class VentanaConfirmacionCompra extends JFrame{
         labelFechaVuelta.setForeground(Color.WHITE);
         panelLabelFechaVuelta.add(labelFechaVuelta);
         
+        JPanel panelLabelAsiento = new JPanel();
+        panelLabelAsiento.setBackground(new Color(153, 0, 102));
+        JLabel labelAsiento = new JLabel("Asiento: 22C");
+        labelAsiento.setForeground(Color.WHITE);
+        panelLabelAsiento.add(labelAsiento);
+        
+        JPanel panelLabelClase = new JPanel();
+        panelLabelClase.setBackground(new Color(153, 0, 102));
+        JLabel labelClase = new JLabel("Primera clase");
+        labelClase.setForeground(Color.WHITE);
+        panelLabelClase.add(labelClase);
+        
+        JPanel panelLabelExtras = new JPanel();
+        panelLabelExtras.setBackground(new Color(153, 0, 102));
+        JLabel labelExtras = new JLabel("Extras: comida");
+        labelExtras.setForeground(Color.WHITE);
+        panelLabelExtras.add(labelExtras);
+        
         JPanel panelLabelPrecio = new JPanel();
         panelLabelPrecio.setBackground(new Color(153, 0, 102));
         JLabel labelPrecio = new JLabel("Precio total: 209€");
         labelPrecio.setForeground(Color.WHITE);
         panelLabelPrecio.add(labelPrecio);
         
-        JPanel panelLabelBlanco = new JPanel();
-        panelLabelBlanco.setBackground(new Color(153, 0, 102));
-        JLabel labelBlanco = new JLabel("");
-        labelBlanco.setForeground(Color.WHITE);
-        panelLabelBlanco.add(labelBlanco);
-
         panelMedio.add(panelLabelOrigen);
         panelMedio.add(panelLabelDestino);
         panelMedio.add(panelLabelFechaIda);
         panelMedio.add(panelLabelFechaVuelta);
+        panelMedio.add(panelLabelAsiento);
+        panelMedio.add(panelLabelClase);
+        panelMedio.add(panelLabelExtras);
         panelMedio.add(panelLabelPrecio);
-        panelMedio.add(panelLabelBlanco);
-        panelMedio.add(panelLabelBlanco);
-        panelMedio.add(panelLabelBlanco);
         
         JPanel panelLabelConfirmar = new JPanel();
         panelLabelConfirmar.setBackground(new Color(153, 0, 102));
         JLabel labelConfirmar = new JLabel("Confirme la compra: ");
         labelConfirmar.setForeground(Color.WHITE);
         panelLabelConfirmar.add(labelConfirmar);
+        
+        JPanel panelLabelBlanco = new JPanel();
+        panelLabelBlanco.setBackground(new Color(153, 0, 102));
+        JLabel labelBlanco = new JLabel("");
+        labelBlanco.setForeground(Color.WHITE);
+        panelLabelBlanco.add(labelBlanco);
         
         panelAbajo.add(panelLabelConfirmar);
         panelAbajo.add(panelLabelBlanco);
