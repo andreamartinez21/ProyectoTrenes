@@ -112,4 +112,6 @@ public class Metodos {
 	   
 	   return mapaOrigenDestino;
    }
+   
+   // hacer método para cuando no haya viajes o para cuando el aforo del viaje esté lleno
 }

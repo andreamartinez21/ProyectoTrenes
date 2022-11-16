@@ -3,6 +3,7 @@ package BD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -238,6 +239,109 @@ public class BD {
 	}
 	
 	// MÉTODOS BILLETE
+	
+	// método comprar billetes
+	
+		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantidad, double precio, String asiento, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+			try {
+				HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+				listaViajes = getViajesBD();
+				Viaje viajeIda = new Viaje();
+				Viaje viajeVuelta = new Viaje();
+				
+				switch (tipo) { 
+				    case "Ida":
+				    	for (Viaje viaje : listaViajes) {
+							if(viaje.getOrigen() == origen && viaje.getDestino() == destino && viaje.getFecha() == fechaIda) {
+								viajeIda = viaje;
+							}
+						}
+				    	for (int i = 0; i < cantidad; i++) {
+				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			
+							PreparedStatement ps = conn.prepareStatement(consulta);
+							ps.setString(1, clienteActual.getUsuario());
+							ps.setString(2, viajeIda.getLocalizador());
+							ps.setString(3, "null");
+							ps.setDouble(4, precio);
+							ps.setString(5, asiento);
+							ps.setInt(6, clase);
+							ps.setInt(7, comida);
+							ps.setInt(8, asientoIndividual);
+							ps.setInt(9, seguroViaje);
+							ps.setInt(10, mesa);
+							
+							ps.executeUpdate();
+							ps.close();
+				    	}
+				    	// actualizar aforo viaje
+				    	String consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				    	
+				    	PreparedStatement ps = conn.prepareStatement(consulta2);
+				    	ps.setInt(1, viajeIda.getAforo() - cantidad);
+				    	ps.setString(2, viajeIda.getLocalizador());
+				    	
+				    	ps.executeUpdate();
+				    	ps.close();
+				    break;
+				    case "Ida y vuelta":
+				    	for (Viaje viaje : listaViajes) {
+							if(viaje.getOrigen() == origen && viaje.getDestino() == destino && viaje.getFecha() == fechaIda) {
+								viajeIda = viaje;
+							}
+							if(viaje.getOrigen() == destino && viaje.getDestino() == origen && viaje.getFecha() == fechaVuelta) {
+								viajeVuelta = viaje;
+							}
+						}
+				    	for (int i = 0; i < cantidad; i++) {
+				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			
+							ps = conn.prepareStatement(consulta);
+							ps.setString(1, clienteActual.getUsuario());
+							ps.setString(2, viajeIda.getLocalizador());
+							ps.setString(3, viajeVuelta.getLocalizador());
+							ps.setDouble(4, precio);
+							ps.setString(5, asiento);
+							ps.setInt(6, clase);
+							ps.setInt(7, comida);
+							ps.setInt(8, asientoIndividual);
+							ps.setInt(9, seguroViaje);
+							ps.setInt(10, mesa);
+							
+							ps.executeUpdate();
+							ps.close();
+				    	}
+				    	// actualizar aforo viaje ida
+				    	consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				    	
+				    	ps = conn.prepareStatement(consulta2);
+				    	ps.setInt(1, viajeIda.getAforo() - cantidad);
+				    	ps.setString(2, viajeIda.getLocalizador());
+				    	
+				    	ps.executeUpdate();
+				    	ps.close();
+				    	
+				    	// actualizar aforo viaje vuelta
+				    	
+				    	consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				    	
+				    	ps = conn.prepareStatement(consulta2);
+				    	ps.setInt(1, viajeVuelta.getAforo() - cantidad);
+				    	ps.setString(2, viajeVuelta.getLocalizador());
+				    	
+				    	ps.executeUpdate();
+				    	ps.close();
+				    break;
+				    default:
+				    System.out.println("Ha habido un error.");
+				}				
+				return true;
+				
+			} catch (Exception e) {
+				Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos.");
+				return false;
+			}
+		}
 	
 	// método get billetes usuario
 	

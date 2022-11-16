@@ -8,6 +8,7 @@ public abstract class Billete {
     protected Viaje viajeVuelta;
     protected double precio;
     protected String asiento;
+    // cantidad personas?
     
 	public Billete(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, String asiento) {
 		super();

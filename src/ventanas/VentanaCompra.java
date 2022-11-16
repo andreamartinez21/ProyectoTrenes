@@ -7,8 +7,6 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashSet;
@@ -22,8 +20,6 @@ public class VentanaCompra extends JFrame{
     private JPanel panel;
     private JPanel panelArriba;
     private JPanel panelMedio;
-//    private JPanel panelMedioIzquierda;
-//    private JPanel panelMedioDerecha;
     private JPanel panelAbajo;
     
     private JCalendar calendarioIda;
@@ -56,23 +52,6 @@ public class VentanaCompra extends JFrame{
 
         contentPane.add(panel);
         
-        ////// labels
-        
-//        JPanel panelLabelDesde = new JPanel();
-//        panelLabelDesde.setBackground(new Color(153, 0, 102));
-//        JLabel labelDesde = new JLabel("Desde:");
-//        labelDesde.setForeground(Color.WHITE);
-//        panelLabelDesde.add(labelDesde);
-//        
-//        JPanel panelLabelA = new JPanel();
-//        panelLabelA.setBackground(new Color(153, 0, 102));
-//        JLabel labelA = new JLabel("A:");
-//        labelA.setForeground(Color.WHITE);
-//        panelLabelA.add(labelA);
-//        
-//        panelArriba.add(panelLabelDesde);
-//        panelArriba.add(panelLabelA);
-        
         // combo origen
 
         HashSet<String> listaOrigen = new HashSet<>();
@@ -80,7 +59,6 @@ public class VentanaCompra extends JFrame{
         JPanel panelComboOrigen = new JPanel();
         panelComboOrigen.setBackground(new Color(153, 0, 102));
         JComboBox<String> comboOrigen = new JComboBox<String>();
-        // poner origen como defecto
         for (String ciudad : listaOrigen) { // lo que recorres y el tipo de cosa que recorres a cada vuelta
 			comboOrigen.addItem(ciudad);
 		}
@@ -88,10 +66,6 @@ public class VentanaCompra extends JFrame{
         
         Border bordejpanel5 = new TitledBorder(new MatteBorder(null), "DESDE:");
         panelComboOrigen.setBorder(bordejpanel5);
-        
-        
-//        JLabel labelDesde = new JLabel("Desde:");
-//        labelDesde.setForeground(Color.WHITE);
         
         panelComboOrigen.add(comboOrigen);
 
@@ -123,9 +97,7 @@ public class VentanaCompra extends JFrame{
         panelRadioIdaVueltaIda.setBackground(new Color(153, 0, 102));
         JRadioButton radioIdaVuelta = new JRadioButton("Ida y vuelta", true);
         radioIdaVuelta.setBackground(new Color(153, 0, 102));
-        radioIdaVuelta.setForeground(Color.WHITE);
-        
-        
+        radioIdaVuelta.setForeground(Color.WHITE);        
 
         // radio button ida
 
@@ -188,8 +160,6 @@ public class VentanaCompra extends JFrame{
         radioPrimeraClase.setBackground(new Color(153, 0, 102));
         radioPrimeraClase.setForeground(Color.WHITE);
         
-        
-        
         Border bordejpanel2 = new TitledBorder(new EtchedBorder(), "Clase");
         panelRadioClase.setBorder(bordejpanel2); 
         
@@ -232,14 +202,11 @@ public class VentanaCompra extends JFrame{
     	panelCheckExtras2.add(checkComida);
     	panelCheckExtras2.add(checkAsientoIndividual);
         
-        
-        
         JPanel panelPrueba = new JPanel(new GridLayout(1, 2));
         panelPrueba.setBackground(new Color(153, 0, 102));
         
         panelPrueba.add(panelCheckExtras);
         panelPrueba.add(panelCheckExtras2);
-        
         
         radioSegundaClase.addActionListener(new ActionListener() {
 			@Override
@@ -256,8 +223,6 @@ public class VentanaCompra extends JFrame{
 				radioSegundaClase.setSelected(false);
 				panelCheckExtras.setVisible(false);
 				panelCheckExtras2.setVisible(true);
-				
-				
 			}
 		});
         
@@ -358,8 +323,6 @@ public class VentanaCompra extends JFrame{
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);
         panel.add(panelAbajo, BorderLayout.SOUTH);
-//        panelMedio.add(panelMedioIzquierda, BorderLayout.WEST);
-//        panelMedio.add(panelMedioDerecha, BorderLayout.EAST);
 
         contentPane.setVisible(true);
         panel.setVisible(true);
