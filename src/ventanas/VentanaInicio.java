@@ -166,8 +166,6 @@ public class VentanaInicio extends JFrame{
 
         panelAbajo.add(panelBotonComprarSinUsuario);
 
-        //
-
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);
         panel.add(panelAbajo, BorderLayout.SOUTH);

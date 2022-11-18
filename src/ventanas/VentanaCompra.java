@@ -25,6 +25,8 @@ public class VentanaCompra extends JFrame{
     private JCalendar calendarioIda;
     private JCalendar calendarioVuelta;
     
+    private int tipoBillete;
+    
 	public VentanaCompra() throws IOException {
     	
         setBackground(new Color(153, 0, 102));
@@ -116,6 +118,7 @@ public class VentanaCompra extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				radioIda.setSelected(false);
                 panelCalendarioVuelta.setVisible(true);
+                tipoBillete = 1; // ida y vuelta
 			}
 		});
         
@@ -124,6 +127,7 @@ public class VentanaCompra extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				radioIdaVuelta.setSelected(false);
                 panelCalendarioVuelta.setVisible(false);
+                tipoBillete = 0; // ida
 			}
 		});
         
@@ -306,8 +310,10 @@ public class VentanaCompra extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    new VentanaConfirmacionCompra();
-                    dispose();
+                	if(Metodos.existeViaje(comboOrigen.getSelectedItem().toString(), comboDestino.getSelectedItem().toString(), (int)spinnerNumBilletes.getValue(), tipoBillete)) {
+                		new VentanaConfirmacionCompra();
+                		dispose();
+                	}
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -317,8 +323,6 @@ public class VentanaCompra extends JFrame{
 
         panelAbajo.add(panelBotonVolver);
         panelAbajo.add(panelBotonSiguiente);
-
-        //
 
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);

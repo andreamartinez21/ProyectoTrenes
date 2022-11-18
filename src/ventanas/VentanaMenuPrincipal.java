@@ -182,17 +182,23 @@ public class VentanaMenuPrincipal extends JFrame{
 			
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                try {                    
-                    if(Metodos.borrarCliente(BD.clienteActual)){
-                    	new VentanaInicio();
-                    	dispose();
-                    	BD.clienteActual = null;
-                    	JOptionPane.showMessageDialog(null, "Se ha eliminado la cuenta correctamente");
-                    	Log.logger.log(Level.INFO, "Se ha eliminado la cuenta correctamente.");
-                    } else {
-                    	JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cuenta");
-                    	Log.logger.log(Level.SEVERE, "No se ha podido eliminar la cuenta.");
-                    }
+                try {     
+                	int panelConfirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que quiere eliminar la cuenta?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                	// 0 = sí, 1 = no
+                	if(panelConfirmacion == 0) {
+                		if(Metodos.borrarCliente(BD.clienteActual)){
+                			new VentanaInicio();
+                			dispose();
+                			BD.clienteActual = null;
+                			JOptionPane.showMessageDialog(null, "Se ha eliminado la cuenta correctamente");
+                			Log.logger.log(Level.INFO, "Se ha eliminado la cuenta correctamente.");
+                		} else {
+                			JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cuenta");
+                			Log.logger.log(Level.SEVERE, "No se ha podido eliminar la cuenta.");
+                		}
+                	}else if(panelConfirmacion == 1){
+                		Log.logger.log(Level.INFO, "No se ha eliminado la cuenta.");
+                	}
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -201,8 +207,6 @@ public class VentanaMenuPrincipal extends JFrame{
         });
         
         panelAbajo.add(panelBotonEliminarCuenta);
-
-        //
 
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);

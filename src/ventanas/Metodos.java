@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.logging.Level;
+
+import javax.swing.JOptionPane;
+
 import BD.BD;
 import clases.Cliente;
 import clases.Viaje;
@@ -113,5 +116,44 @@ public class Metodos {
 	   return mapaOrigenDestino;
    }
    
-   // hacer método para cuando no haya viajes o para cuando el aforo del viaje esté lleno
+   // método para cuando no haya viajes o para cuando el aforo del viaje esté lleno
+   
+   public static boolean existeViaje(String origen, String destino, /*String fechaIda, String fechaVuelta,*/ int cantBilletes, int tipo) {
+	   HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+	   listaViajes = BD.getViajesBD();
+	   int comp = 0;
+	   
+	   switch (tipo) {
+	   		case 0: // ida
+	   			for (Viaje viaje : listaViajes) { // poner cada cosa por separado ??
+	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda &&*/ viaje.getAforo() >= cantBilletes) {
+	   					Log.logger.log(Level.INFO, "Viaje disponible.");
+	   					return true;
+	   				}
+	   			}
+	   			JOptionPane.showMessageDialog(null, "No hay viajes disponibles.");
+	   			Log.logger.log(Level.SEVERE, "No hay viajes disponibles.");
+	   		return false; // no sé si está bien en vez de break
+	   		case 1: // ida y vuelta
+	   			for (Viaje viaje : listaViajes) {
+	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda && */viaje.getAforo() >= cantBilletes) {
+	   					Log.logger.log(Level.INFO, "Viaje disponible.");
+	   					comp++;
+	   				}
+	   				if(viaje.getOrigen().equals(destino) && viaje.getDestino().equals(origen) && /*viaje.getFecha() == fechaVuelta && */viaje.getAforo() >= cantBilletes) {
+	   					Log.logger.log(Level.INFO, "Viaje disponible.");
+	   					comp++;
+	   				}
+	   				if(comp == 2) {
+	   					return true;
+	   				}
+	   			}
+	   			JOptionPane.showMessageDialog(null, "No hay viajes disponibles.");
+	   			Log.logger.log(Level.SEVERE, "No hay viajes disponibles.");
+	   		break;
+	   		default:
+	   			System.out.println("Error.");
+	   }
+	   return true;
+   }
 }

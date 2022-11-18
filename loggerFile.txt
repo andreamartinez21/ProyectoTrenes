@@ -1,54 +1,40 @@
-nov. 16, 2022 8:14:17 P. M. log.Log iniciarLog
+nov. 18, 2022 7:21:35 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-nov. 16, 2022 8:14:18 P. M. BD.BD connect
+nov. 18, 2022 7:21:35 P. M. BD.BD connect
 INFORMACIÓN: Conexión con la BD establecida.
-nov. 16, 2022 8:14:18 P. M. BD.BD borrarViajesBD
+nov. 18, 2022 7:21:35 P. M. BD.BD borrarViajesBD
 INFORMACIÓN: Se han eliminado los datos correctamente.
-nov. 16, 2022 8:14:18 P. M. BD.BD anyadirViajeBD
+nov. 18, 2022 7:21:35 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 16, 2022 8:14:18 P. M. ventanas.Metodos leeFichero
+nov. 18, 2022 7:21:35 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 16, 2022 8:14:18 P. M. BD.BD anyadirViajeBD
+nov. 18, 2022 7:21:35 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 16, 2022 8:14:18 P. M. ventanas.Metodos leeFichero
+nov. 18, 2022 7:21:35 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 16, 2022 8:14:18 P. M. BD.BD anyadirViajeBD
+nov. 18, 2022 7:21:35 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 16, 2022 8:14:18 P. M. ventanas.Metodos leeFichero
+nov. 18, 2022 7:21:35 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 16, 2022 8:14:18 P. M. BD.BD anyadirViajeBD
+nov. 18, 2022 7:21:35 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 16, 2022 8:14:18 P. M. ventanas.Metodos leeFichero
+nov. 18, 2022 7:21:35 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 16, 2022 8:14:18 P. M. BD.BD anyadirViajeBD
+nov. 18, 2022 7:21:35 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 16, 2022 8:14:18 P. M. ventanas.Metodos leeFichero
+nov. 18, 2022 7:21:35 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 16, 2022 8:14:22 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:14:22 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:14:38 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:14:38 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:14:44 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:14:44 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:16 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:16 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:24 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:24 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:37 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:37 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:43 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 16, 2022 8:15:43 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
+nov. 18, 2022 7:21:43 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+nov. 18, 2022 7:21:43 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.
+nov. 18, 2022 7:21:46 P. M. ventanas.VentanaMenuPrincipal$5 actionPerformed
+INFORMACIÓN: No se ha eliminado la cuenta.
+nov. 18, 2022 7:21:48 P. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
+INFORMACIÓN: Se ha cerrado la sesión correctamente.
+nov. 18, 2022 7:21:54 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+nov. 18, 2022 7:21:54 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.
+nov. 18, 2022 7:21:56 P. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
+INFORMACIÓN: Se ha cerrado la sesión correctamente.

@@ -124,8 +124,6 @@ public class VentanaVerViajes extends JFrame{
 
         panelAbajo.add(panelBotonVolver);
 
-        //
-
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelAbajo, BorderLayout.SOUTH);
 

@@ -1,11 +1,13 @@
 package ventanas;
 
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import BD.BD;
+import log.Log;
 
 public class VentanaConfirmacionCompra extends JFrame{
 
@@ -167,7 +169,7 @@ public class VentanaConfirmacionCompra extends JFrame{
             }
         });
 
-        // botón ticket
+        // botón aceptar y ticket
 
         JPanel panelBotonTicket = new JPanel();
         panelBotonTicket.setBackground(new Color(153, 0, 102));
@@ -178,24 +180,32 @@ public class VentanaConfirmacionCompra extends JFrame{
         botonTicket.setPreferredSize(new Dimension(195, 30));
         panelBotonTicket.add(botonTicket);
 
-        // botonTicket.addActionListener(new ActionListener() {
+        botonTicket.addActionListener(new ActionListener() {
 				
-        //     @Override
-        //     public void actionPerformed(ActionEvent arg0) {
-        //         try {
-        //             new VentanaMenuPrincipal();
-        //			   dispose();
-        //         } catch (Exception e) {
-        //             // TODO Auto-generated catch block
-        //             e.printStackTrace();
-        //         }
-        //     }
-        // });
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                try {
+                	if(VentanaInicio.var == 1) {
+            			new VentanaInicio();
+            			dispose();
+                	} else if(VentanaInicio.var == 2){
+                		if(textoContrasenya.getText().equals(BD.clienteActual.getContrasenya())) {
+                			new VentanaMenuPrincipal();
+                			dispose();
+                		} else {
+                			JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
+            	   			Log.logger.log(Level.SEVERE, "Contraseña incorrecta.");
+                		}
+                	}
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
 
         panelAbajo.add(panelBotonVolver);
         panelAbajo.add(panelBotonTicket);
-
-        //
 
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);

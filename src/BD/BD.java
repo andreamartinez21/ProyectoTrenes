@@ -3,7 +3,6 @@ package BD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -242,7 +241,7 @@ public class BD {
 	
 	// método comprar billetes
 	
-		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantidad, double precio, String asiento, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, double precio, String asiento, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
 			try {
 				HashSet<Viaje> listaViajes = new HashSet<Viaje>();
 				listaViajes = getViajesBD();
@@ -256,7 +255,7 @@ public class BD {
 								viajeIda = viaje;
 							}
 						}
-				    	for (int i = 0; i < cantidad; i++) {
+				    	for (int i = 0; i < cantBilletes; i++) {
 				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
 							PreparedStatement ps = conn.prepareStatement(consulta);
@@ -278,7 +277,7 @@ public class BD {
 				    	String consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 				    	
 				    	PreparedStatement ps = conn.prepareStatement(consulta2);
-				    	ps.setInt(1, viajeIda.getAforo() - cantidad);
+				    	ps.setInt(1, viajeIda.getAforo() - cantBilletes);
 				    	ps.setString(2, viajeIda.getLocalizador());
 				    	
 				    	ps.executeUpdate();
@@ -293,7 +292,7 @@ public class BD {
 								viajeVuelta = viaje;
 							}
 						}
-				    	for (int i = 0; i < cantidad; i++) {
+				    	for (int i = 0; i < cantBilletes; i++) {
 				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
 							ps = conn.prepareStatement(consulta);
@@ -315,7 +314,7 @@ public class BD {
 				    	consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 				    	
 				    	ps = conn.prepareStatement(consulta2);
-				    	ps.setInt(1, viajeIda.getAforo() - cantidad);
+				    	ps.setInt(1, viajeIda.getAforo() - cantBilletes);
 				    	ps.setString(2, viajeIda.getLocalizador());
 				    	
 				    	ps.executeUpdate();
@@ -326,7 +325,7 @@ public class BD {
 				    	consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 				    	
 				    	ps = conn.prepareStatement(consulta2);
-				    	ps.setInt(1, viajeVuelta.getAforo() - cantidad);
+				    	ps.setInt(1, viajeVuelta.getAforo() - cantBilletes);
 				    	ps.setString(2, viajeVuelta.getLocalizador());
 				    	
 				    	ps.executeUpdate();
