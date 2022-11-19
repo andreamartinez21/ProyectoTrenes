@@ -143,6 +143,14 @@ public class VentanaConfirmacionCompra extends JFrame{
 
         panelAbajo.add(panelLabelContrasenya);
         panelAbajo.add(panelTextoContrasenya);
+        
+        if(VentanaInicio.var == 1) {
+        	panelLabelContrasenya.setVisible(false);
+        	panelTextoContrasenya.setVisible(false);
+        } else if(VentanaInicio.var == 2) {
+        	panelLabelContrasenya.setVisible(true);
+        	panelTextoContrasenya.setVisible(true);
+        }
 
         // botón volver
 

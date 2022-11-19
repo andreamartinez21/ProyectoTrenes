@@ -3,3 +3,6 @@
 798G;Madrid;Malta;04-12-2022;69;50
 423H;Barcelona;Paris;04-12-2022;50;70
 864B;Vitoria;Milan;09-11-2022;45;99
+985H;Londres;Bilbao;24-12-2022;45;28
+23J;Milan;Vitoria;17-11-2022;2;34
+09A;Barcelona;Dublin;23-11-2022;9;89

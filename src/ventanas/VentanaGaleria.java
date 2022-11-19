@@ -5,12 +5,19 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+
+import clases.Viaje;
+import log.Log;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import BD.BD;
 
 public class VentanaGaleria extends JFrame {
 
@@ -20,15 +27,12 @@ public class VentanaGaleria extends JFrame {
     private JPanel panel;
     private JPanel panelArriba;
     private JPanel panelFotoBoton;
-    private JPanel panelFotoBoton2;
     
     JMenuBar menuBar;
 	JMenu menu;
 	JMenuItem itemInicio, itemGaleria, itemAdmin;
 
     public VentanaGaleria() throws IOException {
-
-        // bd.connect();
 
         setTitle("Galería de destinos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +44,7 @@ public class VentanaGaleria extends JFrame {
         contentPane.setBackground(new Color(153, 0, 102));
         setContentPane(contentPane);
         
-      //menú
+        //menú
 
   		menuBar = new JMenuBar();
         menuBar.setBackground(new Color(153, 0, 102));
@@ -73,10 +77,10 @@ public class VentanaGaleria extends JFrame {
   		menu.add(itemInicio);
   		menu.add(itemGaleria);
 
-        // listaActividades = new ArrayList<Actividad>();
-        // listaActividades = bd.getActividades();
+  		HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+        listaViajes = BD.getViajesBD();
        
-        double numFotos = /*listaActividades.size()*/ 8;
+        double numFotos = listaViajes.size();
         panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(153, 0, 102));
         
@@ -88,38 +92,38 @@ public class VentanaGaleria extends JFrame {
         scroll.setPreferredSize(new Dimension(990, 600));
         scroll.setBackground(new Color(153, 0, 102));
 
-        for (int i = 0; i < numFotos; i++) {
-            // Actividad actividad = listaActividades.get(i);
-            
-            BufferedImage bufferedImage = ImageIO.read(new File("src/img/img" + String.valueOf(i) + ".png"));
+        int i = 0;
+        
+    	for (Viaje viaje : listaViajes) {
+    		
+			BufferedImage bufferedImage = ImageIO.read(new File("src/img/img" + String.valueOf(i) + ".png"));
+			i++;
             Image image = bufferedImage.getScaledInstance(400, 200, Image.SCALE_DEFAULT);
 
             JLabel labelImagen = new JLabel(new ImageIcon(image));
 
-            JPanel panelBotonActividad = new JPanel();
-            panelBotonActividad.setBackground(new Color(153, 0, 102));
-            JButton botonActividad = new JButton("Destino " + i/*actividad.getNombre() + " - " + actividad.getUbicacion()*/);
-            botonActividad.setPreferredSize(new Dimension(200, 30));
-            botonActividad.setBackground(Color.GRAY);
-            botonActividad.setForeground(Color.WHITE);
-            panelBotonActividad.add(botonActividad);
+            JPanel panelBotonDestino = new JPanel();
+            panelBotonDestino.setBackground(new Color(153, 0, 102));
+            JButton botonDestino = new JButton(viaje.getDestino());
+            botonDestino.setPreferredSize(new Dimension(200, 30));
+            botonDestino.setBackground(Color.GRAY);
+            botonDestino.setForeground(Color.WHITE);
+            panelBotonDestino.add(botonDestino);
 
-            // botonActividad.addActionListener(new ActionListener() {
+            botonDestino.addActionListener(new ActionListener() {
 
-            //     @Override
-            //     public void actionPerformed(ActionEvent arg0) {
-            //         // TODO Auto-generated method stub
-            //         try {
-            //             new VentanaGaleriaEspecifica(actividad);
-            //             dispose();
-            //         } catch (Exception e) {
-            //             // TODO Auto-generated catch block
-            //         	bd.ficheroLogger();
-            //             bd.logger.log(Level.INFO, "No se puede abrir la ventana");
-            //             bd.closeLogger();
-            //         }
-            //     }
-            // });
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                    // TODO Auto-generated method stub
+                    try {
+                        new VentanaGaleriaDestino(viaje);
+                        dispose();
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                    	Log.logger.log(Level.SEVERE, "No se ha podido abrir la ventana.");
+                    }
+                }
+            });
 
             panelFotoBoton = new JPanel(new GridLayout(2, 1));
             panelFotoBoton.setBackground(new Color(153, 0, 102));
@@ -129,53 +133,14 @@ public class VentanaGaleria extends JFrame {
             panelFotoBoton.setBorder(new CompoundBorder(border, margin));
 
             panelFotoBoton.add(labelImagen);
-            panelFotoBoton.add(panelBotonActividad);
+            panelFotoBoton.add(panelBotonDestino);
 
             panelArriba.add(panelFotoBoton);
-        }
-
-        JPanel panelBotonVolver = new JPanel();
-        panelBotonVolver.setBackground(new Color(153, 0, 102));
-        JButton botonVolver = new JButton("Volver");
-        botonVolver.setPreferredSize(new Dimension(200, 30));
-        botonVolver.setBackground(Color.GRAY);
-        botonVolver.setForeground(Color.WHITE);
-        panelBotonVolver.add(botonVolver);
-
-        botonVolver.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new VentanaInicio();
-                    dispose();
-                } catch (Exception e1) {
-                	// bd.ficheroLogger();
-                    // bd.logger.log(Level.INFO, "No se puede abrir la ventana");
-                    // bd.closeLogger();
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            }
-        });
+		}
 
         panel.add(scroll, BorderLayout.NORTH);
         contentPane.setVisible(true);
         panel.setVisible(true);
         contentPane.add(panel);
     }
-
-    public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-		 public void run() {
-		  try {
-		   VentanaGaleria frame = new VentanaGaleria();
-		   frame.setVisible(true);
-		  } catch (Exception e) {
-		   e.printStackTrace();
-		  }
-		 }
-		});
-	}
 }
