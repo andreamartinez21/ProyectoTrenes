@@ -3,8 +3,10 @@ package ventanas;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -57,7 +59,7 @@ public class Metodos {
       File archivo = null;
       FileReader fr = null;
       BufferedReader br = null;
-      String[] data = new String[6];
+      String[] data = new String[7];
 
       try {
          // abrir fichero y crear de BufferedReader
@@ -76,8 +78,9 @@ public class Metodos {
          	String fecha = data[3];
          	int aforo = Integer.valueOf(data[4]);
          	double precio = Double.valueOf(data[5]);
+         	String imagen = data[6];
          	
-         	if(BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio)) {
+         	if(BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio, imagen)) {
          		Log.logger.log(Level.INFO, "Se ha añadido el viaje corrrectamente.");
          	}
          }
@@ -98,16 +101,16 @@ public class Metodos {
    }
    
    public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
-	   HashSet<Viaje> listaViajes = new HashSet<>();
+	   List<Viaje> listaViajes = new ArrayList<>();
 	   HashSet<String> listaOrigen = new HashSet<>();
 	   HashSet<String> listaDestino = new HashSet<>();
 	   Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<>();
 	   	   
 	   listaViajes = BD.getViajesBD();
 	  
-	   for (Viaje i : listaViajes) {
-		   listaOrigen.add(i.getOrigen());
-		   listaDestino.add(i.getDestino());
+	   for (Viaje viaje : listaViajes) {
+		   listaOrigen.add(viaje.getOrigen());
+		   listaDestino.add(viaje.getDestino());
 	   }
 	   
 	   mapaOrigenDestino.put("Origen", listaOrigen);
@@ -119,21 +122,21 @@ public class Metodos {
    // método para cuando no haya viajes o para cuando el aforo del viaje esté lleno
    
    public static boolean existeViaje(String origen, String destino, /*String fechaIda, String fechaVuelta,*/ int cantBilletes, int tipo) {
-	   HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+	   List<Viaje> listaViajes = new ArrayList<Viaje>();
 	   listaViajes = BD.getViajesBD();
 	   int comp = 0;
 	   
 	   switch (tipo) {
 	   		case 0: // ida
-	   			for (Viaje viaje : listaViajes) { // poner cada cosa por separado ??
+	   			for (Viaje viaje : listaViajes) {
 	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda &&*/ viaje.getAforo() >= cantBilletes) {
 	   					Log.logger.log(Level.INFO, "Viaje disponible.");
 	   					return true;
 	   				}
 	   			}
-	   			JOptionPane.showMessageDialog(null, "No hay viajes disponibles.");
-	   			Log.logger.log(Level.SEVERE, "No hay viajes disponibles.");
-	   		return false; // no sé si está bien en vez de break
+	   			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
+	   			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+	   			return false;
 	   		case 1: // ida y vuelta
 	   			for (Viaje viaje : listaViajes) {
 	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda && */viaje.getAforo() >= cantBilletes) {
@@ -148,9 +151,9 @@ public class Metodos {
 	   					return true;
 	   				}
 	   			}
-	   			JOptionPane.showMessageDialog(null, "No hay viajes disponibles.");
-	   			Log.logger.log(Level.SEVERE, "No hay viajes disponibles.");
-	   		break;
+	   			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
+	   			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+	   			return false;
 	   		default:
 	   			System.out.println("Error.");
 	   }

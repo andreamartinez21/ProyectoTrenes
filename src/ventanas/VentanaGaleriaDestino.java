@@ -68,7 +68,7 @@ public class VentanaGaleriaDestino extends JFrame{
         labelOrigen.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
         labelOrigen.setForeground(Color.WHITE);
         panelLabelOrigen.add(labelOrigen);
-        panelLabelOrigen.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.red, Color.blue));
+        panelLabelOrigen.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.white, Color.gray));
         
         JPanel panelLabelFecha = new JPanel();
         panelLabelFecha.setBackground(new Color(153, 0, 102));
@@ -76,7 +76,7 @@ public class VentanaGaleriaDestino extends JFrame{
         labelFecha.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
         labelFecha.setForeground(Color.WHITE);
         panelLabelFecha.add(labelFecha);
-        panelLabelFecha.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.red, Color.blue));
+        panelLabelFecha.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.white, Color.gray));
         
         JPanel panelLabelAforo = new JPanel();
         panelLabelAforo.setBackground(new Color(153, 0, 102));
@@ -84,7 +84,7 @@ public class VentanaGaleriaDestino extends JFrame{
         labelAforo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
         labelAforo.setForeground(Color.WHITE);
         panelLabelAforo.add(labelAforo);
-        panelLabelAforo.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.red, Color.blue));
+        panelLabelAforo.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.white, Color.gray));
         
         JPanel panelLabelPrecio = new JPanel();
         panelLabelPrecio.setBackground(new Color(153, 0, 102));
@@ -92,13 +92,13 @@ public class VentanaGaleriaDestino extends JFrame{
         labelPrecio.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
         labelPrecio.setForeground(Color.WHITE);
         panelLabelPrecio.add(labelPrecio);
-        panelLabelPrecio.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.red, Color.blue));
+        panelLabelPrecio.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.white, Color.gray));
         
         // label imagen
         
         JPanel panelLabelImagen = new JPanel();
         panelLabelImagen.setBackground(new Color(153, 0, 102));
-        BufferedImage bufferedImage = ImageIO.read(new File("src/img/img2.png"));
+        BufferedImage bufferedImage = ImageIO.read(new File(viaje.getImagen()));
         Image image = bufferedImage.getScaledInstance(400, 200, Image.SCALE_DEFAULT);
         JLabel labelImagen = new JLabel(new ImageIcon(image));
         panelLabelImagen.add(labelImagen);

@@ -13,7 +13,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -77,7 +79,7 @@ public class VentanaGaleria extends JFrame {
   		menu.add(itemInicio);
   		menu.add(itemGaleria);
 
-  		HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+  		List<Viaje> listaViajes = new ArrayList<Viaje>();
         listaViajes = BD.getViajesBD();
        
         double numFotos = listaViajes.size();
@@ -92,12 +94,9 @@ public class VentanaGaleria extends JFrame {
         scroll.setPreferredSize(new Dimension(990, 600));
         scroll.setBackground(new Color(153, 0, 102));
 
-        int i = 0;
-        
     	for (Viaje viaje : listaViajes) {
     		
-			BufferedImage bufferedImage = ImageIO.read(new File("src/img/img" + String.valueOf(i) + ".png"));
-			i++;
+			BufferedImage bufferedImage = ImageIO.read(new File(viaje.getImagen()));
             Image image = bufferedImage.getScaledInstance(400, 200, Image.SCALE_DEFAULT);
 
             JLabel labelImagen = new JLabel(new ImageIcon(image));

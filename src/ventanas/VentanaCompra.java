@@ -25,7 +25,7 @@ public class VentanaCompra extends JFrame{
     private JCalendar calendarioIda;
     private JCalendar calendarioVuelta;
     
-    private int tipoBillete;
+    private int tipoBillete = 1;
     
 	public VentanaCompra() throws IOException {
     	

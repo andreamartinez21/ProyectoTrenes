@@ -28,7 +28,7 @@ class ClienteTest {
 		
 		listaBilletes = new ArrayList<Billete>();
 		
-		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90);
+		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 		
 		c1 = new Cliente();
 		c2 = new Cliente("iker2", "1236", "Iker", "Ruiz", "1234567H", "iker2@gmail.com", "67634758", "9539475837459L", listaBilletes);

@@ -163,9 +163,9 @@ public class BD {
 	
 	// método añadir viaje
 	
-	public static boolean anyadirViajeBD(String localizador, String origen, String destino, String fecha, int aforo, double precio) {
+	public static boolean anyadirViajeBD(String localizador, String origen, String destino, String fecha, int aforo, double precio, String imagen) {
 		try {
-			String consulta = "INSERT INTO viaje (localizador, origen, destino, fecha, aforo, precio) VALUES (?, ?, ?, ?, ?, ?);";
+			String consulta = "INSERT INTO viaje (localizador, origen, destino, fecha, aforo, precio, imagen) VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 			PreparedStatement ps = conn.prepareStatement(consulta);
 			ps.setString(1, localizador);
@@ -174,6 +174,7 @@ public class BD {
 			ps.setString(4, fecha);
 			ps.setInt(5, aforo);
 			ps.setDouble(6, precio);
+			ps.setString(7, imagen);
 			
 			ps.executeUpdate();
 			ps.close();
@@ -208,7 +209,7 @@ public class BD {
 	
 	// método get viajes
 	
-	public static HashSet<Viaje> getViajesBD() {
+	public static List<Viaje> getViajesBD() {
 		try {
 			ResultSet rs;
 			
@@ -218,12 +219,12 @@ public class BD {
 			
 			rs = ps.executeQuery();
 			
-			// List<Viaje> listaViajes = new ArrayList<Viaje>();
-			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); // cambiar nombre
+			List<Viaje> listaViajes = new ArrayList<Viaje>();
+//			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); // cambiar nombre
 			
 			while(rs.next()) {
 				
-				Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+				Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"), rs.getString("imagen"));
 				
 				listaViajes.add(viaje);				
 			}
@@ -243,7 +244,7 @@ public class BD {
 	
 		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, double precio, String asiento, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
 			try {
-				HashSet<Viaje> listaViajes = new HashSet<Viaje>();
+				List<Viaje> listaViajes = new ArrayList<Viaje>();
 				listaViajes = getViajesBD();
 				Viaje viajeIda = new Viaje();
 				Viaje viajeVuelta = new Viaje();
@@ -386,7 +387,7 @@ public class BD {
 					
 					while(rs2.next()) {
 						int i = 0;
-						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"), rs.getString("imagen"));
 						listaBilletesUsuario.get(i).setViajeIda(viaje);
 						i++;
 					}
@@ -404,7 +405,7 @@ public class BD {
 					
 					while(rs3.next()) {
 						int i = 0;
-						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"));
+						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"), rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"), rs.getDouble("precio"), rs.getString("imagen"));
 						listaBilletesUsuario.get(i).setViajeVuelta(viaje);
 						i++;
 					}

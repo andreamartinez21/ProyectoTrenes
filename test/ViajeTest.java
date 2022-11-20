@@ -16,7 +16,7 @@ class ViajeTest {
 	static void setUpBeforeClass() throws Exception {
 		
 		v1 = new Viaje();
-		v2 = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90);
+		v2 = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 	}
 
 	@Test
@@ -89,5 +89,17 @@ class ViajeTest {
 		double precio = 50.90;
 		v1.setPrecio(precio);
 		assertEquals(v1.getPrecio(), precio);
+	}
+	
+	@Test
+	void testGetImagen() {
+		assertEquals("src/img/img1.png", v2.getImagen());
+	}
+	
+	@Test
+	void testSetImagen() {
+		String imagen = "src/img/img1.png";
+		v1.setImagen(imagen);
+		assertEquals(v1.getImagen(), imagen);
 	}
 }

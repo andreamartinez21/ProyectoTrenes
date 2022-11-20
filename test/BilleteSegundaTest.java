@@ -24,7 +24,7 @@ class BilleteSegundaTest {
 	static void setUpBeforeClass() throws Exception {
 		
 		c1 = new Cliente("iker2", "1236", "Iker", "Ruiz", "1234567H", "iker2@gmail.com", "67634758", "9539475837459L", listaBilletes);
-		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90);
+		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 		
 		b1 = new BilleteSegunda();
 		b2 = new BilleteSegunda(c1, viajeIda, null, 55.90, "20C", 0, 1);

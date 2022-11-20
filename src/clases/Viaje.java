@@ -1,8 +1,5 @@
 package clases;
 
-//import com.toedter.calendar.JCalendar;
-//import com.toedter.calendar.JDateChooser;
-
 public class Viaje {
 
     protected String localizador;
@@ -11,15 +8,16 @@ public class Viaje {
     protected String fecha; // jcalendar
     protected int aforo;
     protected double precio;
+    protected String imagen;
     
-	public Viaje(String localizador, String origen, String destino, String fecha, int aforo, double precio) {
+	public Viaje(String localizador, String origen, String destino, String fecha, int aforo, double precio, String imagen) {
 		super();
 		this.localizador = localizador;
 		this.origen = origen;
 		this.destino = destino;
 		this.fecha = fecha;
 		this.aforo = aforo;
-		this.precio = precio;
+		this.precio = precio;		this.imagen = imagen;
 	}
 	
 	public Viaje() {
@@ -30,6 +28,7 @@ public class Viaje {
 		this.fecha = "";
 		this.aforo = 0;
 		this.precio = 0.0;
+		this.imagen = "";
 	}
 
 	public String getLocalizador() {
@@ -78,6 +77,14 @@ public class Viaje {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	@Override
