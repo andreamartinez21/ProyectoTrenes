@@ -13,6 +13,7 @@ import clases.Cliente;
 import clases.Viaje;
 import log.Log;
 import properties.PropertiesClass;
+import ventanas.Metodos;
 
 public class BD {
 	private static Connection conn = null;
@@ -220,7 +221,6 @@ public class BD {
 			rs = ps.executeQuery();
 			
 			List<Viaje> listaViajes = new ArrayList<Viaje>();
-//			HashSet<Viaje> listaViajes = new HashSet<Viaje>(); // cambiar nombre
 			
 			while(rs.next()) {
 				
@@ -242,20 +242,28 @@ public class BD {
 	
 	// método comprar billetes
 	
-		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, double precio, String asiento, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
 			try {
 				List<Viaje> listaViajes = new ArrayList<Viaje>();
 				listaViajes = getViajesBD();
 				Viaje viajeIda = new Viaje();
 				Viaje viajeVuelta = new Viaje();
+				String asiento = "";
+				int numAleatorio = 0;
+				double precio = 0.0;
 				
 				switch (tipo) { 
 				    case "Ida":
 				    	for (Viaje viaje : listaViajes) {
-							if(viaje.getOrigen() == origen && viaje.getDestino() == destino && viaje.getFecha() == fechaIda) {
+							if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && viaje.getFecha().equals(fechaIda)) {
 								viajeIda = viaje;
 							}
 						}
+				    	
+				    	numAleatorio = (int) (Math.random() * viajeIda.getAforo());
+				    	asiento = String.valueOf(numAleatorio)/* + "A"*/; // hacerlo bien
+				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa);
+				    	
 				    	for (int i = 0; i < cantBilletes; i++) {
 				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
@@ -286,13 +294,18 @@ public class BD {
 				    break;
 				    case "Ida y vuelta":
 				    	for (Viaje viaje : listaViajes) {
-							if(viaje.getOrigen() == origen && viaje.getDestino() == destino && viaje.getFecha() == fechaIda) {
+							if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && viaje.getFecha().equals(fechaIda)) {
 								viajeIda = viaje;
 							}
-							if(viaje.getOrigen() == destino && viaje.getDestino() == origen && viaje.getFecha() == fechaVuelta) {
+							if(viaje.getOrigen().equals(destino) && viaje.getDestino().equals(origen) && viaje.getFecha().equals(fechaVuelta)) {
 								viajeVuelta = viaje;
 							}
 						}
+				    	
+				    	numAleatorio = (int) (Math.random() * viajeIda.getAforo());
+				    	asiento = String.valueOf(numAleatorio)/* + "A"*/; // hacerlo bien
+				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa);
+				    	
 				    	for (int i = 0; i < cantBilletes; i++) {
 				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			

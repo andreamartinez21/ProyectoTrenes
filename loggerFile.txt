@@ -1,50 +1,44 @@
-nov. 20, 2022 4:12:42 P. M. log.Log iniciarLog
+nov. 20, 2022 10:03:34 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-nov. 20, 2022 4:12:42 P. M. BD.BD connect
+nov. 20, 2022 10:03:34 P. M. BD.BD connect
 INFORMACIÓN: Conexión con la BD establecida.
-nov. 20, 2022 4:12:42 P. M. BD.BD borrarViajesBD
+nov. 20, 2022 10:03:34 P. M. BD.BD borrarViajesBD
 INFORMACIÓN: Se han eliminado los datos correctamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:42 P. M. BD.BD anyadirViajeBD
+nov. 20, 2022 10:03:34 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 20, 2022 4:12:42 P. M. ventanas.Metodos leeFichero
+nov. 20, 2022 10:03:34 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 20, 2022 4:12:46 P. M. BD.BD getViajesBD
+nov. 20, 2022 10:03:41 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+nov. 20, 2022 10:03:41 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 20, 2022 4:12:52 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 20, 2022 4:12:55 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 20, 2022 4:13:00 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 20, 2022 4:13:06 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 20, 2022 4:13:06 P. M. BD.BD getViajesBD
-INFORMACIÓN: Se han obtenido los viajes correctamente.
+nov. 20, 2022 10:03:41 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.

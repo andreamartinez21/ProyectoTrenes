@@ -3,6 +3,8 @@ package ventanas;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -119,8 +121,6 @@ public class Metodos {
 	   return mapaOrigenDestino;
    }
    
-   // método para cuando no haya viajes o para cuando el aforo del viaje esté lleno
-   
    public static boolean existeViaje(String origen, String destino, /*String fechaIda, String fechaVuelta,*/ int cantBilletes, int tipo) {
 	   List<Viaje> listaViajes = new ArrayList<Viaje>();
 	   listaViajes = BD.getViajesBD();
@@ -158,5 +158,56 @@ public class Metodos {
 	   			System.out.println("Error.");
 	   }
 	   return true;
+   }
+   
+   public static boolean actualizaAforoFichero(Viaje viaje, int cantBilletes) {
+	   
+	try {
+		File archivo = new File("ficheroViajes.txt");
+		FileWriter escribir;
+		escribir = new FileWriter(archivo);
+		
+		String texto = String.valueOf(viaje.getAforo() - cantBilletes);
+	   
+//	    for (int i = 0; i < texto.length(); i++){
+//	    	escribir.write(texto.charAt(i));
+//	    	escribir.close();
+//	    }
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   return true;
+   }
+   
+   public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+	   
+	   double precioBillete = 0.00;
+	   
+	   if(clase == 1) {
+		   precioBillete += 12.00;
+	   }
+	   if(comida == 1) {
+		   precioBillete += 15.00;
+	   }
+	   if(asientoIndividual == 1) {
+		   precioBillete += 9.00;
+	   }
+	   if(seguroViaje == 1) {
+		   precioBillete += 3.00;
+	   }
+	   if(mesa == 1) {
+		   precioBillete += 2.00;
+	   }
+	   if(tipo.equals("Ida y vuelta")) {
+		   precioBillete *= 2;
+		   precioBillete += viajeVuelta.getPrecio();
+	   }
+	   
+	   precioBillete += viajeIda.getPrecio();
+	   
+	   precioBillete *= cantBilletes;
+	   
+	   return precioBillete;
    }
 }
