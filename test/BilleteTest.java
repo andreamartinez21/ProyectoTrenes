@@ -27,7 +27,7 @@ class BilleteTest {
 		v1 = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 		
 		b1 = new BilleteSegunda();
-		b2 = new BilleteSegunda(c1, v1, null, 55.90, "20C", 0, 1);
+		b2 = new BilleteSegunda(c1, v1, null, 55.90, 0, 1);
 		b2.setId("001");
 	}
 
@@ -89,17 +89,5 @@ class BilleteTest {
 		double precio = 55.90;
 		b1.setPrecio(precio);
 		assertEquals(b1.getPrecio(), precio);
-	}
-	
-	@Test
-	void testGetAsiento() {
-		assertEquals("20C", b2.getAsiento());
-	}
-	
-	@Test
-	void testSetAsiento() {
-		String asiento = "20C";
-		b1.setAsiento(asiento);
-		assertEquals(b1.getAsiento(), asiento);
 	}
 }

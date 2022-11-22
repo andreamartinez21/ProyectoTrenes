@@ -125,7 +125,6 @@ public class VentanaInicioSesion extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
                 try {
                 	if(Metodos.login(textoUsuario.getText(), textoContrasenya.getText())) {
-//                		BD.comprarBilletesBD("Ida", "Bilbao", "Londres", "20-12-2022", "", 1, 1, 1, 0, 0, 0);
                 		new VentanaMenuPrincipal();
                 		dispose();
                 		Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");

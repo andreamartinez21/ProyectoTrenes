@@ -48,7 +48,8 @@ public class VentanaConfirmacionCompra extends JFrame{
         JPanel panelLabelTitulo = new JPanel();
         panelLabelTitulo.setBackground(new Color(153, 0, 102));
         JLabel labelTitulo = new JLabel("RESUMEN DE LA COMPRA:");
-        labelTitulo.setForeground(Color.WHITE);
+        labelTitulo.setFont(new Font("Yu Gothic UI", Font.BOLD, 17));
+        labelTitulo.setForeground(Color.GRAY);
         panelLabelTitulo.add(labelTitulo);
         
         panelArriba.add(panelLabelTitulo);
@@ -57,13 +58,13 @@ public class VentanaConfirmacionCompra extends JFrame{
 
         JPanel panelLabelOrigen = new JPanel();
         panelLabelOrigen.setBackground(new Color(153, 0, 102));
-        JLabel labelOrigen = new JLabel("Origen: Madrid");
+        JLabel labelOrigen = new JLabel("Origen: " + VentanaCompra.comboOrigen.getSelectedItem().toString());
         labelOrigen.setForeground(Color.WHITE);
         panelLabelOrigen.add(labelOrigen);
         
         JPanel panelLabelDestino = new JPanel();
         panelLabelDestino.setBackground(new Color(153, 0, 102));
-        JLabel labelDestino = new JLabel("Destino: Malta");
+        JLabel labelDestino = new JLabel("Destino: " + VentanaCompra.comboDestino.getSelectedItem().toString());
         labelDestino.setForeground(Color.WHITE);
         panelLabelDestino.add(labelDestino);
         
@@ -79,15 +80,15 @@ public class VentanaConfirmacionCompra extends JFrame{
         labelFechaVuelta.setForeground(Color.WHITE);
         panelLabelFechaVuelta.add(labelFechaVuelta);
         
-        JPanel panelLabelAsiento = new JPanel();
-        panelLabelAsiento.setBackground(new Color(153, 0, 102));
-        JLabel labelAsiento = new JLabel("Asiento: 22C");
-        labelAsiento.setForeground(Color.WHITE);
-        panelLabelAsiento.add(labelAsiento);
+        JPanel panelLabelCantBilletes = new JPanel();
+        panelLabelCantBilletes.setBackground(new Color(153, 0, 102));
+        JLabel labelCantBilletes = new JLabel("Cantidad billetes: " + VentanaCompra.spinnerNumBilletes.getValue());
+        labelCantBilletes.setForeground(Color.WHITE);
+        panelLabelCantBilletes.add(labelCantBilletes);
         
         JPanel panelLabelClase = new JPanel();
         panelLabelClase.setBackground(new Color(153, 0, 102));
-        JLabel labelClase = new JLabel("Primera clase");
+        JLabel labelClase = new JLabel(VentanaCompra.clase);
         labelClase.setForeground(Color.WHITE);
         panelLabelClase.add(labelClase);
         
@@ -99,7 +100,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         
         JPanel panelLabelPrecio = new JPanel();
         panelLabelPrecio.setBackground(new Color(153, 0, 102));
-        JLabel labelPrecio = new JLabel("Precio total: 209€");
+        JLabel labelPrecio = new JLabel("Precio total: 209€"); // precio billete * cantBilletes
         labelPrecio.setForeground(Color.WHITE);
         panelLabelPrecio.add(labelPrecio);
         
@@ -107,7 +108,7 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelMedio.add(panelLabelDestino);
         panelMedio.add(panelLabelFechaIda);
         panelMedio.add(panelLabelFechaVuelta);
-        panelMedio.add(panelLabelAsiento);
+        panelMedio.add(panelLabelCantBilletes);
         panelMedio.add(panelLabelClase);
         panelMedio.add(panelLabelExtras);
         panelMedio.add(panelLabelPrecio);
@@ -115,17 +116,17 @@ public class VentanaConfirmacionCompra extends JFrame{
         JPanel panelLabelConfirmar = new JPanel();
         panelLabelConfirmar.setBackground(new Color(153, 0, 102));
         JLabel labelConfirmar = new JLabel("Confirme la compra: ");
-        labelConfirmar.setForeground(Color.WHITE);
+        labelConfirmar.setForeground(Color.GRAY);
         panelLabelConfirmar.add(labelConfirmar);
         
-        JPanel panelLabelBlanco = new JPanel();
-        panelLabelBlanco.setBackground(new Color(153, 0, 102));
-        JLabel labelBlanco = new JLabel("");
-        labelBlanco.setForeground(Color.WHITE);
-        panelLabelBlanco.add(labelBlanco);
+        JPanel panelLabelAviso = new JPanel();
+        panelLabelAviso.setBackground(new Color(153, 0, 102));
+        JLabel labelAviso = new JLabel("Sin registro (+ 10 % en cada billete)");
+        labelAviso.setForeground(Color.GRAY);
+        panelLabelAviso.add(labelAviso);
         
         panelAbajo.add(panelLabelConfirmar);
-        panelAbajo.add(panelLabelBlanco);
+        panelAbajo.add(panelLabelAviso);
 
         // label y texto contraseña
 
@@ -145,11 +146,15 @@ public class VentanaConfirmacionCompra extends JFrame{
         panelAbajo.add(panelTextoContrasenya);
         
         if(VentanaInicio.var == 1) {
+        	panelLabelConfirmar.setVisible(false);
         	panelLabelContrasenya.setVisible(false);
         	panelTextoContrasenya.setVisible(false);
+        	panelLabelAviso.setVisible(true);
         } else if(VentanaInicio.var == 2) {
+        	panelLabelConfirmar.setVisible(true);
         	panelLabelContrasenya.setVisible(true);
         	panelTextoContrasenya.setVisible(true);
+        	panelLabelAviso.setVisible(false);
         }
 
         // botón volver
@@ -193,11 +198,13 @@ public class VentanaConfirmacionCompra extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                	if(VentanaInicio.var == 1) {
+                	if(VentanaInicio.var == 1) { // sin usuario
+                		BD.comprarBilletesBD(VentanaCompra.tipoBillete, VentanaCompra.comboOrigen.getSelectedItem().toString(), VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022", (int)VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt, 1, 0, 0, 0, 0);
             			new VentanaInicio();
             			dispose();
-                	} else if(VentanaInicio.var == 2){
+                	} else if(VentanaInicio.var == 2) { // con usuario
                 		if(textoContrasenya.getText().equals(BD.clienteActual.getContrasenya())) {
+                			BD.comprarBilletesBD(VentanaCompra.tipoBillete, VentanaCompra.comboOrigen.getSelectedItem().toString(), VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022", (int)VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt, 1, 0, 0, 0, 1);
                 			new VentanaMenuPrincipal();
                 			dispose();
                 		} else {

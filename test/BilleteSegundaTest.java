@@ -27,7 +27,7 @@ class BilleteSegundaTest {
 		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 		
 		b1 = new BilleteSegunda();
-		b2 = new BilleteSegunda(c1, viajeIda, null, 55.90, "20C", 0, 1);
+		b2 = new BilleteSegunda(c1, viajeIda, null, 55.90, 0, 1);
 	}
 
 	@Test

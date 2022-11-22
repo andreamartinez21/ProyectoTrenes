@@ -5,9 +5,8 @@ public class BilleteSegunda extends Billete {
 	protected int seguroViaje; // poner boolean
 	protected int mesa; // poner boolean
 	
-	public BilleteSegunda(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, String asiento,
-			int seguroViaje, int mesa) {
-		super(cliente, viajeIda, viajeVuelta, precio, asiento);
+	public BilleteSegunda(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, int seguroViaje, int mesa) {
+		super(cliente, viajeIda, viajeVuelta, precio);
 		this.seguroViaje = seguroViaje;
 		this.mesa = mesa;
 	}
@@ -37,7 +36,6 @@ public class BilleteSegunda extends Billete {
 	@Override
 	public String toString() {
 		return "BilleteSegunda [seguroViaje=" + seguroViaje + ", mesa=" + mesa + ", id=" + id + ", cliente=" + cliente
-				+ ", viajeIda=" + viajeIda + ", viajeVuelta=" + viajeVuelta + ", precio=" + precio + ", asiento="
-				+ asiento + "]";
+				+ ", viajeIda=" + viajeIda + ", viajeVuelta=" + viajeVuelta + ", precio=" + precio + "]";
 	}
 }

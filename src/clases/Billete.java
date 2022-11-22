@@ -7,17 +7,13 @@ public abstract class Billete {
     protected Viaje viajeIda;
     protected Viaje viajeVuelta;
     protected double precio;
-    protected String asiento;
-    // asiento vuelta?
-    // cantidad personas?
     
-	public Billete(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, String asiento) {
+	public Billete(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio) {
 		super();
 		this.cliente = cliente;
 		this.viajeIda = viajeIda;
 		this.viajeVuelta = viajeVuelta;
 		this.precio = precio;
-		this.asiento = asiento;
 	}
 	
 	public Billete() {
@@ -26,7 +22,6 @@ public abstract class Billete {
 		this.viajeIda = new Viaje();
 		this.viajeVuelta = new Viaje();
 		this.precio = 0.0;
-		this.asiento = "";
 	}
 
 	public String getId() {
@@ -69,17 +64,9 @@ public abstract class Billete {
 		this.precio = precio;
 	}
 
-	public String getAsiento() {
-		return asiento;
-	}
-
-	public void setAsiento(String asiento) {
-		this.asiento = asiento;
-	}
-
 	@Override
 	public String toString() {
 		return "Billete [id=" + id + ", cliente=" + cliente + ", viajeIda=" + viajeIda + ", viajeVuelta=" + viajeVuelta
-				+ ", precio=" + precio + ", asiento=" + asiento + "]";
+				+ ", precio=" + precio + "]";
 	}   
 }

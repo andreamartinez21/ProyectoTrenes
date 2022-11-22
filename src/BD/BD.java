@@ -242,14 +242,12 @@ public class BD {
 	
 	// método comprar billetes
 	
-		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+		public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda, String fechaVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
 			try {
 				List<Viaje> listaViajes = new ArrayList<Viaje>();
 				listaViajes = getViajesBD();
 				Viaje viajeIda = new Viaje();
 				Viaje viajeVuelta = new Viaje();
-				String asiento = "";
-				int numAleatorio = 0;
 				double precio = 0.0;
 				
 				switch (tipo) { 
@@ -260,24 +258,21 @@ public class BD {
 							}
 						}
 				    	
-				    	numAleatorio = (int) (Math.random() * viajeIda.getAforo());
-				    	asiento = String.valueOf(numAleatorio)/* + "A"*/; // hacerlo bien
-				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa);
+				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa, conUsuario);
 				    	
 				    	for (int i = 0; i < cantBilletes; i++) {
-				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
 							PreparedStatement ps = conn.prepareStatement(consulta);
 							ps.setString(1, clienteActual.getUsuario());
 							ps.setString(2, viajeIda.getLocalizador());
 							ps.setString(3, "null");
 							ps.setDouble(4, precio);
-							ps.setString(5, asiento);
-							ps.setInt(6, clase);
-							ps.setInt(7, comida);
-							ps.setInt(8, asientoIndividual);
-							ps.setInt(9, seguroViaje);
-							ps.setInt(10, mesa);
+							ps.setInt(5, clase);
+							ps.setInt(6, comida);
+							ps.setInt(7, asientoIndividual);
+							ps.setInt(8, seguroViaje);
+							ps.setInt(9, mesa);
 							
 							ps.executeUpdate();
 							ps.close();
@@ -302,24 +297,21 @@ public class BD {
 							}
 						}
 				    	
-				    	numAleatorio = (int) (Math.random() * viajeIda.getAforo());
-				    	asiento = String.valueOf(numAleatorio)/* + "A"*/; // hacerlo bien
-				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa);
+				    	precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida, asientoIndividual, seguroViaje, mesa, conUsuario);
 				    	
 				    	for (int i = 0; i < cantBilletes; i++) {
-				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, asiento, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				    		String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
 							ps = conn.prepareStatement(consulta);
 							ps.setString(1, clienteActual.getUsuario());
 							ps.setString(2, viajeIda.getLocalizador());
 							ps.setString(3, viajeVuelta.getLocalizador());
 							ps.setDouble(4, precio);
-							ps.setString(5, asiento);
-							ps.setInt(6, clase);
-							ps.setInt(7, comida);
-							ps.setInt(8, asientoIndividual);
-							ps.setInt(9, seguroViaje);
-							ps.setInt(10, mesa);
+							ps.setInt(5, clase);
+							ps.setInt(6, comida);
+							ps.setInt(7, asientoIndividual);
+							ps.setInt(8, seguroViaje);
+							ps.setInt(9, mesa);
 							
 							ps.executeUpdate();
 							ps.close();
@@ -378,10 +370,10 @@ public class BD {
 				Viaje viajeVuelta = new Viaje();
 				
 				if(rs.getInt("clase") == 1) {
-					BilletePrimera billetePrimera = new BilletePrimera(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getString("asiento"), rs.getInt("comida"), rs.getInt("asientoIndividual"));
+					BilletePrimera billetePrimera = new BilletePrimera(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getInt("comida"), rs.getInt("asientoIndividual"));
 					listaBilletesUsuario.add(billetePrimera);
 				} else if(rs.getInt("clase") == 2) {
-					BilleteSegunda billeteSegunda = new BilleteSegunda(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getString("asiento"), rs.getInt("seguroViaje"), rs.getInt("mesa"));
+					BilleteSegunda billeteSegunda = new BilleteSegunda(clienteActual, viajeIda, viajeVuelta, rs.getDouble("precio"), rs.getInt("seguroViaje"), rs.getInt("mesa"));
 					listaBilletesUsuario.add(billeteSegunda);
 				}
 				

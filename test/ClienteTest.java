@@ -33,8 +33,8 @@ class ClienteTest {
 		c1 = new Cliente();
 		c2 = new Cliente("iker2", "1236", "Iker", "Ruiz", "1234567H", "iker2@gmail.com", "67634758", "9539475837459L", listaBilletes);
 		
-		b1 = new BilletePrimera(c2, viajeIda, null, 60.90, "20B", 1, 1);
-		b2 = new BilleteSegunda(c2, viajeIda, null, 55.90, "20C", 0, 1);
+		b1 = new BilletePrimera(c2, viajeIda, null, 60.90, 1, 1);
+		b2 = new BilleteSegunda(c2, viajeIda, null, 55.90, 0, 1);
 		
 		listaBilletes.add(b1);
 		listaBilletes.add(b2);
@@ -151,7 +151,7 @@ class ClienteTest {
 	
 	@Test
 	void testAnyadirBillete() {
-		Billete b3 = new BilletePrimera(c2, viajeIda, null, 70.90, "24B", 0, 1);
+		Billete b3 = new BilletePrimera(c2, viajeIda, null, 70.90, 0, 1);
 		c2.anyadirBillete(b3);
 		int longitud = c2.getListaBilletes().size();
 		assertEquals(c2.getListaBilletes().get(longitud - 1), b3);

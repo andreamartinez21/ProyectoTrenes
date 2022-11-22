@@ -25,7 +25,14 @@ public class VentanaCompra extends JFrame{
     private JCalendar calendarioIda;
     private JCalendar calendarioVuelta;
     
-    private int tipoBillete = 1;
+    private int tipoBilleteInt = 1;
+    public static String tipoBillete = "Ida y vuelta";
+    public static String clase = "Segunda clase";
+    public static int claseInt = 2;
+    
+    public static JComboBox<String> comboOrigen;
+    public static JComboBox<String> comboDestino;
+    public static JSpinner spinnerNumBilletes;
     
 	public VentanaCompra() throws IOException {
     	
@@ -60,7 +67,8 @@ public class VentanaCompra extends JFrame{
  	    listaOrigen = Metodos.obtenerMapaOrigenDestino().get("Origen");
         JPanel panelComboOrigen = new JPanel();
         panelComboOrigen.setBackground(new Color(153, 0, 102));
-        JComboBox<String> comboOrigen = new JComboBox<String>();
+        comboOrigen = new JComboBox<String>();
+        
         for (String ciudad : listaOrigen) { // lo que recorres y el tipo de cosa que recorres a cada vuelta
 			comboOrigen.addItem(ciudad);
 		}
@@ -79,7 +87,7 @@ public class VentanaCompra extends JFrame{
         listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
         JPanel panelComboDestino = new JPanel();
         panelComboDestino.setBackground(new Color(153, 0, 102));
-        JComboBox<String> comboDestino = new JComboBox<String>();
+        comboDestino = new JComboBox<String>();
         
         for (String ciudad : listaDestino) {
 			comboDestino.addItem(ciudad);
@@ -118,7 +126,8 @@ public class VentanaCompra extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				radioIda.setSelected(false);
                 panelCalendarioVuelta.setVisible(true);
-                tipoBillete = 1; // ida y vuelta
+                tipoBilleteInt = 1; // ida y vuelta
+                tipoBillete = "Ida y vuelta";
 			}
 		});
         
@@ -127,7 +136,8 @@ public class VentanaCompra extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				radioIdaVuelta.setSelected(false);
                 panelCalendarioVuelta.setVisible(false);
-                tipoBillete = 0; // ida
+                tipoBilleteInt = 0; // ida
+                tipoBillete = "Ida";
 			}
 		});
         
@@ -141,7 +151,7 @@ public class VentanaCompra extends JFrame{
         
         JPanel panelSpinnerNumBilletes = new JPanel();
         panelSpinnerNumBilletes.setBackground(new Color(153, 0, 102));
-        JSpinner spinnerNumBilletes = new JSpinner();
+        spinnerNumBilletes = new JSpinner();
         spinnerNumBilletes.setModel(new SpinnerNumberModel(1, 1, 6, 1));
         panelSpinnerNumBilletes.add(spinnerNumBilletes);
         
@@ -218,6 +228,8 @@ public class VentanaCompra extends JFrame{
 				radioPrimeraClase.setSelected(false);
 				panelCheckExtras.setVisible(true);
 				panelCheckExtras2.setVisible(false);
+				clase = "Segunda clase";
+				claseInt = 2;
 			}
 		});
         
@@ -227,6 +239,8 @@ public class VentanaCompra extends JFrame{
 				radioSegundaClase.setSelected(false);
 				panelCheckExtras.setVisible(false);
 				panelCheckExtras2.setVisible(true);
+				clase = "Primera clase";
+				claseInt = 1;
 			}
 		});
         
@@ -239,7 +253,6 @@ public class VentanaCompra extends JFrame{
         
         JPanel panelCalendarioIda = new JPanel();
         panelCalendarioIda.setBackground(new Color(153, 0, 102));
-//        calendarioIda = new JDateChooser();
         calendarioIda = new JCalendar();
         // calendarioIda.setTodayButtonVisible(true);
         calendarioIda.setWeekOfYearVisible(false);
@@ -253,7 +266,6 @@ public class VentanaCompra extends JFrame{
         // calendario vuelta
         
         panelCalendarioVuelta.setBackground(new Color(153, 0, 102));
-//        calendarioVuelta = new JDateChooser();
         calendarioVuelta = new JCalendar();
         // calendarioVuelta.setTodayButtonVisible(true);
         calendarioVuelta.setWeekOfYearVisible(false);
@@ -310,7 +322,7 @@ public class VentanaCompra extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                	if(Metodos.existeViaje(comboOrigen.getSelectedItem().toString(), comboDestino.getSelectedItem().toString(), (int)spinnerNumBilletes.getValue(), tipoBillete)) {
+                	if(Metodos.existeViaje(comboOrigen.getSelectedItem().toString(), comboDestino.getSelectedItem().toString(), (int)spinnerNumBilletes.getValue(), tipoBilleteInt)) {
                 		new VentanaConfirmacionCompra();
                 		dispose();
                 	}

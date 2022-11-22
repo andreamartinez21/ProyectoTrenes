@@ -180,7 +180,7 @@ public class Metodos {
 	   return true;
    }
    
-   public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa) {
+   public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
 	   
 	   double precioBillete = 0.00;
 	   
@@ -206,7 +206,9 @@ public class Metodos {
 	   
 	   precioBillete += viajeIda.getPrecio();
 	   
-	   precioBillete *= cantBilletes;
+	   if(conUsuario == 0) {
+		   precioBillete *= 1.1;
+	   }
 	   
 	   return precioBillete;
    }
