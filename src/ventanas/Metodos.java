@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -20,196 +21,244 @@ import clases.Viaje;
 import log.Log;
 
 public class Metodos {
-	
-	public static boolean register(String nombre, String apellido, String usuario, String contrasenya, String dni, String email, String numTelefono, String cuentaBancaria) {
-		   	
-    	if(BD.registerBD(nombre, apellido, usuario, contrasenya, dni, email, numTelefono, cuentaBancaria)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
-	
+
+	public static boolean register(String nombre, String apellido, String usuario, String contrasenya, String dni,
+			String email, String numTelefono, String cuentaBancaria) {
+
+		if (BD.registerBD(nombre, apellido, usuario, contrasenya, dni, email, numTelefono, cuentaBancaria)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public static boolean login(String usuario, String contrasenya) {
-		
-		if(BD.loginBD(usuario, contrasenya)) {
+
+		if (BD.loginBD(usuario, contrasenya)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public static boolean editar(Cliente clienteActual, String nombre, String apellido, String dni, String email, String numTelefono, String cuentaBancaria) {
-		
-		if(BD.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
-			return true;
+
+	public static void editar(Cliente clienteActual, String nombre, String apellido, String dni, String email,
+			String numTelefono, String cuentaBancaria) {
+
+		if (BD.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
+			JOptionPane.showMessageDialog(null, "Perfil actualizado correctamente.");
+			Log.logger.log(Level.INFO, "Perfil actualizado correctamente.");
 		} else {
-			return false;
+			JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar el perfil.");
+			Log.logger.log(Level.SEVERE, "Ha habido un error al actualizar el perfil.");
 		}
 	}
-	
+
 	public static boolean borrarCliente(Cliente clienteActual) {
-		if(BD.borrarClienteBD(clienteActual)) {
+		if (BD.borrarClienteBD(clienteActual)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-   public static boolean leeFichero() { // tabular bien
-	   
-      File archivo = null;
-      FileReader fr = null;
-      BufferedReader br = null;
-      String[] data = new String[7];
 
-      try {
-         // abrir fichero y crear de BufferedReader
-         archivo = new File ("ficheroViajes.txt");
-         fr = new FileReader (archivo);
-         br = new BufferedReader(fr);
+	public static boolean leeFichero() {
 
-         // lectura fichero
-         String linea;
-         while((linea = br.readLine()) != null) {
-            data = linea.split(";");
-         
-         	String localizador = data[0];
-         	String origen = data[1];
-         	String destino = data[2];
-         	String fecha = data[3];
-         	int aforo = Integer.valueOf(data[4]);
-         	double precio = Double.valueOf(data[5]);
-         	String imagen = data[6];
-         	
-         	if(BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio, imagen)) {
-         		Log.logger.log(Level.INFO, "Se ha añadido el viaje corrrectamente.");
-         	}
-         }
-      }
-      catch(Exception e){
-         e.printStackTrace();
-      }finally{
-         // cerrar fichero
-         try{
-            if(null != fr){
-               fr.close();
-            }
-         }catch (Exception e2){
-            e2.printStackTrace();
-         }
-      }
-      return true;
-   }
-   
-   public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
-	   List<Viaje> listaViajes = new ArrayList<>();
-	   HashSet<String> listaOrigen = new HashSet<>();
-	   HashSet<String> listaDestino = new HashSet<>();
-	   Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<>();
-	   	   
-	   listaViajes = BD.getViajesBD();
-	  
-	   for (Viaje viaje : listaViajes) {
-		   listaOrigen.add(viaje.getOrigen());
-		   listaDestino.add(viaje.getDestino());
-	   }
-	   
-	   mapaOrigenDestino.put("Origen", listaOrigen);
-	   mapaOrigenDestino.put("Destino", listaDestino);
-	   
-	   return mapaOrigenDestino;
-   }
-   
-   public static boolean existeViaje(String origen, String destino, /*String fechaIda, String fechaVuelta,*/ int cantBilletes, int tipo) {
-	   List<Viaje> listaViajes = new ArrayList<Viaje>();
-	   listaViajes = BD.getViajesBD();
-	   int comp = 0;
-	   
-	   switch (tipo) {
-	   		case 0: // ida
-	   			for (Viaje viaje : listaViajes) {
-	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda &&*/ viaje.getAforo() >= cantBilletes) {
-	   					Log.logger.log(Level.INFO, "Viaje disponible.");
-	   					return true;
-	   				}
-	   			}
-	   			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
-	   			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
-	   			return false;
-	   		case 1: // ida y vuelta
-	   			for (Viaje viaje : listaViajes) {
-	   				if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && /*viaje.getFecha() == fechaIda && */viaje.getAforo() >= cantBilletes) {
-	   					Log.logger.log(Level.INFO, "Viaje disponible.");
-	   					comp++;
-	   				}
-	   				if(viaje.getOrigen().equals(destino) && viaje.getDestino().equals(origen) && /*viaje.getFecha() == fechaVuelta && */viaje.getAforo() >= cantBilletes) {
-	   					Log.logger.log(Level.INFO, "Viaje disponible.");
-	   					comp++;
-	   				}
-	   				if(comp == 2) {
-	   					return true;
-	   				}
-	   			}
-	   			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
-	   			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
-	   			return false;
-	   		default:
-	   			System.out.println("Error.");
-	   }
-	   return true;
-   }
-   
-   public static boolean actualizaAforoFichero(Viaje viaje, int cantBilletes) {
-	   
-	try {
-		File archivo = new File("ficheroViajes.txt");
-		FileWriter escribir;
-		escribir = new FileWriter(archivo);
-		
-		String texto = String.valueOf(viaje.getAforo() - cantBilletes);
-	   
-//	    for (int i = 0; i < texto.length(); i++){
-//	    	escribir.write(texto.charAt(i));
-//	    	escribir.close();
-//	    }
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		File archivo = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		String[] data = new String[7];
+
+		try {
+			// abrir fichero y crear de BufferedReader
+			archivo = new File("ficheroViajes.txt");
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+
+			// lectura fichero
+			String linea;
+			while ((linea = br.readLine()) != null) {
+				data = linea.split(";");
+
+				String localizador = data[0];
+				String origen = data[1];
+				String destino = data[2];
+				String fecha = data[3];
+				int aforo = Integer.valueOf(data[4]);
+				double precio = Double.valueOf(data[5]);
+				String imagen = data[6];
+
+				if (BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio, imagen)) {
+					Log.logger.log(Level.INFO, "Se ha añadido el viaje corrrectamente.");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// cerrar fichero
+			try {
+				if (null != fr) {
+					fr.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return true;
 	}
-	   return true;
-   }
-   
-   public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
-	   
-	   double precioBillete = 0.00;
-	   
-	   if(clase == 1) {
-		   precioBillete += 12.00;
-	   }
-	   if(comida == 1) {
-		   precioBillete += 15.00;
-	   }
-	   if(asientoIndividual == 1) {
-		   precioBillete += 9.00;
-	   }
-	   if(seguroViaje == 1) {
-		   precioBillete += 3.00;
-	   }
-	   if(mesa == 1) {
-		   precioBillete += 2.00;
-	   }
-	   if(tipo.equals("Ida y vuelta")) {
-		   precioBillete *= 2;
-		   precioBillete += viajeVuelta.getPrecio();
-	   }
-	   
-	   precioBillete += viajeIda.getPrecio();
-	   
-	   if(conUsuario == 0) {
-		   precioBillete *= 1.1;
-	   }
-	   
-	   return precioBillete;
-   }
+
+	public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
+		List<Viaje> listaViajes = new ArrayList<>();
+		HashSet<String> listaOrigen = new HashSet<>();
+		HashSet<String> listaDestino = new HashSet<>();
+		Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<>();
+
+		listaViajes = BD.getViajesBD();
+
+		for (Viaje viaje : listaViajes) {
+			listaOrigen.add(viaje.getOrigen());
+			listaDestino.add(viaje.getDestino());
+		}
+
+		mapaOrigenDestino.put("Origen", listaOrigen);
+		mapaOrigenDestino.put("Destino", listaDestino);
+
+		return mapaOrigenDestino;
+	}
+
+	public static boolean existeViaje(String origen, String destino,
+			/* String fechaIda, String fechaVuelta, */ int cantBilletes, int tipo) {
+		List<Viaje> listaViajes = new ArrayList<Viaje>();
+		listaViajes = BD.getViajesBD();
+		int comp = 0;
+
+		switch (tipo) {
+		case 0: // ida
+			for (Viaje viaje : listaViajes) {
+				if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
+						&& /* viaje.getFecha() == fechaIda && */ viaje.getAforo() >= cantBilletes) {
+					Log.logger.log(Level.INFO, "Viaje disponible.");
+					return true;
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
+			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+			return false;
+		case 1: // ida y vuelta
+			for (Viaje viaje : listaViajes) {
+				if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
+						&& /* viaje.getFecha() == fechaIda && */viaje.getAforo() >= cantBilletes) {
+					Log.logger.log(Level.INFO, "Viaje disponible.");
+					comp++;
+				}
+				if (viaje.getOrigen().equals(destino) && viaje.getDestino().equals(origen)
+						&& /* viaje.getFecha() == fechaVuelta && */viaje.getAforo() >= cantBilletes) {
+					Log.logger.log(Level.INFO, "Viaje disponible.");
+					comp++;
+				}
+				if (comp == 2) {
+					return true;
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
+			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+			return false;
+		default:
+			System.out.println("Error.");
+		}
+		return true;
+	}
+
+	public static boolean actualizaAforoFichero(Viaje viaje, int cantBilletes) {
+
+		try {
+			File archivo = new File("ficheroViajes.txt");
+			FileWriter escribir;
+			escribir = new FileWriter(archivo);
+
+			String texto = String.valueOf(viaje.getAforo() - cantBilletes);
+
+//	    https://chuwiki.chuidiang.org/index.php?title=Lectura_y_Escritura_de_Ficheros_en_Java
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes,
+			int clase, int comida, int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
+
+		double precioBillete = 0.00;
+
+		if (clase == 1) {
+			precioBillete += 12.00;
+		}
+		if (comida == 1) {
+			precioBillete += 15.00;
+		}
+		if (asientoIndividual == 1) {
+			precioBillete += 9.00;
+		}
+		if (seguroViaje == 1) {
+			precioBillete += 3.00;
+		}
+		if (mesa == 1) {
+			precioBillete += 2.00;
+		}
+		if (tipo.equals("Ida y vuelta")) {
+			precioBillete *= 2;
+			precioBillete += viajeVuelta.getPrecio();
+		}
+
+		precioBillete += viajeIda.getPrecio();
+
+		if (conUsuario == 0) {
+			precioBillete *= 1.1;
+		}
+
+		return precioBillete;
+	}
+
+	public static void crearTicket() {
+		try {
+			File file = new File("ticket.txt");
+			FileWriter writer = new FileWriter(file);
+			BufferedWriter buffer = new BufferedWriter(writer);
+
+			buffer.write("VIAJE A " + VentanaCompra.comboDestino.getSelectedItem().toString().toUpperCase());
+			buffer.newLine();
+			buffer.write("Nombre del comprador: " + BD.clienteActual.getNombre() + BD.clienteActual.getApellido());
+			buffer.newLine();
+			buffer.write("Tipo de billete: " + VentanaCompra.tipoBillete);
+			buffer.newLine();
+			buffer.write("Origen: " + VentanaCompra.comboOrigen.getSelectedItem().toString());
+			buffer.newLine();
+			buffer.write("Destino: " + VentanaCompra.comboDestino.getSelectedItem().toString());
+			buffer.newLine();
+			buffer.write("Fecha ida: ");
+			buffer.newLine();
+
+			if(VentanaCompra.tipoBillete.equals("Ida y vuelta")) {
+				buffer.write("Fecha vuelta: ");
+				buffer.newLine();
+			}
+			
+			buffer.write("Cantidad billetes: " + (int) VentanaCompra.spinnerNumBilletes.getValue());
+			buffer.newLine();
+			buffer.write(VentanaCompra.clase);
+			buffer.newLine();
+			buffer.write("Extras: " + VentanaConfirmacionCompra.extras);
+			buffer.newLine();
+			buffer.write("Precio total: ");
+			buffer.newLine();
+
+			buffer.flush();
+			buffer.close();
+			writer.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

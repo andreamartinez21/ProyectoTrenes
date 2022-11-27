@@ -9,47 +9,45 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class VentanaVerViajes extends JFrame{
+public class VentanaVerViajes extends JFrame {
 
-    private JPanel contentPane;
+	private JPanel contentPane;
 
-    private JPanel panel;
-    private JPanel panelArriba;
-    private JPanel panelAbajo;
-    
+	private JPanel panel;
+	private JPanel panelArriba;
+	private JPanel panelAbajo;
+
 	public VentanaVerViajes() throws IOException {
-    	
-        setBackground(new Color(0, 0, 51));
 
-        setTitle("Ver mis viajes");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(500, 350));
-        setVisible(true);
-        pack();
+		setBackground(new Color(0, 0, 51));
 
-        contentPane = new JPanel();
-        contentPane.setBackground(new Color(153, 0, 102));
-        setContentPane(contentPane);
+		setTitle("Ver mis viajes");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setPreferredSize(new Dimension(500, 350));
+		setVisible(true);
+		pack();
 
-        panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(153, 0, 102));
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(153, 0, 102));
+		setContentPane(contentPane);
+
+		panel = new JPanel(new BorderLayout());
+		panel.setBackground(new Color(153, 0, 102));
 //      panelArriba = new JPanel(new GridLayout(viajes.length, 1));
-        panelArriba = new JPanel(new BorderLayout());
-        panelArriba.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new BorderLayout());
-        panelAbajo.setBackground(new Color(153, 0, 102));
+		panelArriba = new JPanel(new BorderLayout());
+		panelArriba.setBackground(new Color(153, 0, 102));
+		panelAbajo = new JPanel(new BorderLayout());
+		panelAbajo.setBackground(new Color(153, 0, 102));
 
-        contentPane.add(panel);
-        
-        // JTable
-        
-        // array con título tabla
-        String[] columns = new String[] {
-            "ORIGEN", "DESTINO", "IDA Y VUELTA", "PRECIO"
-        };
-         
-        // array con datos tabla
-        
+		contentPane.add(panel);
+
+		// JTable
+
+		// array con título tabla
+		String[] columns = new String[] { "ORIGEN", "DESTINO", "IDA Y VUELTA", "PRECIO" };
+
+		// array con datos tabla
+
 //        BD.getBilletesUsuarioBD(BD.clienteActual);
 //        List<Billete> listaBilletesUsuario = new ArrayList<Billete>();
 //        listaBilletesUsuario = BD.clienteActual.getListaBilletes();
@@ -69,23 +67,23 @@ public class VentanaVerViajes extends JFrame{
             {"Madrid", "Londres", "No", 55},
             {"Madrid", "Londres", "No", 55},
             {"Madrid", "Londres", "No", 55},
-        };
-        
-        // crear tabla
-        JTable table = new JTable(data, columns);
-        
-        for(int i = 0; i < data.length; i++) {
-        	table.setRowHeight(i, 30);
-        }
-        
+		};
+
+		// crear tabla
+		JTable table = new JTable(data, columns);
+
+		for (int i = 0; i < data.length; i++) {
+			table.setRowHeight(i, 30);
+		}
+
 //      table.setBackground(Color.GRAY);
-        
-        // poner la tabla no editable
-         
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(450, 220));
-        panelArriba.add(scrollPane);
-        
+
+		// poner la tabla no editable
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(450, 220));
+		panelArriba.add(scrollPane);
+
 //        DefaultTableModel tableModel = new DefaultTableModel() { 
 //        	
 //        	@Override 
@@ -97,42 +95,37 @@ public class VentanaVerViajes extends JFrame{
 //       
 //        table.setModel(tableModel);
 
-        // botón volver
+		// botón volver
 
-        JPanel panelBotonVolver = new JPanel();
-        panelBotonVolver.setBackground(new Color(153, 0, 102));
-        JButton botonVolver = new JButton("Volver");
-        botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
-        botonVolver.setBackground(Color.GRAY);
-        botonVolver.setForeground(Color.WHITE);
-        botonVolver.setPreferredSize(new Dimension(160, 35));
-        panelBotonVolver.add(botonVolver);
+		JPanel panelBotonVolver = new JPanel();
+		panelBotonVolver.setBackground(new Color(153, 0, 102));
+		JButton botonVolver = new JButton("Volver");
+		botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
+		botonVolver.setBackground(Color.GRAY);
+		botonVolver.setForeground(Color.WHITE);
+		botonVolver.setPreferredSize(new Dimension(160, 35));
+		panelBotonVolver.add(botonVolver);
 
-        botonVolver.addActionListener(new ActionListener() {
-				
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                try {
-                    new VentanaMenuPrincipal();
-                    dispose();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+		botonVolver.addActionListener(new ActionListener() {
 
-        panelAbajo.add(panelBotonVolver);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					new VentanaMenuPrincipal();
+					dispose();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 
-        panel.add(panelArriba, BorderLayout.NORTH);
-        panel.add(panelAbajo, BorderLayout.SOUTH);
+		panelAbajo.add(panelBotonVolver);
 
-        contentPane.setVisible(true);
-        panel.setVisible(true);
-    }
+		panel.add(panelArriba, BorderLayout.NORTH);
+		panel.add(panelAbajo, BorderLayout.SOUTH);
 
-    public static void main(String[] args) throws IOException {
-
-		new VentanaVerViajes();
+		contentPane.setVisible(true);
+		panel.setVisible(true);
 	}
 }

@@ -173,8 +173,4 @@ public class VentanaInicio extends JFrame{
         contentPane.setVisible(true);
         panel.setVisible(true);
     }
-
-    public static void main(String[] args) throws IOException {
-		new VentanaInicio();
-	}
 }

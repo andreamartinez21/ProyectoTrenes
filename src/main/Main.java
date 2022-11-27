@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Log.iniciarLog();
 		PropertiesClass.getProperties();
-		if(BD.connect() != null) {
+		if (BD.connect() != null) {
 			BD.borrarViajesBD();
 			Metodos.leeFichero();
 			new VentanaInicio();

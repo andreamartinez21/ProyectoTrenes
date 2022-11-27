@@ -1,0 +1,11 @@
+VIAJE A LONDRES
+Nombre del comprador: 
+Tipo de billete: Ida y vuelta
+Origen: Bilbao
+Destino: Londres
+Fecha ida: 
+Fecha vuelta: 
+Cantidad billetes: 1
+Primera clase
+Extras: comida, asiento individual, 
+Precio total: 
