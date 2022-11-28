@@ -3,7 +3,6 @@ package ventanas;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 	private JPanel panelMedio;
 	private JPanel panelAbajo;
 	
-	public static String extras = "";
+	public static JTextField textoNombreComprador;
 
 	public VentanaConfirmacionCompra() throws IOException {
 
@@ -27,7 +26,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 
 		setTitle("Confirmación compra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 350));
+		setPreferredSize(new Dimension(500, 380));
 		setVisible(true);
 		pack();
 
@@ -41,7 +40,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 		panelArriba.setBackground(new Color(153, 0, 102));
 		panelMedio = new JPanel(new GridLayout(5, 2));
 		panelMedio.setBackground(new Color(153, 0, 102));
-		panelAbajo = new JPanel(new GridLayout(3, 2));
+		panelAbajo = new JPanel(new GridLayout(4, 2));
 		panelAbajo.setBackground(new Color(153, 0, 102));
 
 		contentPane.add(panel);
@@ -95,20 +94,20 @@ public class VentanaConfirmacionCompra extends JFrame {
 		labelClase.setForeground(Color.WHITE);
 		panelLabelClase.add(labelClase);
 
-		for (String extra : VentanaCompra.listaExtras) {
-			extras += extra + ", ";
-		}
-
-//		String delimiter = ", ";
-//		 
-//        StringJoiner joiner = new StringJoiner(delimiter);
-//        VentanaCompra.listaExtras.forEach(item -> joiner.add(item));
-// 
-//        System.out.println(joiner.toString());
-
 		JPanel panelLabelExtras = new JPanel();
 		panelLabelExtras.setBackground(new Color(153, 0, 102));
-		JLabel labelExtras = new JLabel("Extras: " + extras);
+		JLabel labelExtras = new JLabel();
+
+		if (!VentanaCompra.extra1.equals("") && !VentanaCompra.extra2.equals("")) {
+			labelExtras = new JLabel("Extras: " + VentanaCompra.extra1 + ", " + VentanaCompra.extra2);
+		} else if (VentanaCompra.extra1.equals("") && !VentanaCompra.extra2.equals("")) {
+			labelExtras = new JLabel("Extras: " + VentanaCompra.extra2);
+		} else if (!VentanaCompra.extra1.equals("") && VentanaCompra.extra2.equals("")) {
+			labelExtras = new JLabel("Extras: " + VentanaCompra.extra1);
+		} else if (VentanaCompra.extra1.equals("") && VentanaCompra.extra2.equals("")) {
+			labelExtras = new JLabel("Extras: sin extras");
+		}
+		
 		labelExtras.setForeground(Color.WHITE);
 		panelLabelExtras.add(labelExtras);
 
@@ -126,6 +125,25 @@ public class VentanaConfirmacionCompra extends JFrame {
 		panelMedio.add(panelLabelClase);
 		panelMedio.add(panelLabelExtras);
 		panelMedio.add(panelLabelPrecio);
+		
+		// label y texto nombre comprador
+
+		JPanel panelLabelNombreComprador = new JPanel();
+		panelLabelNombreComprador.setBackground(new Color(153, 0, 102));
+		JLabel labelNombreComprador = new JLabel("Nombre comprador: ");
+		labelNombreComprador.setForeground(Color.WHITE);
+		panelLabelNombreComprador.add(labelNombreComprador);
+
+		JPanel panelTextoNombreComprador = new JPanel();
+		panelTextoNombreComprador.setBackground(new Color(153, 0, 102));
+		textoNombreComprador = new JTextField();
+		textoNombreComprador.setPreferredSize(new Dimension(150, 25));
+		panelTextoNombreComprador.add(textoNombreComprador);
+
+		panelAbajo.add(panelLabelNombreComprador);
+		panelAbajo.add(panelTextoNombreComprador);
+		
+		// labels confirmar y aviso
 
 		JPanel panelLabelConfirmar = new JPanel();
 		panelLabelConfirmar.setBackground(new Color(153, 0, 102));
@@ -159,16 +177,20 @@ public class VentanaConfirmacionCompra extends JFrame {
 		panelAbajo.add(panelLabelContrasenya);
 		panelAbajo.add(panelTextoContrasenya);
 
-		if (VentanaInicio.var == 1) {
+		if (VentanaInicio.var == 1) { // sin usuario
 			panelLabelConfirmar.setVisible(false);
 			panelLabelContrasenya.setVisible(false);
 			panelTextoContrasenya.setVisible(false);
 			panelLabelAviso.setVisible(true);
-		} else if (VentanaInicio.var == 2) {
+			panelLabelNombreComprador.setVisible(true);
+			panelTextoNombreComprador.setVisible(true);
+		} else if (VentanaInicio.var == 2) { // con usuario
 			panelLabelConfirmar.setVisible(true);
 			panelLabelContrasenya.setVisible(true);
 			panelTextoContrasenya.setVisible(true);
 			panelLabelAviso.setVisible(false);
+			panelLabelNombreComprador.setVisible(false);
+			panelTextoNombreComprador.setVisible(false);
 		}
 
 		// botón volver
@@ -187,8 +209,8 @@ public class VentanaConfirmacionCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					VentanaCompra.listaExtras.clear();
-					extras = "";
+					VentanaCompra.extra1 = "";
+					VentanaCompra.extra2 = "";
 					VentanaCompra.extraComida = 0;
 					VentanaCompra.extraAsientoIndividual = 0;
 					VentanaCompra.extraSeguroViaje = 0;
@@ -226,8 +248,8 @@ public class VentanaConfirmacionCompra extends JFrame {
 								VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
 								VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 0);
 						Metodos.crearTicket();
-						VentanaCompra.listaExtras.clear();
-						extras = "";
+						VentanaCompra.extra1 = "";
+						VentanaCompra.extra2 = "";
 						VentanaCompra.extraComida = 0;
 						VentanaCompra.extraAsientoIndividual = 0;
 						VentanaCompra.extraSeguroViaje = 0;
@@ -243,8 +265,8 @@ public class VentanaConfirmacionCompra extends JFrame {
 									VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
 									VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 1);
 							Metodos.crearTicket();
-							VentanaCompra.listaExtras.clear();
-							extras = "";
+							VentanaCompra.extra1 = "";
+							VentanaCompra.extra2 = "";
 							VentanaCompra.extraComida = 0;
 							VentanaCompra.extraAsientoIndividual = 0;
 							VentanaCompra.extraSeguroViaje = 0;

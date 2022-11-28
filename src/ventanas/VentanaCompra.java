@@ -9,8 +9,6 @@ import javax.swing.border.TitledBorder;
 import com.toedter.calendar.JCalendar;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashSet;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,7 +29,9 @@ public class VentanaCompra extends JFrame {
 	public static String tipoBillete = "Ida y vuelta";
 	public static String clase = "Segunda clase";
 	public static int claseInt = 2;
-	public static List<String> listaExtras = new ArrayList<>();
+
+	public static String extra1 = "";
+	public static String extra2 = "";
 	
 	public static int extraComida = 0;
 	public static int extraAsientoIndividual = 0;
@@ -204,9 +204,10 @@ public class VentanaCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (checkComida.isSelected()) {
-					listaExtras.add("comida");
+					extra1 = "comida";
 					extraComida = 1;
 				} else if(!checkComida.isSelected()) {
+					extra1 = "";
 					extraComida = 0;
 				}
 			}
@@ -220,9 +221,10 @@ public class VentanaCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkAsientoIndividual.isSelected()) {
-					listaExtras.add("asiento individual");
+					extra2 = "asiento individual";
 					extraAsientoIndividual = 1;
 				} else if(!checkAsientoIndividual.isSelected()) {
+					extra2 = "";
 					extraAsientoIndividual = 0;
 				}
 			}
@@ -236,9 +238,10 @@ public class VentanaCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkSeguro.isSelected()) {
-					listaExtras.add("seguro viaje");
+					extra1 = "seguro viaje";
 					extraSeguroViaje = 1;
 				} else if(!checkSeguro.isSelected()) {
+					extra1 = "";
 					extraSeguroViaje = 0;
 				}
 			}
@@ -252,9 +255,10 @@ public class VentanaCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkMesa.isSelected()) {
-					listaExtras.add("mesa");
+					extra2 = "mesa";
 					extraMesa = 1;
 				} else if(!checkMesa.isSelected()) {
+					extra2 = "";
 					extraMesa = 0;
 				}
 			}
@@ -286,6 +290,10 @@ public class VentanaCompra extends JFrame {
 				panelCheckExtras2.setVisible(false);
 				clase = "Segunda clase";
 				claseInt = 2;
+				extra1 = "";
+				extra2 = "";
+				extraComida = 0;
+				extraAsientoIndividual = 0;
 			}
 		});
 
@@ -297,6 +305,10 @@ public class VentanaCompra extends JFrame {
 				panelCheckExtras2.setVisible(true);
 				clase = "Primera clase";
 				claseInt = 1;
+				extra1 = "";
+				extra2 = "";
+				extraSeguroViaje = 0;
+				extraMesa = 0;
 			}
 		});
 

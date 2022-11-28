@@ -28,7 +28,7 @@ public class VentanaInicioSesion extends JFrame{
 
         setTitle("Inicio de sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(500, 350));
+        setPreferredSize(new Dimension(500, 285));
         setVisible(true);
         pack();
 
@@ -46,8 +46,6 @@ public class VentanaInicioSesion extends JFrame{
         panelAbajo.setBackground(new Color(153, 0, 102));
 
         contentPane.add(panel);
-
-        // panel
 
         // label usuario
 

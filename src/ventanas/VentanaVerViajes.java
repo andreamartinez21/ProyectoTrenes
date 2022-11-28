@@ -23,7 +23,7 @@ public class VentanaVerViajes extends JFrame {
 
 		setTitle("Ver mis viajes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 350));
+		setPreferredSize(new Dimension(500, 315));
 		setVisible(true);
 		pack();
 
@@ -74,6 +74,7 @@ public class VentanaVerViajes extends JFrame {
 
 		for (int i = 0; i < data.length; i++) {
 			table.setRowHeight(i, 30);
+//			table.setBackground(Color.PINK);
 		}
 
 //      table.setBackground(Color.GRAY);
@@ -103,7 +104,7 @@ public class VentanaVerViajes extends JFrame {
 		botonVolver.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
 		botonVolver.setBackground(Color.GRAY);
 		botonVolver.setForeground(Color.WHITE);
-		botonVolver.setPreferredSize(new Dimension(160, 35));
+		botonVolver.setPreferredSize(new Dimension(160, 33));
 		panelBotonVolver.add(botonVolver);
 
 		botonVolver.addActionListener(new ActionListener() {

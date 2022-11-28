@@ -24,7 +24,7 @@ public class VentanaPerfil extends JFrame {
 
 		setTitle("Perfil");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 380));
+		setPreferredSize(new Dimension(500, 350));
 		setVisible(true);
 		pack();
 

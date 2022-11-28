@@ -129,6 +129,13 @@ public class BD {
 			ps.setString(6, cuentaBancaria);
 			ps.setString(7, clienteActual.getUsuario());
 			ps.setString(8, clienteActual.getContrasenya());
+			
+			clienteActual.setNombre(nombre);
+			clienteActual.setApellido(apellido);
+			clienteActual.setDni(dni);
+			clienteActual.setEmail(email);
+			clienteActual.setNumTelefono(numTelefono);
+			clienteActual.setCuentaBancaria(cuentaBancaria);
 
 			ps.executeUpdate();
 			ps.close();

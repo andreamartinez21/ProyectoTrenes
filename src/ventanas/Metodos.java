@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import BD.BD;
@@ -228,8 +229,15 @@ public class Metodos {
 
 			buffer.write("VIAJE A " + VentanaCompra.comboDestino.getSelectedItem().toString().toUpperCase());
 			buffer.newLine();
-			buffer.write("Nombre del comprador: " + BD.clienteActual.getNombre() + BD.clienteActual.getApellido());
-			buffer.newLine();
+
+			if (VentanaInicio.var == 1) {
+				buffer.write("Nombre del comprador: " + VentanaConfirmacionCompra.textoNombreComprador.getText());
+				buffer.newLine();
+			} else if (VentanaInicio.var == 2) {
+				buffer.write("Nombre del comprador: " + BD.clienteActual.getNombre() + " " + BD.clienteActual.getApellido());
+				buffer.newLine();
+			}
+
 			buffer.write("Tipo de billete: " + VentanaCompra.tipoBillete);
 			buffer.newLine();
 			buffer.write("Origen: " + VentanaCompra.comboOrigen.getSelectedItem().toString());
@@ -239,16 +247,26 @@ public class Metodos {
 			buffer.write("Fecha ida: ");
 			buffer.newLine();
 
-			if(VentanaCompra.tipoBillete.equals("Ida y vuelta")) {
+			if (VentanaCompra.tipoBillete.equals("Ida y vuelta")) {
 				buffer.write("Fecha vuelta: ");
 				buffer.newLine();
 			}
-			
+
 			buffer.write("Cantidad billetes: " + (int) VentanaCompra.spinnerNumBilletes.getValue());
 			buffer.newLine();
 			buffer.write(VentanaCompra.clase);
 			buffer.newLine();
-			buffer.write("Extras: " + VentanaConfirmacionCompra.extras);
+
+			if (!VentanaCompra.extra1.equals("") && !VentanaCompra.extra2.equals("")) {
+				buffer.write("Extras: " + VentanaCompra.extra1 + ", " + VentanaCompra.extra2);
+			} else if (VentanaCompra.extra1.equals("") && !VentanaCompra.extra2.equals("")) {
+				buffer.write("Extras: " + VentanaCompra.extra2);
+			} else if (!VentanaCompra.extra1.equals("") && VentanaCompra.extra2.equals("")) {
+				buffer.write("Extras: " + VentanaCompra.extra1);
+			} else if (VentanaCompra.extra1.equals("") && VentanaCompra.extra2.equals("")) {
+				buffer.write("Extras: sin extras");
+			}
+
 			buffer.newLine();
 			buffer.write("Precio total: ");
 			buffer.newLine();

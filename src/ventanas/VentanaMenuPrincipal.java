@@ -25,7 +25,7 @@ public class VentanaMenuPrincipal extends JFrame {
 
 		setTitle("Menú principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 350));
+		setPreferredSize(new Dimension(500, 330));
 		setVisible(true);
 		pack();
 
