@@ -88,7 +88,7 @@ public class VentanaGaleriaDestino extends JFrame {
 
 		JPanel panelLabelPrecio = new JPanel();
 		panelLabelPrecio.setBackground(new Color(153, 0, 102));
-		JLabel labelPrecio = new JLabel("Precio: " + String.valueOf(viaje.getPrecio()) + " €");
+		JLabel labelPrecio = new JLabel("Precio: " + String.valueOf(VentanaConfirmacionCompra.formato1.format(viaje.getPrecio())) + " €");
 		labelPrecio.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
 		labelPrecio.setForeground(Color.WHITE);
 		panelLabelPrecio.add(labelPrecio);

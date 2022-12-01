@@ -129,7 +129,7 @@ public class BD {
 			ps.setString(6, cuentaBancaria);
 			ps.setString(7, clienteActual.getUsuario());
 			ps.setString(8, clienteActual.getContrasenya());
-			
+
 			clienteActual.setNombre(nombre);
 			clienteActual.setApellido(apellido);
 			clienteActual.setDni(dni);
@@ -273,8 +273,8 @@ public class BD {
 					}
 				}
 
-				precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida,
-						asientoIndividual, seguroViaje, mesa, conUsuario);
+				precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, clase, comida, asientoIndividual,
+						seguroViaje, mesa, conUsuario);
 
 				for (int i = 0; i < cantBilletes; i++) {
 					String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -295,6 +295,7 @@ public class BD {
 				}
 				// actualizar aforo viaje
 				String consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
 
 				PreparedStatement ps = conn.prepareStatement(consulta2);
 				ps.setInt(1, viajeIda.getAforo() - cantBilletes);
@@ -315,8 +316,8 @@ public class BD {
 					}
 				}
 
-				precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, cantBilletes, clase, comida,
-						asientoIndividual, seguroViaje, mesa, conUsuario);
+				precio = Metodos.calcularPrecioBillete(tipo, viajeIda, viajeVuelta, clase, comida, asientoIndividual,
+						seguroViaje, mesa, conUsuario);
 
 				for (int i = 0; i < cantBilletes; i++) {
 					String consulta = "INSERT INTO billete (usuarioCliente, localizadorViajeIda, localizadorViajeVuelta, precio, clase, comida, asientoIndividual, seguroViaje, mesa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -337,6 +338,7 @@ public class BD {
 				}
 				// actualizar aforo viaje ida
 				consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
 
 				ps = conn.prepareStatement(consulta2);
 				ps.setInt(1, viajeIda.getAforo() - cantBilletes);
@@ -380,7 +382,7 @@ public class BD {
 
 			rs = ps.executeQuery();
 
-			List<Billete> listaBilletesUsuario = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda // clase = 2
+			List<Billete> listaBilletesUsuario = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
 			List<String> listaLocalizadoresIda = new ArrayList<>();
 			List<String> listaLocalizadoresVuelta = new ArrayList<>();
 

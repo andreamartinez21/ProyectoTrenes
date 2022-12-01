@@ -119,21 +119,21 @@ public class VentanaInicioSesion extends JFrame{
 
         botonAcceder.addActionListener(new ActionListener() {
 				
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                try {
-                	if(Metodos.login(textoUsuario.getText(), textoContrasenya.getText())) {
-                		new VentanaMenuPrincipal();
-                		dispose();
-                		Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");
-                		
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					if (Metodos.login(textoUsuario.getText(), textoContrasenya.getText())) {
+						new VentanaMenuPrincipal();
+						dispose();
+						Log.logger.log(Level.INFO, "Se ha iniciado sesión correctamente.");
+
 //                		BD.getBilletesUsuarioBD(BD.clienteActual);
 //                		List<Billete> listaBilletes = new ArrayList<Billete>();
 //                		listaBilletes = BD.clienteActual.getListaBilletes();
 //                		for (Billete billete : listaBilletes) {
 //                			billete.toString();
 //                		}
-                		
+
                 	} else {
                 		JOptionPane.showMessageDialog(null, "Ha habido un error en el inicio de sesión.");
                 		Log.logger.log(Level.SEVERE, "Ha habido un error en el inicio de sesión.");

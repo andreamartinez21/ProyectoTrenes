@@ -55,7 +55,7 @@ public class VentanaVerViajes extends JFrame {
         Object[][] data = new Object[][] {
             {/*listaBilletesUsuario.get(0).getViajeIda().getOrigen()*/ "Bilbao", "Málaga", "No", 150},
             {"Bilbao", "París", "Sí", 80},
-            {"Madrid", "Londres", "No", 55},
+            {"Madrid", "Londres", "No", 55}, // poner el precio con formato dos decimales
             {"Madrid", "Londres", "No", 55},
             {"Madrid", "Londres", "No", 55},
             {"Madrid", "Londres", "No", 55},

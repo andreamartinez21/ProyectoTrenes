@@ -1,11 +1,11 @@
 VIAJE A LONDRES
-Nombre del comprador: Laura Sanchez
+Nombre del comprador: 1
 Tipo de billete: Ida y vuelta
 Origen: Bilbao
 Destino: Londres
 Fecha ida: 
 Fecha vuelta: 
-Cantidad billetes: 1
+Cantidad billetes: 2
 Segunda clase
 Extras: sin extras
-Precio total: 
+Precio total: 160,60 €

@@ -3,6 +3,7 @@ package ventanas;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,11 @@ public class VentanaConfirmacionCompra extends JFrame {
 	private JPanel panelMedio;
 	private JPanel panelAbajo;
 	
+	public static int conUsuario = 0;
+	
 	public static JTextField textoNombreComprador;
+	
+	public static DecimalFormat formato1 = new DecimalFormat("#.00");
 
 	public VentanaConfirmacionCompra() throws IOException {
 
@@ -81,6 +86,12 @@ public class VentanaConfirmacionCompra extends JFrame {
 		JLabel labelFechaVuelta = new JLabel("Fecha vuelta: 2022-11-17");
 		labelFechaVuelta.setForeground(Color.WHITE);
 		panelLabelFechaVuelta.add(labelFechaVuelta);
+		
+		if (VentanaCompra.tipoBillete.equals("Ida")) {
+			panelLabelFechaVuelta.setVisible(false);
+		} else {
+			panelLabelFechaVuelta.setVisible(true);
+		}
 
 		JPanel panelLabelCantBilletes = new JPanel();
 		panelLabelCantBilletes.setBackground(new Color(153, 0, 102));
@@ -110,10 +121,22 @@ public class VentanaConfirmacionCompra extends JFrame {
 		
 		labelExtras.setForeground(Color.WHITE);
 		panelLabelExtras.add(labelExtras);
+		
+		if (VentanaInicio.var == 1) {
+			conUsuario = 0;
+		} else if (VentanaInicio.var == 2) {
+			conUsuario = 1;
+		}
 
 		JPanel panelLabelPrecio = new JPanel();
 		panelLabelPrecio.setBackground(new Color(153, 0, 102));
-		JLabel labelPrecio = new JLabel("Precio total: " /*+ Metodos.calcularPrecioBillete(VentanaCompra.tipoBillete * (int) VentanaCompra.spinnerNumBilletes.getValue()*/); // precio billete * cantBilletes
+		JLabel labelPrecio = new JLabel("Precio total: " + formato1.format((Metodos.calcularPrecioBillete(VentanaCompra.tipoBillete,
+				Metodos.devuelveViaje(VentanaCompra.comboOrigen.getSelectedItem().toString(),
+						VentanaCompra.comboDestino.getSelectedItem().toString()),
+				Metodos.devuelveViaje(VentanaCompra.comboDestino.getSelectedItem().toString(),
+						VentanaCompra.comboOrigen.getSelectedItem().toString()),
+				VentanaCompra.claseInt, VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
+				VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, conUsuario)) * ((int) VentanaCompra.spinnerNumBilletes.getValue())) + " €");
 		labelPrecio.setForeground(Color.WHITE);
 		panelLabelPrecio.add(labelPrecio);
 
@@ -215,6 +238,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 					VentanaCompra.extraAsientoIndividual = 0;
 					VentanaCompra.extraSeguroViaje = 0;
 					VentanaCompra.extraMesa = 0;
+					VentanaCompra.tipoBillete = "Ida y vuelta";
 					new VentanaCompra();
 					dispose();
 				} catch (Exception e) {
@@ -241,21 +265,26 @@ public class VentanaConfirmacionCompra extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (VentanaInicio.var == 1) { // sin usuario
-						BD.comprarBilletesBD(VentanaCompra.tipoBillete,
-								VentanaCompra.comboOrigen.getSelectedItem().toString(),
-								VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
-								(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,
-								VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
-								VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 0);
-						Metodos.crearTicket();
-						VentanaCompra.extra1 = "";
-						VentanaCompra.extra2 = "";
-						VentanaCompra.extraComida = 0;
-						VentanaCompra.extraAsientoIndividual = 0;
-						VentanaCompra.extraSeguroViaje = 0;
-						VentanaCompra.extraMesa = 0;
-						new VentanaInicio();
-						dispose();
+						if (!textoNombreComprador.getText().equals("")) {
+							BD.comprarBilletesBD(VentanaCompra.tipoBillete,
+									VentanaCompra.comboOrigen.getSelectedItem().toString(),
+									VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
+									(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,
+									VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
+									VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 0);
+							Metodos.crearTicket();
+							VentanaCompra.extra1 = "";
+							VentanaCompra.extra2 = "";
+							VentanaCompra.extraComida = 0;
+							VentanaCompra.extraAsientoIndividual = 0;
+							VentanaCompra.extraSeguroViaje = 0;
+							VentanaCompra.extraMesa = 0;
+							new VentanaInicio();
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "Tiene que introducir nombre de comprador.");
+							Log.logger.log(Level.SEVERE, "No ha introducido nombre de comprador.");
+						}
 					} else if (VentanaInicio.var == 2) { // con usuario
 						if (textoContrasenya.getText().equals(BD.clienteActual.getContrasenya())) {
 							BD.comprarBilletesBD(VentanaCompra.tipoBillete,

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import BD.BD;
+import clases.Cliente;
 import log.Log;
 
 public class VentanaMenuPrincipal extends JFrame {
@@ -155,7 +156,7 @@ public class VentanaMenuPrincipal extends JFrame {
 				try {
 					new VentanaInicio();
 					dispose();
-					BD.clienteActual = null;
+					BD.clienteActual = new Cliente();
 					Log.logger.log(Level.INFO, "Se ha cerrado la sesión correctamente.");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

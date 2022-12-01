@@ -6,9 +6,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -71,11 +73,13 @@ public class Metodos {
 
 		try {
 			// abrir fichero y crear de BufferedReader
+			
 			archivo = new File("ficheroViajes.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 
 			// lectura fichero
+			
 			String linea;
 			while ((linea = br.readLine()) != null) {
 				data = linea.split(";");
@@ -168,27 +172,76 @@ public class Metodos {
 		}
 		return true;
 	}
+	
+	public static boolean actualizaAforoFichero(Viaje viajeIda, Viaje viajeVuelta, int cantBilletes) {
 
-	public static boolean actualizaAforoFichero(Viaje viaje, int cantBilletes) {
-
+		File archivo = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		String[] data = new String[7];
+		
 		try {
-			File archivo = new File("ficheroViajes.txt");
-			FileWriter escribir;
-			escribir = new FileWriter(archivo);
+			File file = new File("prueba.txt");
+			FileWriter writer = new FileWriter(file);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			
+			// abrir fichero y crear de BufferedReader
+			
+			archivo = new File("ficheroViajes.txt");
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
 
-			String texto = String.valueOf(viaje.getAforo() - cantBilletes);
+			// lectura fichero
+			
+			String linea;
+			while ((linea = br.readLine()) != null) {
+				data = linea.split(";");
 
-//	    https://chuwiki.chuidiang.org/index.php?title=Lectura_y_Escritura_de_Ficheros_en_Java
+				String localizador = data[0];
+				String origen = data[1];
+				String destino = data[2];
+				String fecha = data[3];
+				int aforo = (Integer.valueOf(data[4]));
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+				if (viajeIda.getLocalizador().equals(localizador)) {
+					aforo -= cantBilletes;
+				} else if (viajeVuelta.getLocalizador().equals(localizador)) {
+					aforo -= cantBilletes;
+				}
+				
+				double precio = Double.valueOf(data[5]);
+				String imagen = data[6];
+
+				buffer.write(localizador + ";");
+				buffer.write(origen + ";");
+				buffer.write(destino + ";");
+				buffer.write(fecha + ";");
+				buffer.write(aforo + ";");
+				buffer.write(precio + ";");
+				buffer.write(imagen);
+				buffer.newLine();
+			}
+			buffer.flush();
+			buffer.close();
+			writer.close();
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			// cerrar fichero
+			try {
+				if (null != fr) {
+					fr.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		return true;
 	}
 
-	public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int cantBilletes,
-			int clase, int comida, int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
+	public static double calcularPrecioBillete(String tipo, Viaje viajeIda, Viaje viajeVuelta, int clase, int comida,
+			int asientoIndividual, int seguroViaje, int mesa, int conUsuario) {
 
 		double precioBillete = 0.00;
 
@@ -268,7 +321,16 @@ public class Metodos {
 			}
 
 			buffer.newLine();
-			buffer.write("Precio total: ");
+			buffer.write("Precio total: "
+							+ VentanaConfirmacionCompra.formato1.format((calcularPrecioBillete(VentanaCompra.tipoBillete,
+									devuelveViaje(VentanaCompra.comboOrigen.getSelectedItem().toString(),
+											VentanaCompra.comboDestino.getSelectedItem().toString()),
+									devuelveViaje(VentanaCompra.comboDestino.getSelectedItem().toString(),
+											VentanaCompra.comboOrigen.getSelectedItem().toString()),
+									VentanaCompra.claseInt, VentanaCompra.extraComida,
+									VentanaCompra.extraAsientoIndividual, VentanaCompra.extraSeguroViaje,
+									VentanaCompra.extraMesa, VentanaConfirmacionCompra.conUsuario)) * ((int) VentanaCompra.spinnerNumBilletes.getValue()))
+							+ " €");
 			buffer.newLine();
 
 			buffer.flush();
@@ -278,5 +340,20 @@ public class Metodos {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+	
+	public static Viaje devuelveViaje(String origen, String destino/*, String fecha*/) { // para conseguir el precio total de la compra
+		
+		Viaje viajeActual = new Viaje();
+		List<Viaje> listaViajes = new ArrayList<>();
+		listaViajes = BD.getViajesBD();
+		
+		for (Viaje viaje : listaViajes) {
+			if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) /*&& viaje.getFecha().equals(fecha)*/) {
+				viajeActual = viaje;
+			}
+		}
+		
+		return viajeActual;
 	}
 }

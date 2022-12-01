@@ -108,11 +108,17 @@ public class VentanaCompra extends JFrame {
 		panelComboDestino.add(comboDestino);
 
 		panelArriba.add(panelComboDestino);
+		
+		// button group
+		
+		ButtonGroup buttonGroup1 = new ButtonGroup();
+		ButtonGroup buttonGroup2 = new ButtonGroup();
 
 		// radio button ida y vuelta
 
 		JPanel panelRadioIdaVueltaIda = new JPanel(new GridLayout(2, 1));
 		panelRadioIdaVueltaIda.setBackground(new Color(153, 0, 102));
+		
 		JRadioButton radioIdaVuelta = new JRadioButton("Ida y vuelta", true);
 		radioIdaVuelta.setBackground(new Color(153, 0, 102));
 		radioIdaVuelta.setForeground(Color.WHITE);
@@ -122,6 +128,9 @@ public class VentanaCompra extends JFrame {
 		JRadioButton radioIda = new JRadioButton("Ida", false);
 		radioIda.setBackground(new Color(153, 0, 102));
 		radioIda.setForeground(Color.WHITE);
+		
+		buttonGroup1.add(radioIdaVuelta);
+		buttonGroup1.add(radioIda);
 
 		panelRadioIdaVueltaIda.add(radioIdaVuelta);
 		panelRadioIdaVueltaIda.add(radioIda);
@@ -184,6 +193,9 @@ public class VentanaCompra extends JFrame {
 
 		Border bordejpanel2 = new TitledBorder(new EtchedBorder(), "Clase");
 		panelRadioClase.setBorder(bordejpanel2);
+		
+		buttonGroup2.add(radioSegundaClase);
+		buttonGroup2.add(radioPrimeraClase);
 
 		panelRadioClase.add(radioSegundaClase);
 		panelRadioClase.add(radioPrimeraClase);
