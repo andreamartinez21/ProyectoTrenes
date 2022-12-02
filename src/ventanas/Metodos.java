@@ -276,7 +276,8 @@ public class Metodos {
 
 	public static void crearTicket() {
 		try {
-			File file = new File("ticket.txt");
+			File file = new File("ticket" + leeFicheroNumTicket() + "-" + BD.clienteActual.getUsuario() + ".txt");
+			escribeFicheroNumTicket();
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);
 
@@ -355,5 +356,46 @@ public class Metodos {
 		}
 		
 		return viajeActual;
+	}
+	
+	public static int leeFicheroNumTicket() {
+		File archivo = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		int num = 0;
+		
+		try {
+			archivo = new File("ficheroNumTicket.txt");
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+			
+			num = Integer.valueOf(br.readLine());
+					
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return num;
+	}
+	
+	public static void escribeFicheroNumTicket() {
+		int num = leeFicheroNumTicket();
+		num++;
+		String numero = String.valueOf(num);
+		
+		try {
+			File file = new File("ficheroNumTicket.txt");
+			FileWriter writer = new FileWriter(file);
+			BufferedWriter buffer = new BufferedWriter(writer);
+
+			buffer.write(numero);
+			
+			buffer.flush();
+			buffer.close();
+			writer.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

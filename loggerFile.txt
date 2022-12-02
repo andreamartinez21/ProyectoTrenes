@@ -1,58 +1,64 @@
-nov. 30, 2022 9:36:02 P. M. log.Log iniciarLog
+dic. 02, 2022 1:02:24 P. M. log.Log iniciarLog
 INFORMACIÓN: Iniciando Logger
-nov. 30, 2022 9:36:03 P. M. BD.BD connect
+dic. 02, 2022 1:02:24 P. M. BD.BD connect
 INFORMACIÓN: Conexión con la BD establecida.
-nov. 30, 2022 9:36:03 P. M. BD.BD borrarViajesBD
+dic. 02, 2022 1:02:24 P. M. BD.BD borrarViajesBD
 INFORMACIÓN: Se han eliminado los datos correctamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:03 P. M. BD.BD anyadirViajeBD
+dic. 02, 2022 1:02:24 P. M. BD.BD anyadirViajeBD
 INFORMACIÓN: Los datos se han introducido correctamente en la BD.
-nov. 30, 2022 9:36:03 P. M. ventanas.Metodos leeFichero
+dic. 02, 2022 1:02:24 P. M. ventanas.Metodos leeFichero
 INFORMACIÓN: Se ha añadido el viaje corrrectamente.
-nov. 30, 2022 9:36:16 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:32 P. M. BD.BD loginBD
+INFORMACIÓN: Usuario y contraseña encontrados en la BD.
+dic. 02, 2022 1:02:32 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
+INFORMACIÓN: Se ha iniciado sesión correctamente.
+dic. 02, 2022 1:02:33 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:16 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:33 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:21 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:35 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:21 P. M. ventanas.Metodos existeViaje
+dic. 02, 2022 1:02:35 P. M. ventanas.Metodos existeViaje
 INFORMACIÓN: Viaje disponible.
-nov. 30, 2022 9:36:21 P. M. ventanas.Metodos existeViaje
+dic. 02, 2022 1:02:35 P. M. ventanas.Metodos existeViaje
 INFORMACIÓN: Viaje disponible.
-nov. 30, 2022 9:36:21 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:35 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:21 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:35 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:25 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:39 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:25 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:39 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
-nov. 30, 2022 9:36:25 P. M. BD.BD getViajesBD
+dic. 02, 2022 1:02:39 P. M. BD.BD getViajesBD
 INFORMACIÓN: Se han obtenido los viajes correctamente.
+dic. 02, 2022 1:02:40 P. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
+INFORMACIÓN: Se ha cerrado la sesión correctamente.

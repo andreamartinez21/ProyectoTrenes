@@ -109,7 +109,7 @@ public class VentanaCompra extends JFrame {
 
 		panelArriba.add(panelComboDestino);
 		
-		// button group
+		// button groups
 		
 		ButtonGroup buttonGroup1 = new ButtonGroup();
 		ButtonGroup buttonGroup2 = new ButtonGroup();
