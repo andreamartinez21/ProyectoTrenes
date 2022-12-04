@@ -294,9 +294,11 @@ public class BD {
 					ps.close();
 				}
 				// actualizar aforo viaje
-				String consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
-
+				Metodos.actualizaAforoFichero2(viajeIda, viajeVuelta, cantBilletes);
+				
+				String consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
+				
 				PreparedStatement ps = conn.prepareStatement(consulta2);
 				ps.setInt(1, viajeIda.getAforo() - cantBilletes);
 				ps.setString(2, viajeIda.getLocalizador());
@@ -337,8 +339,10 @@ public class BD {
 					ps.close();
 				}
 				// actualizar aforo viaje ida
-				consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
+				Metodos.actualizaAforoFichero2(viajeIda, viajeVuelta, cantBilletes);
+				
+				consulta2 = "UPDATE viaje SET aforo = ? WHERE localizador = ?;";
 
 				ps = conn.prepareStatement(consulta2);
 				ps.setInt(1, viajeIda.getAforo() - cantBilletes);

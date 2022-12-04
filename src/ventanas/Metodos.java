@@ -44,7 +44,7 @@ public class Metodos {
 		}
 	}
 
-	public static void editar(Cliente clienteActual, String nombre, String apellido, String dni, String email,
+	public static void editarCliente(Cliente clienteActual, String nombre, String apellido, String dni, String email,
 			String numTelefono, String cuentaBancaria) {
 
 		if (BD.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
@@ -64,7 +64,7 @@ public class Metodos {
 		}
 	}
 
-	public static boolean leeFichero() {
+	public static boolean leeFicheroViajes() {
 
 		File archivo = null;
 		FileReader fr = null;
@@ -72,7 +72,7 @@ public class Metodos {
 		String[] data = new String[7];
 
 		try {
-			// abrir fichero y crear de BufferedReader
+			// abrir fichero y crear BufferedReader
 			
 			archivo = new File("ficheroViajes.txt");
 			fr = new FileReader(archivo);
@@ -81,6 +81,7 @@ public class Metodos {
 			// lectura fichero
 			
 			String linea;
+			
 			while ((linea = br.readLine()) != null) {
 				data = linea.split(";");
 
@@ -181,19 +182,16 @@ public class Metodos {
 		String[] data = new String[7];
 		
 		try {
-			File file = new File("prueba.txt");
+			File file = new File("ficheroViajes2.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);
-			
-			// abrir fichero y crear de BufferedReader
 			
 			archivo = new File("ficheroViajes.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
-
-			// lectura fichero
 			
 			String linea;
+			
 			while ((linea = br.readLine()) != null) {
 				data = linea.split(";");
 
@@ -209,7 +207,7 @@ public class Metodos {
 					aforo -= cantBilletes;
 				}
 				
-				double precio = Double.valueOf(data[5]);
+				Double precio = Double.valueOf(data[5]);
 				String imagen = data[6];
 
 				buffer.write(localizador + ";");
@@ -221,6 +219,7 @@ public class Metodos {
 				buffer.write(imagen);
 				buffer.newLine();
 			}
+			
 			buffer.flush();
 			buffer.close();
 			writer.close();
@@ -228,7 +227,63 @@ public class Metodos {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// cerrar fichero
+			try {
+				if (null != fr) {
+					fr.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
+	public static boolean actualizaAforoFichero2(Viaje viajeIda, Viaje viajeVuelta, int cantBilletes) {
+
+		File archivo = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		String[] data = new String[7];
+		
+		try {
+			File file = new File("ficheroViajes.txt");
+			FileWriter writer = new FileWriter(file);
+			BufferedWriter buffer = new BufferedWriter(writer);
+			
+			archivo = new File("ficheroViajes2.txt");
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+			
+			String linea;
+			
+			while ((linea = br.readLine()) != null) {
+				data = linea.split(";");
+
+				String localizador = data[0];
+				String origen = data[1];
+				String destino = data[2];
+				String fecha = data[3];
+				int aforo = (Integer.valueOf(data[4]));
+				Double precio = Double.valueOf(data[5]);
+				String imagen = data[6];
+
+				buffer.write(localizador + ";");
+				buffer.write(origen + ";");
+				buffer.write(destino + ";");
+				buffer.write(fecha + ";");
+				buffer.write(aforo + ";");
+				buffer.write(precio + ";");
+				buffer.write(imagen);
+				buffer.newLine();
+			}
+			
+			buffer.flush();
+			buffer.close();
+			writer.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			try {
 				if (null != fr) {
 					fr.close();

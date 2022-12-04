@@ -203,7 +203,7 @@ public class VentanaPerfil extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Metodos.editar(BD.clienteActual, textoNombre.getText(), textoApellido.getText(), textoDni.getText(),
+					Metodos.editarCliente(BD.clienteActual, textoNombre.getText(), textoApellido.getText(), textoDni.getText(),
 							textoEmail.getText(), textoNumTelefono.getText(), textoCuentaBancaria.getText());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

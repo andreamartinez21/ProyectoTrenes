@@ -14,7 +14,7 @@ public class Main {
 		PropertiesClass.getProperties();
 		if (BD.connect() != null) {
 			BD.borrarViajesBD();
-			Metodos.leeFichero();
+			Metodos.leeFicheroViajes();
 			new VentanaInicio();
 		} else {
 			System.out.println("Ha habido un problema para conectarse.");
