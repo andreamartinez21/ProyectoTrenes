@@ -1,0 +1,10 @@
+VIAJE A LONDRES
+Nombre del comprador: David 1
+Tipo de billete: Ida
+Origen: Bilbao
+Destino: Londres
+Fecha ida: 
+Cantidad billetes: 1
+Primera clase
+Extras: comida, asiento individual
+Precio total: 81,00 €

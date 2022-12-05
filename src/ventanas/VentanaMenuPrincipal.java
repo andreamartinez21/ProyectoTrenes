@@ -3,11 +3,14 @@ package ventanas;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import BD.BD;
+import clases.Billete;
 import clases.Cliente;
 import log.Log;
 

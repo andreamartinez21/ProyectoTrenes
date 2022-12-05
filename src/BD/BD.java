@@ -2,7 +2,6 @@ package BD;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -96,7 +95,7 @@ public class BD {
 					String email = rs.getString("email");
 					String numTelefono = rs.getString("numTelefono");
 					String cuentaBancaria = rs.getString("cuentaBancaria");
-					List<Billete> listaBilletes = new ArrayList<>();
+					List<Billete> listaBilletes = new ArrayList<Billete>();
 
 					clienteActual = new Cliente(usuario, contrasenya, nombre, apellido, dni, email, numTelefono,
 							cuentaBancaria, listaBilletes);
@@ -373,22 +372,23 @@ public class BD {
 		}
 	}
 
-	// método get billetes usuario
+	// método get billetes cliente
 
-	public static void getBilletesUsuarioBD(Cliente clienteActual) {
+	public static List<Billete> getBilletesClienteBD(Cliente clienteActual) {
+		
+		List<Billete> listaBilletesCliente = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
+		List<String> listaLocalizadoresIda = new ArrayList<>();
+		List<String> listaLocalizadoresVuelta = new ArrayList<>();
+
 		try {
 			ResultSet rs, rs2, rs3;
 
-			String consulta = "SELECT * FROM billete WHERE usuario = ?;";
+			String consulta = "SELECT * FROM billete WHERE usuarioCliente = ?;";
 
 			PreparedStatement ps = conn.prepareStatement(consulta);
 			ps.setString(1, clienteActual.getUsuario());
 
 			rs = ps.executeQuery();
-
-			List<Billete> listaBilletesUsuario = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
-			List<String> listaLocalizadoresIda = new ArrayList<>();
-			List<String> listaLocalizadoresVuelta = new ArrayList<>();
 
 			while (rs.next()) {
 				Viaje viajeIda = new Viaje();
@@ -397,17 +397,19 @@ public class BD {
 				if (rs.getInt("clase") == 1) {
 					BilletePrimera billetePrimera = new BilletePrimera(clienteActual, viajeIda, viajeVuelta,
 							rs.getDouble("precio"), rs.getInt("comida"), rs.getInt("asientoIndividual"));
-					listaBilletesUsuario.add(billetePrimera);
+					listaBilletesCliente.add(billetePrimera);
 				} else if (rs.getInt("clase") == 2) {
 					BilleteSegunda billeteSegunda = new BilleteSegunda(clienteActual, viajeIda, viajeVuelta,
 							rs.getDouble("precio"), rs.getInt("seguroViaje"), rs.getInt("mesa"));
-					listaBilletesUsuario.add(billeteSegunda);
+					listaBilletesCliente.add(billeteSegunda);
 				}
 
 				listaLocalizadoresIda.add(rs.getString("localizadorViajeIda"));
 				listaLocalizadoresVuelta.add(rs.getString("localizadorViajeVuelta"));
 			}
+			ps.close();
 
+			int i = 0;
 			String consulta2 = "SELECT * FROM viaje WHERE localizador = ?;";
 
 			for (String localizador : listaLocalizadoresIda) {
@@ -418,18 +420,19 @@ public class BD {
 					rs2 = ps.executeQuery();
 
 					while (rs2.next()) {
-						int i = 0;
-						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"),
-								rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"),
-								rs.getDouble("precio"), rs.getString("imagen"));
-						listaBilletesUsuario.get(i).setViajeIda(viaje);
+						Viaje viaje = new Viaje(rs2.getString("localizador"), rs2.getString("origen"),
+								rs2.getString("destino"), rs2.getString("fecha"), rs2.getInt("aforo"),
+								rs2.getDouble("precio"), rs2.getString("imagen"));
+						listaBilletesCliente.get(i).setViajeIda(viaje);
 						i++;
 					}
+					ps.close();
 				} catch (Exception e) {
 					Log.logger.log(Level.SEVERE, "Error.");
 				}
 			}
 
+			i = 0;
 			for (String localizador : listaLocalizadoresVuelta) {
 				try {
 					ps = conn.prepareStatement(consulta2);
@@ -438,24 +441,23 @@ public class BD {
 					rs3 = ps.executeQuery();
 
 					while (rs3.next()) {
-						int i = 0;
-						Viaje viaje = new Viaje(rs.getString("localizador"), rs.getString("origen"),
-								rs.getString("destino"), rs.getString("fecha"), rs.getInt("aforo"),
-								rs.getDouble("precio"), rs.getString("imagen"));
-						listaBilletesUsuario.get(i).setViajeVuelta(viaje);
+						Viaje viaje = new Viaje(rs3.getString("localizador"), rs3.getString("origen"),
+								rs3.getString("destino"), rs3.getString("fecha"), rs3.getInt("aforo"),
+								rs3.getDouble("precio"), rs3.getString("imagen"));
+						listaBilletesCliente.get(i).setViajeVuelta(viaje);
 						i++;
 					}
+					ps.close();
 				} catch (Exception e) {
 					Log.logger.log(Level.SEVERE, "Error.");
 				}
 			}
-
-			clienteActual.setListaBilletes(listaBilletesUsuario);
 
 			Log.logger.log(Level.INFO, "Se han obtenido los billetes correctamente.");
 
 		} catch (Exception e) {
 			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes.");
 		}
+		return listaBilletesCliente;
 	}
 }

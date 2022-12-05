@@ -1,0 +1,11 @@
+VIAJE A LONDRES
+Nombre del comprador: df
+Tipo de billete: Ida y vuelta
+Origen: Bilbao
+Destino: Londres
+Fecha ida: 
+Fecha vuelta: 
+Cantidad billetes: 1
+Segunda clase
+Extras: sin extras
+Precio total: 80,30 €

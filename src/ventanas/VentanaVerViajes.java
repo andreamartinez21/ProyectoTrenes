@@ -4,10 +4,16 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import clases.Billete;
+import BD.BD;
 
 public class VentanaVerViajes extends JFrame {
 
@@ -33,57 +39,48 @@ public class VentanaVerViajes extends JFrame {
 
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(new Color(153, 0, 102));
-//      panelArriba = new JPanel(new GridLayout(viajes.length, 1));
 		panelArriba = new JPanel(new BorderLayout());
 		panelArriba.setBackground(new Color(153, 0, 102));
 		panelAbajo = new JPanel(new BorderLayout());
 		panelAbajo.setBackground(new Color(153, 0, 102));
 
 		contentPane.add(panel);
-
+		
+		// añadir al cliente su lista de billetes
+		
+		List<Billete> listaBilletesCliente = new ArrayList<Billete>();
+		listaBilletesCliente = BD.getBilletesClienteBD(BD.clienteActual);
+		BD.clienteActual.setListaBilletes(listaBilletesCliente);
+		
 		// JTable
+		
+		// array columnas tabla
+		
+		String[] columnas = new String[] { "ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO" };
 
-		// array con título tabla
-		String[] columns = new String[] { "ORIGEN", "DESTINO", "IDA Y VUELTA", "PRECIO" };
-
-		// array con datos tabla
-
-//        BD.getBilletesUsuarioBD(BD.clienteActual);
-//        List<Billete> listaBilletesUsuario = new ArrayList<Billete>();
-//        listaBilletesUsuario = BD.clienteActual.getListaBilletes();
+        // crear tabla
+		
+        DefaultTableModel modeloTabla;
+        modeloTabla = new DefaultTableModel(columnas, 0);
+		JTable table = new JTable(modeloTabla);
+		table.setBackground(Color.PINK);
+		
+		// arrayList datos filas
+		
+		int i = 0;
+        for (Billete billete : listaBilletesCliente) {
+        	modeloTabla.addRow(new Object[] {listaBilletesCliente.get(i).getViajeIda().getOrigen(), listaBilletesCliente.get(i).getViajeIda().getDestino(), listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - " + listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(), VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €"});
+        	table.setRowHeight(i, 30);
+        	i++;
+        }
+		
+        // scrollPane
         
-        Object[][] data = new Object[][] {
-            {/*listaBilletesUsuario.get(0).getViajeIda().getOrigen()*/ "Bilbao", "Málaga", "No", 150},
-            {"Bilbao", "París", "Sí", 80},
-            {"Madrid", "Londres", "No", 55}, // poner el precio con formato dos decimales
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-            {"Madrid", "Londres", "No", 55},
-		};
-
-		// crear tabla
-		JTable table = new JTable(data, columns);
-
-		for (int i = 0; i < data.length; i++) {
-			table.setRowHeight(i, 30);
-//			table.setBackground(Color.PINK);
-		}
-
-//      table.setBackground(Color.GRAY);
-
-		// poner la tabla no editable
-
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(450, 220));
 		panelArriba.add(scrollPane);
+		
+		// poner la tabla no editable
 
 //        DefaultTableModel tableModel = new DefaultTableModel() { 
 //        	

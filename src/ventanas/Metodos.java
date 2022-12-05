@@ -207,7 +207,7 @@ public class Metodos {
 					aforo -= cantBilletes;
 				}
 				
-				Double precio = Double.valueOf(data[5]);
+				double precio = Double.valueOf(data[5]);
 				String imagen = data[6];
 
 				buffer.write(localizador + ";");
@@ -264,7 +264,7 @@ public class Metodos {
 				String destino = data[2];
 				String fecha = data[3];
 				int aforo = (Integer.valueOf(data[4]));
-				Double precio = Double.valueOf(data[5]);
+				double precio = Double.valueOf(data[5]);
 				String imagen = data[6];
 
 				buffer.write(localizador + ";");
@@ -331,7 +331,7 @@ public class Metodos {
 
 	public static void crearTicket() {
 		try {
-			File file = new File("ticket" + leeFicheroNumTicket() + "-" + BD.clienteActual.getUsuario() + ".txt");
+			File file = new File("tickets/ticket" + leeFicheroNumTicket() + "-" + BD.clienteActual.getUsuario() + ".txt");
 			escribeFicheroNumTicket();
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);

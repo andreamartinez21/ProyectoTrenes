@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
@@ -37,7 +38,7 @@ public class Cliente {
 		this.email = "";
 		this.numTelefono = "";
 		this.cuentaBancaria = "";
-		this.listaBilletes = null;
+		this.listaBilletes = new ArrayList<Billete>();
 	}
 
 	public String getUsuario() {
@@ -118,8 +119,14 @@ public class Cliente {
 
 	@Override
 	public String toString() {
+		
+//		String billetes = "";
+//		for (Billete billete : listaBilletes) {
+//			billetes += "[" + billete.toString() + "]";
+//		}
+		
 		return "Cliente [usuario=" + usuario + ", contrasenya=" + contrasenya + ", nombre=" + nombre + ", apellido="
 				+ apellido + ", dni=" + dni + ", email=" + email + ", numTelefono=" + numTelefono + ", cuentaBancaria="
-				+ cuentaBancaria + ", listaBilletes=" + listaBilletes + "]";
+				+ cuentaBancaria + ", listaBilletes=[" /*+ billetes*/ + "]]";
 	}
 }
