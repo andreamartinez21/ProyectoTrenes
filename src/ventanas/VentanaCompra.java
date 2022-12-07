@@ -7,9 +7,13 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JCalendar;
+
+import log.Log;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -380,8 +384,7 @@ public class VentanaCompra extends JFrame {
 						dispose();
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se han podido abrir las ventanas" + e.getStackTrace());
 				}
 			}
 		});
@@ -409,8 +412,7 @@ public class VentanaCompra extends JFrame {
 						dispose();
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "Error en la compra." + e.getStackTrace());
 				}
 			}
 		});

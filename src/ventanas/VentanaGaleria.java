@@ -71,8 +71,7 @@ public class VentanaGaleria extends JFrame {
 					new VentanaInicio();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "Error al abrir VentanaInicio." + e.getStackTrace());
 				}
 			}
 		});
@@ -118,13 +117,11 @@ public class VentanaGaleria extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
 					try {
 						new VentanaGaleriaDestino(viaje);
 						dispose();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						Log.logger.log(Level.SEVERE, "No se ha podido abrir la ventana.");
+						Log.logger.log(Level.SEVERE, "No se ha podido abrir la ventana." + e.getStackTrace());
 					}
 				}
 			});

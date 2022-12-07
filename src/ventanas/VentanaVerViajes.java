@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -13,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import clases.Billete;
+import log.Log;
 import BD.BD;
 
 public class VentanaVerViajes extends JFrame {
@@ -70,6 +72,7 @@ public class VentanaVerViajes extends JFrame {
 		// arrayList datos filas
 		
 		int i = 0;
+		
         for (Billete billete : listaBilletesCliente) {
         	modeloTabla.addRow(new Object[] {listaBilletesCliente.get(i).getViajeIda().getOrigen(), listaBilletesCliente.get(i).getViajeIda().getDestino(), listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - " + listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(), VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €"});
         	table.setRowHeight(i, 30);
@@ -114,8 +117,7 @@ public class VentanaVerViajes extends JFrame {
 					new VentanaMenuPrincipal();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido volver a la VentanaMenuPrincipal." + e.getStackTrace());
 				}
 			}
 		});

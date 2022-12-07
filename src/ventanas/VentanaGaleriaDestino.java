@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 import clases.Viaje;
+import log.Log;
 
 public class VentanaGaleriaDestino extends JFrame {
 
@@ -122,8 +124,7 @@ public class VentanaGaleriaDestino extends JFrame {
 					new VentanaGaleria();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido volver a la VentanaGaleria." + e.getStackTrace());
 				}
 			}
 		});

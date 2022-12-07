@@ -27,9 +27,9 @@ public class BD {
 			conn = DriverManager.getConnection(PropertiesClass.properties.getProperty("connection"));
 			Log.logger.log(Level.INFO, "Conexión con la BD establecida.");
 		} catch (ClassNotFoundException e) {
-			Log.logger.log(Level.SEVERE, "Error cargando el driver de la BD");
+			Log.logger.log(Level.SEVERE, "Error cargando el driver de la BD" + e.getStackTrace());
 		} catch (SQLException e) {
-			Log.logger.log(Level.SEVERE, "Error al conectar con la BD");
+			Log.logger.log(Level.SEVERE, "Error al conectar con la BD" + e.getStackTrace());
 		}
 		return conn;
 	}
@@ -39,7 +39,7 @@ public class BD {
 			conn.close();
 			Log.logger.log(Level.INFO, "Desconectado de la BD");
 		} catch (SQLException e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido desconectar");
+			Log.logger.log(Level.SEVERE, "No se ha podido desconectar" + e.getStackTrace());
 		}
 	}
 
@@ -69,7 +69,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos.");
+			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -146,7 +146,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido editar.");
+			Log.logger.log(Level.SEVERE, "No se ha podido editar." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -167,7 +167,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos.");
+			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -197,7 +197,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos en la BD.");
+			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos en la BD." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -216,7 +216,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos.");
+			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -247,7 +247,7 @@ public class BD {
 			return listaViajes;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se han podido obtener los viajes.");
+			Log.logger.log(Level.SEVERE, "No se han podido obtener los viajes." + e.getStackTrace());
 		}
 		return null;
 	}
@@ -370,7 +370,7 @@ public class BD {
 			return true;
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos.");
+			Log.logger.log(Level.SEVERE, "No se ha podido insertar los datos." + e.getStackTrace());
 			return false;
 		}
 	}
@@ -431,7 +431,7 @@ public class BD {
 					}
 					ps.close();
 				} catch (Exception e) {
-					Log.logger.log(Level.SEVERE, "Error.");
+					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 				}
 			}
 
@@ -452,14 +452,14 @@ public class BD {
 					}
 					ps.close();
 				} catch (Exception e) {
-					Log.logger.log(Level.SEVERE, "Error.");
+					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 				}
 			}
 
 			Log.logger.log(Level.INFO, "Se han obtenido los billetes correctamente.");
 
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes.");
+			Log.logger.log(Level.SEVERE, "No se han podido obtener los billetes." + e.getStackTrace());
 		}
 		return listaBilletesCliente;
 	}

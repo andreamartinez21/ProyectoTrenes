@@ -79,8 +79,7 @@ public class VentanaMenuPrincipal extends JFrame {
 					dispose();
 					VentanaInicio.var = 2;
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaCompra." + e.getStackTrace());
 				}
 			}
 		});
@@ -106,8 +105,7 @@ public class VentanaMenuPrincipal extends JFrame {
 					new VentanaPerfil();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaPerfil." + e.getStackTrace());
 				}
 			}
 		});
@@ -133,8 +131,7 @@ public class VentanaMenuPrincipal extends JFrame {
 					new VentanaVerViajes();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaVerViajes." + e.getStackTrace());
 				}
 			}
 		});
@@ -162,8 +159,7 @@ public class VentanaMenuPrincipal extends JFrame {
 					BD.clienteActual = new Cliente();
 					Log.logger.log(Level.INFO, "Se ha cerrado la sesión correctamente.");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido cerrar sesión." + e.getStackTrace());
 				}
 			}
 		});
@@ -205,8 +201,7 @@ public class VentanaMenuPrincipal extends JFrame {
 						Log.logger.log(Level.INFO, "No se ha eliminado la cuenta.");
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido eliminar la cuenta." + e.getStackTrace());
 				}
 			}
 		});

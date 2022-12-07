@@ -244,8 +244,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 					new VentanaCompra();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "Error al volver a VentanaCompra." + e.getStackTrace());
 				}
 			}
 		});
@@ -310,8 +309,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 						}
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "Error al confirmar la compra." + e.getStackTrace());
 				}
 			}
 		});

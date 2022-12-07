@@ -100,7 +100,7 @@ public class Metodos {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.logger.log(Level.SEVERE, "No se ha podido leer el fichero." + e.getStackTrace());
 		} finally {
 			// cerrar fichero
 			try {
@@ -108,7 +108,7 @@ public class Metodos {
 					fr.close();
 				}
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				Log.logger.log(Level.SEVERE, "No se ha cerrar el fichero." + e2.getStackTrace());
 			}
 		}
 		return true;
@@ -227,14 +227,14 @@ public class Metodos {
 			writer.close();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.logger.log(Level.SEVERE, "No se ha podido leer ni escribir el fichero." + e.getStackTrace());
 		} finally {
 			try {
 				if (null != fr) {
 					fr.close();
 				}
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				Log.logger.log(Level.SEVERE, "No se ha podido cerrar el fichero." + e2.getStackTrace());
 			}
 		}
 		return true;
@@ -284,14 +284,14 @@ public class Metodos {
 			writer.close();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.logger.log(Level.SEVERE, "No se ha podido leer ni escribir el fichero." + e.getStackTrace());
 		} finally {
 			try {
 				if (null != fr) {
 					fr.close();
 				}
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				Log.logger.log(Level.SEVERE, "No se ha podido cerrar el fichero." + e2.getStackTrace());
 			}
 		}
 		return true;
@@ -396,7 +396,7 @@ public class Metodos {
 			writer.close();
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			Log.logger.log(Level.SEVERE, "No se ha podido crear el ticket." + e.getStackTrace());
 		}
 	}
 	
@@ -429,7 +429,15 @@ public class Metodos {
 			num = Integer.valueOf(br.readLine());
 					
 		} catch (Exception e) {
-			// TODO: handle exception
+			Log.logger.log(Level.SEVERE, "No se ha podido leer el fichero." + e.getStackTrace());
+		} finally {
+			try {
+				if (null != fr) {
+					fr.close();
+				}
+			} catch (Exception e2) {
+				Log.logger.log(Level.SEVERE, "No se ha podido cerrar el fichero." + e2.getStackTrace());
+			}
 		}
 		
 		return num;
@@ -452,7 +460,7 @@ public class Metodos {
 			writer.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			Log.logger.log(Level.SEVERE, "No se ha podido escribir en el fichero." + e.getStackTrace());
 		}
 	}
 }

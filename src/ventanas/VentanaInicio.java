@@ -71,8 +71,7 @@ public class VentanaInicio extends JFrame{
                     new VentanaGaleria();
                     dispose();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                	Log.logger.log(Level.SEVERE, e.toString());
+                	Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaGaleria" + e.toString());
                 }
             }
         });
@@ -103,8 +102,7 @@ public class VentanaInicio extends JFrame{
                     new VentanaInicioSesion();
                     dispose();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaInicioSesion." + e.getStackTrace());
                 }
             }
         });
@@ -130,8 +128,7 @@ public class VentanaInicio extends JFrame{
                     new VentanaRegistro();
                     dispose();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaRegistro." + e.getStackTrace());
                 }
             }
         });
@@ -158,8 +155,7 @@ public class VentanaInicio extends JFrame{
                     dispose();
                     var = 1;
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaCompra." + e.getStackTrace());
                 }
             }
         });

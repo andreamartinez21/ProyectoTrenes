@@ -100,8 +100,7 @@ public class VentanaInicioSesion extends JFrame{
                     new VentanaInicio();
                     dispose();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                	Log.logger.log(Level.SEVERE, "No se ha podido abrir la VentanaInicio." + e.getStackTrace());
                 }
             }
         });
@@ -131,10 +130,8 @@ public class VentanaInicioSesion extends JFrame{
                 		Log.logger.log(Level.SEVERE, "Ha habido un error en el inicio de sesión.");
                 	}
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error");
-                    Log.logger.log(Level.SEVERE, "Error");
+                    Log.logger.log(Level.SEVERE, "Error" + e.getStackTrace());
                 }
             }
         });

@@ -1,4 +1,4 @@
-//package test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,14 +8,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import clases.Billete;
-import clases.BilleteSegunda;
+import clases.BilletePrimera;
 import clases.Cliente;
 import clases.Viaje;
 
-class BilleteSegundaTest {
+class BilletePrimeraTest {
 
-	static BilleteSegunda b1;
-	static BilleteSegunda b2;
+	static BilletePrimera b1;
+	static BilletePrimera b2;
 	static Cliente c1;
 	static Viaje viajeIda;
 	static List<Billete> listaBilletes;
@@ -27,31 +27,31 @@ class BilleteSegundaTest {
 				listaBilletes);
 		viajeIda = new Viaje("123B", "Bilbao", "Londres", "2022-11-23", 100, 50.90, "src/img/img1.png");
 
-		b1 = new BilleteSegunda();
-		b2 = new BilleteSegunda(c1, viajeIda, null, 55.90, 0, 1);
+		b1 = new BilletePrimera();
+		b2 = new BilletePrimera(c1, viajeIda, null, 55.90, 0, 1);
 	}
 
 	@Test
-	void testGetSeguroViaje() {
-		assertEquals(0, b2.getSeguroViaje());
+	void testGetComida() {
+		assertEquals(0, b2.getComida());
 	}
 
 	@Test
-	void testSetSeguroViaje() {
-		int seguroViaje = 0;
-		b1.setSeguroViaje(seguroViaje);
-		assertEquals(b1.getSeguroViaje(), seguroViaje);
+	void testSetComida() {
+		int comida = 0;
+		b1.setComida(comida);
+		assertEquals(b1.getComida(), comida);
 	}
 
 	@Test
-	void testGetMesa() {
-		assertEquals(1, b2.getMesa());
+	void testGetAsientoIndividual() {
+		assertEquals(1, b2.getAsientoIndividual());
 	}
 
 	@Test
-	void testSetMesa() {
-		int mesa = 1;
-		b1.setMesa(mesa);
-		assertEquals(b1.getMesa(), mesa);
+	void testSetAsientoIndividual() {
+		int asientoIndividual = 1;
+		b1.setAsientoIndividual(asientoIndividual);
+		assertEquals(b1.getAsientoIndividual(), asientoIndividual);
 	}
 }

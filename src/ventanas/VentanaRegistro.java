@@ -195,8 +195,7 @@ public class VentanaRegistro extends JFrame {
 					new VentanaInicio();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido volver a la VentanaInicio." + e.getStackTrace());
 				}
 			}
 		});
@@ -229,10 +228,8 @@ public class VentanaRegistro extends JFrame {
 						Log.logger.log(Level.SEVERE, "Ha habido un error en el registo.");
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error");
-					Log.logger.log(Level.SEVERE, "Error.");
+					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 				}
 			}
 		});

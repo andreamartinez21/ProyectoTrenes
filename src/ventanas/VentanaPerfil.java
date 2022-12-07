@@ -179,8 +179,7 @@ public class VentanaPerfil extends JFrame {
 					new VentanaMenuPrincipal();
 					dispose();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.logger.log(Level.SEVERE, "No se ha podido volver a la VentanaMenuPrincipal." + e.getStackTrace());
 				}
 			}
 		});
@@ -206,10 +205,8 @@ public class VentanaPerfil extends JFrame {
 					Metodos.editarCliente(BD.clienteActual, textoNombre.getText(), textoApellido.getText(), textoDni.getText(),
 							textoEmail.getText(), textoNumTelefono.getText(), textoCuentaBancaria.getText());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error");
-					System.out.println("Error");
+					Log.logger.log(Level.SEVERE, "Error" + e.getStackTrace());
 				}
 			}
 		});
