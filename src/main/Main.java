@@ -10,10 +10,13 @@ import ventanas.VentanaInicio;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
+		
+		BD bd = new BD();
+		
 		Log.iniciarLog();
 		PropertiesClass.getProperties();
-		if (BD.connect() != null) {
-			BD.borrarViajesBD();
+		if (bd.connect() != null) {
+			bd.borrarViajesBD();
 			Metodos.leeFicheroViajes();			
 			new VentanaInicio();
 		} else {

@@ -6,6 +6,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import clases.Ordenar;
 import clases.Viaje;
 import log.Log;
 
@@ -22,6 +23,8 @@ import java.awt.event.ActionEvent;
 import BD.BD;
 
 public class VentanaGaleria extends JFrame {
+	
+	BD bd = new BD();
 
 	private JPanel contentPane;
 
@@ -80,7 +83,7 @@ public class VentanaGaleria extends JFrame {
 		menu.add(itemGaleria);
 
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
-		listaViajes = BD.getViajesBD();
+		listaViajes = bd.getViajesBD();
 
 		double numFotos = listaViajes.size();
 		panel = new JPanel(new BorderLayout());
@@ -93,6 +96,8 @@ public class VentanaGaleria extends JFrame {
 		scroll = new JScrollPane(panelArriba);
 		scroll.setPreferredSize(new Dimension(990, 600));
 		scroll.setBackground(new Color(153, 0, 102));
+		
+		listaViajes.sort(new Ordenar());
 
 		for (Viaje viaje : listaViajes) {
 

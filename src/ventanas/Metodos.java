@@ -24,11 +24,13 @@ import clases.Viaje;
 import log.Log;
 
 public class Metodos {
+	
+	static BD bd = new BD();
 
 	public static boolean register(String nombre, String apellido, String usuario, String contrasenya, String dni,
 			String email, String numTelefono, String cuentaBancaria) {
 
-		if (BD.registerBD(nombre, apellido, usuario, contrasenya, dni, email, numTelefono, cuentaBancaria)) {
+		if (bd.registerBD(nombre, apellido, usuario, contrasenya, dni, email, numTelefono, cuentaBancaria)) {
 			return true;
 		} else {
 			return false;
@@ -37,7 +39,7 @@ public class Metodos {
 
 	public static boolean login(String usuario, String contrasenya) {
 
-		if (BD.loginBD(usuario, contrasenya)) {
+		if (bd.loginBD(usuario, contrasenya)) {
 			return true;
 		} else {
 			return false;
@@ -47,7 +49,7 @@ public class Metodos {
 	public static void editarCliente(Cliente clienteActual, String nombre, String apellido, String dni, String email,
 			String numTelefono, String cuentaBancaria) {
 
-		if (BD.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
+		if (bd.editarClienteBD(clienteActual, nombre, apellido, dni, email, numTelefono, cuentaBancaria)) {
 			JOptionPane.showMessageDialog(null, "Perfil actualizado correctamente.");
 			Log.logger.log(Level.INFO, "Perfil actualizado correctamente.");
 		} else {
@@ -57,7 +59,7 @@ public class Metodos {
 	}
 
 	public static boolean borrarCliente(Cliente clienteActual) {
-		if (BD.borrarClienteBD(clienteActual)) {
+		if (bd.borrarClienteBD(clienteActual)) {
 			return true;
 		} else {
 			return false;
@@ -93,7 +95,7 @@ public class Metodos {
 				double precio = Double.valueOf(data[5]);
 				String imagen = data[6];
 
-				if (BD.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio, imagen)) {
+				if (bd.anyadirViajeBD(localizador, origen, destino, fecha, aforo, precio, imagen)) {
 					Log.logger.log(Level.INFO, "Se ha añadido el viaje corrrectamente.");
 				}
 			}
@@ -113,12 +115,12 @@ public class Metodos {
 	}
 
 	public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
-		List<Viaje> listaViajes = new ArrayList<>();
-		HashSet<String> listaOrigen = new HashSet<>();
-		HashSet<String> listaDestino = new HashSet<>();
-		Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<>();
+		List<Viaje> listaViajes = new ArrayList<Viaje>();
+		HashSet<String> listaOrigen = new HashSet<String>();
+		HashSet<String> listaDestino = new HashSet<String>();
+		Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<String, HashSet<String>>();
 
-		listaViajes = BD.getViajesBD();
+		listaViajes = bd.getViajesBD();
 
 		for (Viaje viaje : listaViajes) {
 			listaOrigen.add(viaje.getOrigen());
@@ -134,7 +136,7 @@ public class Metodos {
 	public static boolean existeViaje(String origen, String destino,
 			/* String fechaIda, String fechaVuelta, */ int cantBilletes, int tipo) {
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
-		listaViajes = BD.getViajesBD();
+		listaViajes = bd.getViajesBD();
 		int comp = 0;
 
 		switch (tipo) {
@@ -401,8 +403,8 @@ public class Metodos {
 	public static Viaje devuelveViaje(String origen, String destino/*, String fecha*/) { // para conseguir el precio total de la compra
 		
 		Viaje viajeActual = new Viaje();
-		List<Viaje> listaViajes = new ArrayList<>();
-		listaViajes = BD.getViajesBD();
+		List<Viaje> listaViajes = new ArrayList<Viaje>();
+		listaViajes = bd.getViajesBD();
 		
 		for (Viaje viaje : listaViajes) {
 			if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) /*&& viaje.getFecha().equals(fecha)*/) {

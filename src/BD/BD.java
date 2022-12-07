@@ -15,10 +15,13 @@ import properties.PropertiesClass;
 import ventanas.Metodos;
 
 public class BD {
+	
 	private static Connection conn = null;
 	public static Cliente clienteActual = new Cliente();
+	
+	// conexión BD
 
-	public static Connection connect() {
+	public Connection connect() {
 		try {
 			Class.forName(PropertiesClass.properties.getProperty("driver"));
 			conn = DriverManager.getConnection(PropertiesClass.properties.getProperty("connection"));
@@ -31,7 +34,7 @@ public class BD {
 		return conn;
 	}
 
-	public static void disconnect() {
+	public void disconnect() {
 		try {
 			conn.close();
 			Log.logger.log(Level.INFO, "Desconectado de la BD");
@@ -44,7 +47,7 @@ public class BD {
 
 	// método register
 
-	public static boolean registerBD(String nombre, String apellido, String usuario, String contrasenya, String dni,
+	public boolean registerBD(String nombre, String apellido, String usuario, String contrasenya, String dni,
 			String email, String numTelefono, String cuentaBancaria) {
 		try {
 			String consulta = "INSERT INTO cliente (usuario, contrasenya, nombre, apellido, dni, email, numTelefono, cuentaBancaria) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -73,7 +76,7 @@ public class BD {
 
 	// método loginBD
 
-	public static boolean loginBD(String usuario, String contrasenya) {
+	public boolean loginBD(String usuario, String contrasenya) {
 
 		try {
 			ResultSet rs;
@@ -107,14 +110,14 @@ public class BD {
 				}
 			}
 		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "Usuario y contraseña no encontrados en la BD.");
+			Log.logger.log(Level.SEVERE, "Usuario y contraseña no encontrados en la BD." + e.getStackTrace());
 		}
 		return false;
 	}
 
 	// método editar cliente
 
-	public static boolean editarClienteBD(Cliente clienteActual, String nombre, String apellido, String dni,
+	public boolean editarClienteBD(Cliente clienteActual, String nombre, String apellido, String dni,
 			String email, String numTelefono, String cuentaBancaria) {
 		try {
 			String consulta = "UPDATE cliente SET nombre = ?, apellido = ?, dni = ?, email = ?, numTelefono = ?, cuentaBancaria = ? WHERE usuario = ? AND contrasenya = ?;";
@@ -150,7 +153,7 @@ public class BD {
 
 	// método borrar cliente
 
-	public static boolean borrarClienteBD(Cliente clienteActual) {
+	public boolean borrarClienteBD(Cliente clienteActual) {
 		try {
 			String consulta = "DELETE FROM cliente WHERE usuario = ?;";
 
@@ -173,7 +176,7 @@ public class BD {
 
 	// método añadir viaje
 
-	public static boolean anyadirViajeBD(String localizador, String origen, String destino, String fecha, int aforo,
+	public boolean anyadirViajeBD(String localizador, String origen, String destino, String fecha, int aforo,
 			double precio, String imagen) {
 		try {
 			String consulta = "INSERT INTO viaje (localizador, origen, destino, fecha, aforo, precio, imagen) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -201,7 +204,7 @@ public class BD {
 
 	// método borrar viajes
 
-	public static boolean borrarViajesBD() {
+	public boolean borrarViajesBD() {
 		try {
 			String consulta = "DELETE FROM viaje;";
 			Statement ps = conn.createStatement();
@@ -220,7 +223,7 @@ public class BD {
 
 	// método get viajes
 
-	public static List<Viaje> getViajesBD() {
+	public List<Viaje> getViajesBD() {
 		try {
 			ResultSet rs;
 
@@ -253,7 +256,7 @@ public class BD {
 
 	// método comprar billetes
 
-	public static boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda,
+	public boolean comprarBilletesBD(String tipo, String origen, String destino, String fechaIda,
 			String fechaVuelta, int cantBilletes, int clase, int comida, int asientoIndividual, int seguroViaje,
 			int mesa, int conUsuario) {
 		try {
@@ -374,11 +377,11 @@ public class BD {
 
 	// método get billetes cliente
 
-	public static List<Billete> getBilletesClienteBD(Cliente clienteActual) {
+	public List<Billete> getBilletesClienteBD(Cliente clienteActual) {
 		
 		List<Billete> listaBilletesCliente = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
-		List<String> listaLocalizadoresIda = new ArrayList<>();
-		List<String> listaLocalizadoresVuelta = new ArrayList<>();
+		List<String> listaLocalizadoresIda = new ArrayList<String>();
+		List<String> listaLocalizadoresVuelta = new ArrayList<String>();
 
 		try {
 			ResultSet rs, rs2, rs3;

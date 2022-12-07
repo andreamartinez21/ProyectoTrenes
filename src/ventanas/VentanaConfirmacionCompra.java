@@ -11,6 +11,8 @@ import BD.BD;
 import log.Log;
 
 public class VentanaConfirmacionCompra extends JFrame {
+	
+	BD bd = new BD();
 
 	private JPanel contentPane;
 
@@ -266,7 +268,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 				try {
 					if (VentanaInicio.var == 1) { // sin usuario
 						if (!textoNombreComprador.getText().equals("")) {
-							BD.comprarBilletesBD(VentanaCompra.tipoBillete,
+							bd.comprarBilletesBD(VentanaCompra.tipoBillete,
 									VentanaCompra.comboOrigen.getSelectedItem().toString(),
 									VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
 									(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,
@@ -287,7 +289,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 						}
 					} else if (VentanaInicio.var == 2) { // con usuario
 						if (textoContrasenya.getText().equals(BD.clienteActual.getContrasenya())) {
-							BD.comprarBilletesBD(VentanaCompra.tipoBillete,
+							bd.comprarBilletesBD(VentanaCompra.tipoBillete,
 									VentanaCompra.comboOrigen.getSelectedItem().toString(),
 									VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
 									(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,

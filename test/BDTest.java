@@ -12,7 +12,9 @@ import clases.Cliente;
 import clases.Viaje;
 
 class BDTest {
-	
+
+	BD bd = new BD();
+
 	static Cliente c1;
 	static List<Billete> listaBilletes;
 	static Viaje v1;
@@ -20,8 +22,10 @@ class BDTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		c1 = new Cliente("iker4", "4321", "Iker", "Gonzalez", "847598374H", "iker@gmail.com", "64534545", "3464565675867867K", listaBilletes);
-		
+				
+		c1 = new Cliente("iker4", "4321", "Iker", "Gonzalez", "847598374H", "iker@gmail.com", "64534545",
+				"3464565675867867K", listaBilletes);
+
 		v1 = new Viaje("09A", "Barcelona", "Dublin", "23-11-2022", 9, 89, "src/img/img9.png");
 	}
 
@@ -33,15 +37,15 @@ class BDTest {
 
 	@Test
 	void testGetViajesBD() {
-		BD.connect();
+		bd.connect();
 		listaViajes = new ArrayList<Viaje>();
-		listaViajes = BD.getViajesBD();
+		listaViajes = bd.getViajesBD();
 
 		for (Viaje viaje : listaViajes) {
 			if (viaje.getLocalizador().equals(v1.getLocalizador())) {
 				assertEquals(viaje.getLocalizador(), v1.getLocalizador());
 			}
 		}
-		BD.disconnect();
+		bd.disconnect();
 	}
 }

@@ -71,7 +71,7 @@ public class VentanaCompra extends JFrame {
 
 		// combo origen
 
-		HashSet<String> listaOrigen = new HashSet<>();
+		HashSet<String> listaOrigen = new HashSet<String>();
 		listaOrigen = Metodos.obtenerMapaOrigenDestino().get("Origen");
 		JPanel panelComboOrigen = new JPanel();
 		panelComboOrigen.setBackground(new Color(153, 0, 102));
@@ -91,7 +91,7 @@ public class VentanaCompra extends JFrame {
 
 		// combo destino
 
-		HashSet<String> listaDestino = new HashSet<>();
+		HashSet<String> listaDestino = new HashSet<String>();
 		listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
 		JPanel panelComboDestino = new JPanel();
 		panelComboDestino.setBackground(new Color(153, 0, 102));

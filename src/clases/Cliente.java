@@ -9,7 +9,7 @@ public class Cliente {
     protected String contrasenya;
     protected String nombre;
     protected String apellido;
-    protected String dni; // comprobar si es correcto el dni
+    protected String dni;
     protected String email;
     protected String numTelefono;
     protected String cuentaBancaria;

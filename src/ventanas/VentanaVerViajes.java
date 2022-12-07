@@ -16,6 +16,8 @@ import clases.Billete;
 import BD.BD;
 
 public class VentanaVerViajes extends JFrame {
+	
+	BD bd = new BD();
 
 	private JPanel contentPane;
 
@@ -49,14 +51,14 @@ public class VentanaVerViajes extends JFrame {
 		// añadir al cliente su lista de billetes
 		
 		List<Billete> listaBilletesCliente = new ArrayList<Billete>();
-		listaBilletesCliente = BD.getBilletesClienteBD(BD.clienteActual);
+		listaBilletesCliente = bd.getBilletesClienteBD(BD.clienteActual);
 		BD.clienteActual.setListaBilletes(listaBilletesCliente);
 		
 		// JTable
 		
 		// array columnas tabla
 		
-		String[] columnas = new String[] { "ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO" };
+		String[] columnas = new String[] {"ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO"};
 
         // crear tabla
 		

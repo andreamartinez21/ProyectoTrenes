@@ -2,8 +2,8 @@ package clases;
 
 public class BilleteSegunda extends Billete {
 	
-	protected int seguroViaje; // poner boolean
-	protected int mesa; // poner boolean
+	protected int seguroViaje; // 0 = no, 1 = sí
+	protected int mesa;
 	
 	public BilleteSegunda(Cliente cliente, Viaje viajeIda, Viaje viajeVuelta, double precio, int seguroViaje, int mesa) {
 		super(cliente, viajeIda, viajeVuelta, precio);
