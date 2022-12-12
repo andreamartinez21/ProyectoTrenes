@@ -1,6 +1,8 @@
 package main;
 
 import java.io.IOException;
+import java.util.logging.Level;
+
 import BD.BD;
 import log.Log;
 import properties.PropertiesClass;
@@ -10,9 +12,9 @@ import ventanas.VentanaInicio;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		
+
 		BD bd = new BD();
-		
+
 		try {
 			Log.iniciarLog();
 			PropertiesClass.getProperties();
@@ -22,12 +24,11 @@ public class Main {
 				Metodos.leeFicheroViajes();
 				new VentanaInicio();
 			} else {
-				System.out.println("Ha habido un problema para conectarse.");
-//				Log.cerrarLog();
+				Log.logger.log(Level.SEVERE, "Ha habido un problema para conectarse.");
+				// Log.cerrarLog();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 		}
-
 	}
 }

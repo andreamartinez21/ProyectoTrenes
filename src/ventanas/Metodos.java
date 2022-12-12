@@ -76,7 +76,7 @@ public class Metodos {
 		try {
 			// abrir fichero y crear BufferedReader
 			
-			archivo = new File("ficheroViajes.txt");
+			archivo = new File("ficheros/ficheroViajes.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 
@@ -184,11 +184,11 @@ public class Metodos {
 		String[] data = new String[7];
 		
 		try {
-			File file = new File("ficheroViajes2.txt");
+			File file = new File("ficheros/ficheroViajes2.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);
 			
-			archivo = new File("ficheroViajes.txt");
+			archivo = new File("ficheros/ficheroViajes.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			
@@ -248,11 +248,11 @@ public class Metodos {
 		String[] data = new String[7];
 		
 		try {
-			File file = new File("ficheroViajes.txt");
+			File file = new File("ficheros/ficheroViajes.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);
 			
-			archivo = new File("ficheroViajes2.txt");
+			archivo = new File("ficheros/ficheroViajes2.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			
@@ -422,7 +422,7 @@ public class Metodos {
 		int num = 0;
 		
 		try {
-			archivo = new File("ficheroNumTicket.txt");
+			archivo = new File("ficheros/ficheroNumTicket.txt");
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			
@@ -449,7 +449,7 @@ public class Metodos {
 		String numero = String.valueOf(num);
 		
 		try {
-			File file = new File("ficheroNumTicket.txt");
+			File file = new File("ficheros/ficheroNumTicket.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter buffer = new BufferedWriter(writer);
 

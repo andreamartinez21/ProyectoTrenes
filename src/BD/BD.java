@@ -204,24 +204,24 @@ public class BD {
 	
 	// método borrar viaje
 
-		public boolean borrarViajeBD(Viaje viaje) {
-			try {
-				String consulta = "DELETE FROM viaje WHERE localizador = ?;";
+	public boolean borrarViajeBD(Viaje viaje) {
+		try {
+			String consulta = "DELETE FROM viaje WHERE localizador = ?;";
 
-				PreparedStatement ps = conn.prepareStatement(consulta);
-				ps.setString(1, viaje.getLocalizador());
+			PreparedStatement ps = conn.prepareStatement(consulta);
+			ps.setString(1, viaje.getLocalizador());
 
-				ps.executeUpdate();
-				ps.close();
+			ps.executeUpdate();
+			ps.close();
 
-				Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
-				return true;
+			Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
+			return true;
 
-			} catch (Exception e) {
-				Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
-				return false;
-			}
+		} catch (Exception e) {
+			Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
+			return false;
 		}
+	}
 
 	// método borrar viajes
 
@@ -274,30 +274,6 @@ public class BD {
 	}
 
 	// MÉTODOS BILLETE
-	
-	// método borrar reserva (borra todos los billetes que se hayan comprado a la vez)
-
-			public boolean borrarReservaBD(Billete billete, Cliente clienteActual) {
-				try {
-					String consulta = "DELETE FROM billete WHERE usuarioCliente = ?, localizadorViajeIda = ?, localizadorViajeVuelta = ? AND precio = ?;";
-
-					PreparedStatement ps = conn.prepareStatement(consulta);
-					ps.setString(1, clienteActual.getUsuario());
-					ps.setString(2, billete.getViajeIda().getLocalizador());
-					ps.setString(3, billete.getViajeVuelta().getLocalizador());
-					ps.setDouble(4, billete.getPrecio());
-
-					ps.executeUpdate();
-					ps.close();
-
-					Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
-					return true;
-
-				} catch (Exception e) {
-					Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
-					return false;
-				}
-			}
 
 	// método comprar billetes
 

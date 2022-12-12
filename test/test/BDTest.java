@@ -159,28 +159,19 @@ class BDTest {
 		bd.disconnect();
 	}
 	
-	// test borrar reserva
-	
 	// test comprar billetes
 	
-//	@Test
-//	void testComprarBilletesBD() {
-//		bd.connect();
-//		
-//		BD.clienteActual = c2;
-//		
-//		respuesta = bd.comprarBilletesBD("Ida y vuelta", "Bilbao", "Londres", "20-12-2022", "24-12-2022", 1, 0, 0, 0, 0, 0, 1);
-//		assertEquals(true, respuesta);
-//		
-//		listaBilletes2 = bd.getBilletesClienteBD(c2);
-//		
-//		for (Billete billete : listaBilletes2) {
-//			if(billete.get)
-//			bd.borrarReservaBD(billete, c2);
-//		}
-//		
-//		bd.disconnect();
-//	}
+	@Test
+	void testComprarBilletesBD() {
+		bd.connect();
+		
+		BD.clienteActual = c2;
+		
+		respuesta = bd.comprarBilletesBD("Ida y vuelta", "Bilbao", "Londres", "20-12-2022", "24-12-2022", 1, 0, 0, 0, 0, 0, 1);
+		assertEquals(true, respuesta);
+		
+		bd.disconnect();
+	}
 	
 	// test get billetes cliente
 	
