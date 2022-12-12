@@ -13,15 +13,21 @@ public class Main {
 		
 		BD bd = new BD();
 		
-		Log.iniciarLog();
-		PropertiesClass.getProperties();
-		if (bd.connect() != null) {
-			bd.borrarViajesBD();
-			Metodos.leeFicheroViajes();			
-			new VentanaInicio();
-		} else {
-			System.out.println("Ha habido un problema para conectarse.");
-//			Log.cerrarLog();
+		try {
+			Log.iniciarLog();
+			PropertiesClass.getProperties();
+
+			if (bd.connect() != null) {
+				bd.borrarViajesBD();
+				Metodos.leeFicheroViajes();
+				new VentanaInicio();
+			} else {
+				System.out.println("Ha habido un problema para conectarse.");
+//				Log.cerrarLog();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+
 	}
 }

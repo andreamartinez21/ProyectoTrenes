@@ -120,13 +120,8 @@ public class Cliente {
 	@Override
 	public String toString() {
 		
-//		String billetes = "";
-//		for (Billete billete : listaBilletes) {
-//			billetes += "[" + billete.toString() + "]";
-//		}
-		
 		return "Cliente [usuario=" + usuario + ", contrasenya=" + contrasenya + ", nombre=" + nombre + ", apellido="
 				+ apellido + ", dni=" + dni + ", email=" + email + ", numTelefono=" + numTelefono + ", cuentaBancaria="
-				+ cuentaBancaria + ", listaBilletes=[" /*+ billetes*/ + "]]";
+				+ cuentaBancaria + "]";
 	}
 }

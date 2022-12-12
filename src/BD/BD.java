@@ -74,7 +74,7 @@ public class BD {
 		}
 	}
 
-	// método loginBD
+	// método login
 
 	public boolean loginBD(String usuario, String contrasenya) {
 
@@ -201,6 +201,27 @@ public class BD {
 			return false;
 		}
 	}
+	
+	// método borrar viaje
+
+		public boolean borrarViajeBD(Viaje viaje) {
+			try {
+				String consulta = "DELETE FROM viaje WHERE localizador = ?;";
+
+				PreparedStatement ps = conn.prepareStatement(consulta);
+				ps.setString(1, viaje.getLocalizador());
+
+				ps.executeUpdate();
+				ps.close();
+
+				Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
+				return true;
+
+			} catch (Exception e) {
+				Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
+				return false;
+			}
+		}
 
 	// método borrar viajes
 
@@ -253,6 +274,30 @@ public class BD {
 	}
 
 	// MÉTODOS BILLETE
+	
+	// método borrar reserva (borra todos los billetes que se hayan comprado a la vez)
+
+			public boolean borrarReservaBD(Billete billete, Cliente clienteActual) {
+				try {
+					String consulta = "DELETE FROM billete WHERE usuarioCliente = ?, localizadorViajeIda = ?, localizadorViajeVuelta = ? AND precio = ?;";
+
+					PreparedStatement ps = conn.prepareStatement(consulta);
+					ps.setString(1, clienteActual.getUsuario());
+					ps.setString(2, billete.getViajeIda().getLocalizador());
+					ps.setString(3, billete.getViajeVuelta().getLocalizador());
+					ps.setDouble(4, billete.getPrecio());
+
+					ps.executeUpdate();
+					ps.close();
+
+					Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
+					return true;
+
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "No se han podido borrar los datos." + e.getStackTrace());
+					return false;
+				}
+			}
 
 	// método comprar billetes
 
@@ -295,7 +340,9 @@ public class BD {
 					ps.executeUpdate();
 					ps.close();
 				}
+				
 				// actualizar aforo viaje
+				
 				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
 				Metodos.actualizaAforoFichero2(viajeIda, viajeVuelta, cantBilletes);
 				
@@ -340,7 +387,9 @@ public class BD {
 					ps.executeUpdate();
 					ps.close();
 				}
+				
 				// actualizar aforo viaje ida
+				
 				Metodos.actualizaAforoFichero(viajeIda, viajeVuelta, cantBilletes);
 				Metodos.actualizaAforoFichero2(viajeIda, viajeVuelta, cantBilletes);
 				

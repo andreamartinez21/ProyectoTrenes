@@ -1,5 +1,5 @@
 VIAJE A LONDRES
-Nombre del comprador: 23
+Nombre del comprador: sdf
 Tipo de billete: Ida y vuelta
 Origen: Bilbao
 Destino: Londres

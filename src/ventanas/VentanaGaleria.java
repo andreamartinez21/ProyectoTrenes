@@ -6,7 +6,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import clases.Ordenar;
+import clases.OrdenarViajes;
 import clases.Viaje;
 import log.Log;
 
@@ -15,7 +15,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
@@ -96,7 +95,7 @@ public class VentanaGaleria extends JFrame {
 		scroll.setPreferredSize(new Dimension(990, 600));
 		scroll.setBackground(new Color(153, 0, 102));
 		
-		listaViajes.sort(new Ordenar());
+		listaViajes.sort(new OrdenarViajes());
 
 		for (Viaje viaje : listaViajes) {
 

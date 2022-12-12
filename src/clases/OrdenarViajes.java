@@ -2,7 +2,7 @@ package clases;
 
 import java.util.Comparator;
 
-public class Ordenar implements Comparator<Viaje> {
+public class OrdenarViajes implements Comparator<Viaje> {
 
 	@Override
 	public int compare(Viaje v1, Viaje v2) {
