@@ -79,13 +79,13 @@ public class VentanaConfirmacionCompra extends JFrame {
 
 		JPanel panelLabelFechaIda = new JPanel();
 		panelLabelFechaIda.setBackground(new Color(153, 0, 102));
-		JLabel labelFechaIda = new JLabel("Fecha ida: 2022-11-10");
+		JLabel labelFechaIda = new JLabel("Fecha ida: " + VentanaCompra.textFechaIda.getText());
 		labelFechaIda.setForeground(Color.WHITE);
 		panelLabelFechaIda.add(labelFechaIda);
 
 		JPanel panelLabelFechaVuelta = new JPanel();
 		panelLabelFechaVuelta.setBackground(new Color(153, 0, 102));
-		JLabel labelFechaVuelta = new JLabel("Fecha vuelta: 2022-11-17");
+		JLabel labelFechaVuelta = new JLabel("Fecha vuelta: " + VentanaCompra.textFechaVuelta.getText());
 		labelFechaVuelta.setForeground(Color.WHITE);
 		panelLabelFechaVuelta.add(labelFechaVuelta);
 		
@@ -134,9 +134,9 @@ public class VentanaConfirmacionCompra extends JFrame {
 		panelLabelPrecio.setBackground(new Color(153, 0, 102));
 		JLabel labelPrecio = new JLabel("Precio total: " + formato1.format((Metodos.calcularPrecioBillete(VentanaCompra.tipoBillete,
 				Metodos.devuelveViaje(VentanaCompra.comboOrigen.getSelectedItem().toString(),
-						VentanaCompra.comboDestino.getSelectedItem().toString()),
+						VentanaCompra.comboDestino.getSelectedItem().toString(), VentanaCompra.textFechaIda.getText()),
 				Metodos.devuelveViaje(VentanaCompra.comboDestino.getSelectedItem().toString(),
-						VentanaCompra.comboOrigen.getSelectedItem().toString()),
+						VentanaCompra.comboOrigen.getSelectedItem().toString(), VentanaCompra.textFechaVuelta.getText()),
 				VentanaCompra.claseInt, VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
 				VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, conUsuario)) * ((int) VentanaCompra.spinnerNumBilletes.getValue())) + " €");
 		labelPrecio.setForeground(Color.WHITE);
@@ -269,7 +269,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 						if (!textoNombreComprador.getText().equals("")) {
 							bd.comprarBilletesBD(VentanaCompra.tipoBillete,
 									VentanaCompra.comboOrigen.getSelectedItem().toString(),
-									VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
+									VentanaCompra.comboDestino.getSelectedItem().toString(), VentanaCompra.textFechaIda.getText(), VentanaCompra.textFechaVuelta.getText(),
 									(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,
 									VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
 									VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 0);
@@ -290,7 +290,7 @@ public class VentanaConfirmacionCompra extends JFrame {
 						if (textoContrasenya.getText().equals(BD.clienteActual.getContrasenya())) {
 							bd.comprarBilletesBD(VentanaCompra.tipoBillete,
 									VentanaCompra.comboOrigen.getSelectedItem().toString(),
-									VentanaCompra.comboDestino.getSelectedItem().toString(), "20-12-2022", "24-12-2022",
+									VentanaCompra.comboDestino.getSelectedItem().toString(), VentanaCompra.textFechaIda.getText(), VentanaCompra.textFechaVuelta.getText(),
 									(int) VentanaCompra.spinnerNumBilletes.getValue(), VentanaCompra.claseInt,
 									VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual,
 									VentanaCompra.extraSeguroViaje, VentanaCompra.extraMesa, 1);

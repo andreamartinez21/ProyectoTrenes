@@ -28,6 +28,8 @@ public class VentanaCompra extends JFrame {
 
 	private JCalendar calendarioIda;
 	private JCalendar calendarioVuelta;
+	public static JTextField textFechaIda;
+	public static JTextField textFechaVuelta;
 
 	private int tipoBilleteInt = 1;
 	public static String tipoBillete = "Ida y vuelta";
@@ -52,7 +54,7 @@ public class VentanaCompra extends JFrame {
 
 		setTitle("Compra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(530, 575));
+		setPreferredSize(new Dimension(530, 595));
 		setVisible(true);
 		pack();
 
@@ -66,7 +68,7 @@ public class VentanaCompra extends JFrame {
 		panelArriba.setBackground(new Color(153, 0, 102));
 		panelMedio = new JPanel(new GridLayout(2, 1));
 		panelMedio.setBackground(new Color(153, 0, 102));
-		panelAbajo = new JPanel(new GridLayout(2, 2));
+		panelAbajo = new JPanel(new GridLayout(3, 2));
 		panelAbajo.setBackground(new Color(153, 0, 102));
 
 		JPanel panelCalendarioVuelta = new JPanel();
@@ -332,33 +334,92 @@ public class VentanaCompra extends JFrame {
 		panelArriba.add(panelNumBilletes);
 		panelMedio.add(panelRadioClase);
 		panelMedio.add(panelPrueba);
+		
+		// botón fecha ida
+
+		JPanel panelBotonFechaIda = new JPanel();
+//		panelBotonFechaIda.setPreferredSize(new Dimension(100, 20));
+		panelBotonFechaIda.setBackground(new Color(153, 0, 102));
+		JButton botonFechaIda = new JButton("Seleccionar");
+		botonFechaIda.setFont(new Font("Yu Gothic UI", Font.PLAIN, 12));
+		botonFechaIda.setBackground(Color.GRAY);
+		botonFechaIda.setForeground(Color.WHITE);
+		botonFechaIda.setPreferredSize(new Dimension(100, 20));
+		panelBotonFechaIda.add(botonFechaIda);
 
 		// calendario ida
 
 		JPanel panelCalendarioIda = new JPanel();
 		panelCalendarioIda.setBackground(new Color(153, 0, 102));
 		calendarioIda = new JCalendar();
+		textFechaIda = new JTextField();
 		// calendarioIda.setTodayButtonVisible(true);
 		calendarioIda.setWeekOfYearVisible(false);
 		panelCalendarioIda.add(calendarioIda);
 
 		Border bordejpanel7 = new TitledBorder(new MatteBorder(null), "Ida:");
 		panelCalendarioIda.setBorder(bordejpanel7);
+		
+		botonFechaIda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String año = Integer.toString(calendarioIda.getCalendar().get(java.util.Calendar.YEAR));
+					String mes = Integer.toString(calendarioIda.getCalendar().get(java.util.Calendar.MONTH) + 1);
+					String dia = Integer.toString(calendarioIda.getCalendar().get(java.util.Calendar.DATE));
+					textFechaIda.setText(dia + "-" + mes + "-" + año);
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "No se ha podido guardar la fecha." + e.getStackTrace());
+				}
+			}
+		});
 
 		panelAbajo.add(panelCalendarioIda);
+		
+		// botón fecha vuelta
+
+		JPanel panelBotonFechaVuelta = new JPanel();
+//		panelBotonFechaVuelta.setPreferredSize(new Dimension(100, 20));
+		panelBotonFechaVuelta.setBackground(new Color(153, 0, 102));
+		JButton botonFechaVuelta = new JButton("Seleccionar");
+		botonFechaVuelta.setFont(new Font("Yu Gothic UI", Font.PLAIN, 12));
+		botonFechaVuelta.setBackground(Color.GRAY);
+		botonFechaVuelta.setForeground(Color.WHITE);
+		botonFechaVuelta.setPreferredSize(new Dimension(100, 20));
+		panelBotonFechaVuelta.add(botonFechaVuelta);
 
 		// calendario vuelta
 
 		panelCalendarioVuelta.setBackground(new Color(153, 0, 102));
 		calendarioVuelta = new JCalendar();
+		textFechaVuelta = new JTextField();
 		// calendarioVuelta.setTodayButtonVisible(true);
 		calendarioVuelta.setWeekOfYearVisible(false);
 		panelCalendarioVuelta.add(calendarioVuelta);
 
 		Border bordejpanel8 = new TitledBorder(new MatteBorder(null), "Vuelta:");
 		panelCalendarioVuelta.setBorder(bordejpanel8);
+		
+		botonFechaVuelta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String año = Integer.toString(calendarioVuelta.getCalendar().get(java.util.Calendar.YEAR));
+					String mes = Integer.toString(calendarioVuelta.getCalendar().get(java.util.Calendar.MONTH) + 1);
+					String dia = Integer.toString(calendarioVuelta.getCalendar().get(java.util.Calendar.DATE));
+					textFechaVuelta.setText(dia + "-" + mes + "-" + año);
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "No se ha podido guardar la fecha." + e.getStackTrace());
+				}
+			}
+		});
 
 		panelAbajo.add(panelCalendarioVuelta);
+		
+		panelAbajo.add(panelBotonFechaIda);
+		panelAbajo.add(panelBotonFechaVuelta);
 
 		// botón volver
 
@@ -406,7 +467,7 @@ public class VentanaCompra extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (Metodos.existeViaje(comboOrigen.getSelectedItem().toString(),
-							comboDestino.getSelectedItem().toString(), (int) spinnerNumBilletes.getValue(),
+							comboDestino.getSelectedItem().toString(), textFechaIda.getText(), textFechaVuelta.getText(), (int) spinnerNumBilletes.getValue(),
 							tipoBilleteInt)) {
 						new VentanaConfirmacionCompra();
 						dispose();

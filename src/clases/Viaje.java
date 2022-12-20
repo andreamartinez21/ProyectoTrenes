@@ -5,7 +5,7 @@ public class Viaje {
     protected String localizador;
     protected String origen;
     protected String destino;
-    protected String fecha; // jcalendar
+    protected String fecha;
     protected int aforo;
     protected double precio;
     protected String imagen;

@@ -72,13 +72,17 @@ public class VentanaVerViajes extends JFrame {
 		// arrayList datos filas
 		
 		int i = 0;
-		
-        for (Billete billete : listaBilletesCliente) {
-        	modeloTabla.addRow(new Object[] {listaBilletesCliente.get(i).getViajeIda().getOrigen(), listaBilletesCliente.get(i).getViajeIda().getDestino(), listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - " + listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(), VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €"});
-        	table.setRowHeight(i, 30);
-        	i++;
-        }
-		
+
+		for (Billete billete : listaBilletesCliente) { // poner fechas
+			modeloTabla.addRow(new Object[] { listaBilletesCliente.get(i).getViajeIda().getOrigen(),
+					listaBilletesCliente.get(i).getViajeIda().getDestino(),
+					listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - "
+							+ listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(),
+					VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €" });
+			table.setRowHeight(i, 30);
+			i++;
+		}
+
         // scrollPane
         
 		JScrollPane scrollPane = new JScrollPane(table);

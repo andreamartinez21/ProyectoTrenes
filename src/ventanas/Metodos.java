@@ -134,7 +134,7 @@ public class Metodos {
 	}
 
 	public static boolean existeViaje(String origen, String destino,
-			/* String fechaIda, String fechaVuelta, */ int cantBilletes, int tipo) {
+			String fechaIda, String fechaVuelta, int cantBilletes, int tipo) {
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
 		int comp = 0;
@@ -143,7 +143,7 @@ public class Metodos {
 		case 0: // ida
 			for (Viaje viaje : listaViajes) {
 				if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
-						&& /* viaje.getFecha() == fechaIda && */ viaje.getAforo() >= cantBilletes) {
+						&& viaje.getFecha().equals(fechaIda) && viaje.getAforo() >= cantBilletes) {
 					Log.logger.log(Level.INFO, "Viaje disponible.");
 					return true;
 				}
@@ -154,12 +154,12 @@ public class Metodos {
 		case 1: // ida y vuelta
 			for (Viaje viaje : listaViajes) {
 				if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
-						&& /* viaje.getFecha() == fechaIda && */viaje.getAforo() >= cantBilletes) {
+						&& viaje.getFecha().equals(fechaIda) && viaje.getAforo() >= cantBilletes) {
 					Log.logger.log(Level.INFO, "Viaje disponible.");
 					comp++;
 				}
 				if (viaje.getOrigen().equals(destino) && viaje.getDestino().equals(origen)
-						&& /* viaje.getFecha() == fechaVuelta && */viaje.getAforo() >= cantBilletes) {
+						&& viaje.getFecha().equals(fechaVuelta) && viaje.getAforo() >= cantBilletes) {
 					Log.logger.log(Level.INFO, "Viaje disponible.");
 					comp++;
 				}
@@ -355,11 +355,11 @@ public class Metodos {
 			buffer.newLine();
 			buffer.write("Destino: " + VentanaCompra.comboDestino.getSelectedItem().toString());
 			buffer.newLine();
-			buffer.write("Fecha ida: ");
+			buffer.write("Fecha ida: " + VentanaCompra.textFechaIda.getText());
 			buffer.newLine();
 
 			if (VentanaCompra.tipoBillete.equals("Ida y vuelta")) {
-				buffer.write("Fecha vuelta: ");
+				buffer.write("Fecha vuelta: " + VentanaCompra.textFechaVuelta.getText());
 				buffer.newLine();
 			}
 
@@ -382,9 +382,9 @@ public class Metodos {
 			buffer.write("Precio total: "
 							+ VentanaConfirmacionCompra.formato1.format((calcularPrecioBillete(VentanaCompra.tipoBillete,
 									devuelveViaje(VentanaCompra.comboOrigen.getSelectedItem().toString(),
-											VentanaCompra.comboDestino.getSelectedItem().toString()),
+											VentanaCompra.comboDestino.getSelectedItem().toString(), VentanaCompra.textFechaIda.getText()),
 									devuelveViaje(VentanaCompra.comboDestino.getSelectedItem().toString(),
-											VentanaCompra.comboOrigen.getSelectedItem().toString()),
+											VentanaCompra.comboOrigen.getSelectedItem().toString(), VentanaCompra.textFechaVuelta.getText()),
 									VentanaCompra.claseInt, VentanaCompra.extraComida,
 									VentanaCompra.extraAsientoIndividual, VentanaCompra.extraSeguroViaje,
 									VentanaCompra.extraMesa, VentanaConfirmacionCompra.conUsuario)) * ((int) VentanaCompra.spinnerNumBilletes.getValue()))
@@ -400,14 +400,14 @@ public class Metodos {
 		}
 	}
 	
-	public static Viaje devuelveViaje(String origen, String destino/*, String fecha*/) { // para conseguir el precio total de la compra
+	public static Viaje devuelveViaje(String origen, String destino, String fecha) { // para conseguir el precio total de la compra
 		
 		Viaje viajeActual = new Viaje();
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
 		
 		for (Viaje viaje : listaViajes) {
-			if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) /*&& viaje.getFecha().equals(fecha)*/) {
+			if(viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && viaje.getFecha().equals(fecha)) {
 				viajeActual = viaje;
 			}
 		}
