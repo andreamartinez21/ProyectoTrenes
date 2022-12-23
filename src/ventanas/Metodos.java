@@ -59,6 +59,7 @@ public class Metodos {
 	}
 
 	public static boolean borrarCliente(Cliente clienteActual) {
+		
 		if (bd.borrarClienteBD(clienteActual)) {
 			return true;
 		} else {
@@ -115,6 +116,7 @@ public class Metodos {
 	}
 
 	public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
+
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		HashSet<String> listaOrigen = new HashSet<String>();
 		HashSet<String> listaDestino = new HashSet<String>();
@@ -122,9 +124,15 @@ public class Metodos {
 
 		listaViajes = bd.getViajesBD();
 
+		listaDestino.clear();
+
 		for (Viaje viaje : listaViajes) {
+
 			listaOrigen.add(viaje.getOrigen());
-			listaDestino.add(viaje.getDestino());
+
+			if (viaje.getOrigen().equals(VentanaCompra.origen)) {
+				listaDestino.add(viaje.getDestino());
+			}
 		}
 
 		mapaOrigenDestino.put("Origen", listaOrigen);
@@ -135,6 +143,7 @@ public class Metodos {
 
 	public static boolean existeViaje(String origen, String destino,
 			String fechaIda, String fechaVuelta, int cantBilletes, int tipo) {
+		
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
 		int comp = 0;
@@ -332,6 +341,7 @@ public class Metodos {
 	}
 
 	public static void crearTicket() {
+		
 		try {
 			File file = new File("tickets/ticket" + leeFicheroNumTicket() + "-" + BD.clienteActual.getUsuario() + ".txt");
 			escribeFicheroNumTicket();
@@ -416,6 +426,7 @@ public class Metodos {
 	}
 	
 	public static int leeFicheroNumTicket() {
+		
 		File archivo = null;
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -444,6 +455,7 @@ public class Metodos {
 	}
 	
 	public static void escribeFicheroNumTicket() {
+		
 		int num = leeFicheroNumTicket();
 		num++;
 		String numero = String.valueOf(num);

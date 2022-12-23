@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import clases.PromptComboBoxRenderer;
 
 public class VentanaCompra extends JFrame {
 
@@ -47,6 +48,11 @@ public class VentanaCompra extends JFrame {
 	public static JComboBox<String> comboOrigen;
 	public static JComboBox<String> comboDestino;
 	public static JSpinner spinnerNumBilletes;
+	
+	public static String origen;
+	
+	JPanel panelCalendarioVuelta;
+	JPanel panelBotonFechaVuelta;
 
 	public VentanaCompra() throws IOException {
 
@@ -54,7 +60,7 @@ public class VentanaCompra extends JFrame {
 
 		setTitle("Compra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(530, 595));
+		setPreferredSize(new Dimension(530, 618));
 		setVisible(true);
 		pack();
 
@@ -64,14 +70,12 @@ public class VentanaCompra extends JFrame {
 
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(new Color(153, 0, 102));
-		panelArriba = new JPanel(new GridLayout(2, 2));
+		panelArriba = new JPanel(new GridLayout(4, 1));
 		panelArriba.setBackground(new Color(153, 0, 102));
-		panelMedio = new JPanel(new GridLayout(2, 1));
+		panelMedio = new JPanel(new GridLayout(1, 2));
 		panelMedio.setBackground(new Color(153, 0, 102));
-		panelAbajo = new JPanel(new GridLayout(3, 2));
+		panelAbajo = new JPanel(new GridLayout(2, 2));
 		panelAbajo.setBackground(new Color(153, 0, 102));
-
-		JPanel panelCalendarioVuelta = new JPanel();
 
 		contentPane.add(panel);
 
@@ -82,38 +86,56 @@ public class VentanaCompra extends JFrame {
 		JPanel panelComboOrigen = new JPanel();
 		panelComboOrigen.setBackground(new Color(153, 0, 102));
 		comboOrigen = new JComboBox<String>();
+		comboOrigen.setBackground(Color.WHITE);
 
 		for (String ciudad : listaOrigen) { // lo que recorres y el tipo de cosa que recorres a cada vuelta
 			comboOrigen.addItem(ciudad);
 		}
-		comboOrigen.setBackground(Color.WHITE);
 
 		Border bordejpanel5 = new TitledBorder(new MatteBorder(null), "DESDE:");
 		panelComboOrigen.setBorder(bordejpanel5);
 
 		panelComboOrigen.add(comboOrigen);
-
-		panelArriba.add(panelComboOrigen);
+		
+		comboOrigen.setSelectedIndex(-1);
+		comboOrigen.setRenderer(new PromptComboBoxRenderer("Origen"));
+		
+		JPanel panelCombos = new JPanel(new GridLayout(1, 2));
+		panelCombos.setBackground(new Color(153, 0, 102));
 
 		// combo destino
-
-		HashSet<String> listaDestino = new HashSet<String>();
-		listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
+		
 		JPanel panelComboDestino = new JPanel();
 		panelComboDestino.setBackground(new Color(153, 0, 102));
 		comboDestino = new JComboBox<String>();
-
-		for (String ciudad : listaDestino) {
-			comboDestino.addItem(ciudad);
-		}
 		comboDestino.setBackground(Color.WHITE);
+		
+		comboOrigen.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashSet<String> listaDestino = new HashSet<String>();
+				origen = comboOrigen.getSelectedItem().toString();
+				listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
+				comboDestino.removeAllItems();
 
+				for (String ciudad : listaDestino) {
+					comboDestino.addItem(ciudad);
+				}
+			}
+		});
+		
 		Border bordejpanel6 = new TitledBorder(new MatteBorder(null), "A:");
 		panelComboDestino.setBorder(bordejpanel6);
 
+		comboDestino.setSelectedIndex(-1);
+		comboDestino.setRenderer(new PromptComboBoxRenderer("Destino"));
+		
 		panelComboDestino.add(comboDestino);
-
-		panelArriba.add(panelComboDestino);
+		
+		panelCombos.add(panelComboOrigen);
+		panelCombos.add(panelComboDestino);
+		
+		panelArriba.add(panelCombos);
 		
 		// button groups
 		
@@ -149,6 +171,7 @@ public class VentanaCompra extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				radioIda.setSelected(false);
 				panelCalendarioVuelta.setVisible(true);
+				panelBotonFechaVuelta.setVisible(true);
 				tipoBilleteInt = 1; // ida y vuelta
 				tipoBillete = "Ida y vuelta";
 			}
@@ -159,6 +182,7 @@ public class VentanaCompra extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				radioIdaVuelta.setSelected(false);
 				panelCalendarioVuelta.setVisible(false);
+				panelBotonFechaVuelta.setVisible(false);
 				tipoBilleteInt = 0; // ida
 				tipoBillete = "Ida";
 			}
@@ -294,11 +318,11 @@ public class VentanaCompra extends JFrame {
 		panelCheckExtras2.add(checkComida);
 		panelCheckExtras2.add(checkAsientoIndividual);
 
-		JPanel panelPrueba = new JPanel(new GridLayout(1, 2));
-		panelPrueba.setBackground(new Color(153, 0, 102));
+		JPanel panelExtras = new JPanel(new GridLayout(1, 2));
+		panelExtras.setBackground(new Color(153, 0, 102));
 
-		panelPrueba.add(panelCheckExtras);
-		panelPrueba.add(panelCheckExtras2);
+		panelExtras.add(panelCheckExtras);
+		panelExtras.add(panelCheckExtras2);
 
 		radioSegundaClase.addActionListener(new ActionListener() {
 			@Override
@@ -330,21 +354,25 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 
-		panelArriba.add(panelRadioIdaVueltaIda);
-		panelArriba.add(panelNumBilletes);
-		panelMedio.add(panelRadioClase);
-		panelMedio.add(panelPrueba);
+		JPanel panelRadioNum = new JPanel(new GridLayout(1, 2));
+		panelCombos.setBackground(new Color(153, 0, 102));
+		
+		panelRadioNum.add(panelRadioIdaVueltaIda);
+		panelRadioNum.add(panelNumBilletes);
+		
+		panelArriba.add(panelRadioNum);
+		panelArriba.add(panelRadioClase);
+		panelArriba.add(panelExtras);
 		
 		// botón fecha ida
 
 		JPanel panelBotonFechaIda = new JPanel();
-//		panelBotonFechaIda.setPreferredSize(new Dimension(100, 20));
 		panelBotonFechaIda.setBackground(new Color(153, 0, 102));
 		JButton botonFechaIda = new JButton("Seleccionar");
-		botonFechaIda.setFont(new Font("Yu Gothic UI", Font.PLAIN, 12));
-		botonFechaIda.setBackground(Color.GRAY);
-		botonFechaIda.setForeground(Color.WHITE);
-		botonFechaIda.setPreferredSize(new Dimension(100, 20));
+		botonFechaIda.setFont(new Font("Yu Gothic UI", Font.BOLD, 9));
+		botonFechaIda.setBackground(Color.WHITE);
+		botonFechaIda.setForeground(Color.BLACK);
+		botonFechaIda.setPreferredSize(new Dimension(89, 18));
 		panelBotonFechaIda.add(botonFechaIda);
 
 		// calendario ida
@@ -375,22 +403,22 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 
-		panelAbajo.add(panelCalendarioIda);
+		panelMedio.add(panelCalendarioIda);
 		
 		// botón fecha vuelta
 
-		JPanel panelBotonFechaVuelta = new JPanel();
-//		panelBotonFechaVuelta.setPreferredSize(new Dimension(100, 20));
+		panelBotonFechaVuelta = new JPanel();
 		panelBotonFechaVuelta.setBackground(new Color(153, 0, 102));
 		JButton botonFechaVuelta = new JButton("Seleccionar");
-		botonFechaVuelta.setFont(new Font("Yu Gothic UI", Font.PLAIN, 12));
-		botonFechaVuelta.setBackground(Color.GRAY);
-		botonFechaVuelta.setForeground(Color.WHITE);
-		botonFechaVuelta.setPreferredSize(new Dimension(100, 20));
+		botonFechaVuelta.setFont(new Font("Yu Gothic UI", Font.BOLD, 9));
+		botonFechaVuelta.setBackground(Color.WHITE);
+		botonFechaVuelta.setForeground(Color.BLACK);
+		botonFechaVuelta.setPreferredSize(new Dimension(89, 18));
 		panelBotonFechaVuelta.add(botonFechaVuelta);
 
 		// calendario vuelta
 
+		panelCalendarioVuelta = new JPanel();
 		panelCalendarioVuelta.setBackground(new Color(153, 0, 102));
 		calendarioVuelta = new JCalendar();
 		textFechaVuelta = new JTextField();
@@ -416,7 +444,7 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 
-		panelAbajo.add(panelCalendarioVuelta);
+		panelMedio.add(panelCalendarioVuelta);
 		
 		panelAbajo.add(panelBotonFechaIda);
 		panelAbajo.add(panelBotonFechaVuelta);

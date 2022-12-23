@@ -1,0 +1,10 @@
+VIAJE A VIENA
+Nombre del comprador: 34
+Tipo de billete: Ida
+Origen: Praga
+Destino: Viena
+Fecha ida: 23-11-2022
+Cantidad billetes: 1
+Segunda clase
+Extras: sin extras
+Precio total: 97,90 €
