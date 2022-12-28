@@ -1,14 +1,13 @@
 package ventanas;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
-import BD.BD;
-import clases.Billete;
 import log.Log;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +27,7 @@ public class VentanaInicioSesion extends JFrame{
 
         setTitle("Inicio de sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(500, 285));
+        setPreferredSize(new Dimension(485, 225));
         setVisible(true);
         pack();
 
@@ -138,6 +137,10 @@ public class VentanaInicioSesion extends JFrame{
 
         panelAbajo.add(panelBotonVolver);
         panelAbajo.add(panelBotonAcceder);
+        
+        Border border = panel.getBorder();
+		Border margin = new EmptyBorder(20, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
 
         panel.add(panelArriba, BorderLayout.NORTH);
         panel.add(panelMedio, BorderLayout.CENTER);

@@ -26,6 +26,9 @@ public class VentanaVerViajes extends JFrame {
 	private JPanel panel;
 	private JPanel panelArriba;
 	private JPanel panelAbajo;
+	
+	private JTable table;
+	private DefaultTableModel modeloTabla;
 
 	public VentanaVerViajes() throws IOException {
 
@@ -33,7 +36,7 @@ public class VentanaVerViajes extends JFrame {
 
 		setTitle("Ver mis viajes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 315));
+		setPreferredSize(new Dimension(550, 315));
 		setVisible(true);
 		pack();
 
@@ -56,29 +59,37 @@ public class VentanaVerViajes extends JFrame {
 		listaBilletesCliente = bd.getBilletesClienteBD(BD.clienteActual);
 		BD.clienteActual.setListaBilletes(listaBilletesCliente);
 		
-		// JTable
-		
 		// array columnas tabla
 		
-		String[] columnas = new String[] {"ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO"};
+		String[] columnas = new String[] {"ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO", "FECHA(S)"};
 
-        // crear tabla
+        // modelo de la tabla
 		
-        DefaultTableModel modeloTabla;
-        modeloTabla = new DefaultTableModel(columnas, 0);
-		JTable table = new JTable(modeloTabla);
-		table.setBackground(Color.PINK);
+        modeloTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        };
+        
+        // crear tabla
+        
+		table = new JTable(modeloTabla);
+		table.setBackground(new Color(204, 204, 204));
 		
 		// arrayList datos filas
 		
 		int i = 0;
 
-		for (Billete billete : listaBilletesCliente) { // poner fechas
+		for (Billete billete : listaBilletesCliente) {
 			modeloTabla.addRow(new Object[] { listaBilletesCliente.get(i).getViajeIda().getOrigen(),
 					listaBilletesCliente.get(i).getViajeIda().getDestino(),
 					listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - "
 							+ listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(),
-					VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €" });
+					VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €",
+					listaBilletesCliente.get(i).getViajeIda().getFecha() + " - "
+							+ listaBilletesCliente.get(i).getViajeVuelta().getFecha() });
 			table.setRowHeight(i, 30);
 			i++;
 		}
@@ -86,21 +97,9 @@ public class VentanaVerViajes extends JFrame {
         // scrollPane
         
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(450, 220));
+		scrollPane.setPreferredSize(new Dimension(500, 220));
+		scrollPane.getViewport().setBackground(new Color(153, 0, 102));
 		panelArriba.add(scrollPane);
-		
-		// poner la tabla no editable
-
-//        DefaultTableModel tableModel = new DefaultTableModel() { 
-//        	
-//        	@Override 
-//        	public boolean isCellEditable(int row, int column) { 
-//        	//all cells false 
-//        		return false; 
-//        	}
-//        };
-//       
-//        table.setModel(tableModel);
 
 		// botón volver
 

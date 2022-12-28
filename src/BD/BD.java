@@ -163,7 +163,7 @@ public class BD {
 			ps.executeUpdate();
 			ps.close();
 
-			Log.logger.log(Level.INFO, "Se han eliminado los datos correctamente.");
+			Log.logger.log(Level.INFO, "Se han borrado los datos correctamente.");
 			return true;
 
 		} catch (Exception e) {

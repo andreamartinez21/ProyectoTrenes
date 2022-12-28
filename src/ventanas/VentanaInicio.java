@@ -1,12 +1,19 @@
 package ventanas;
 
-import javax.swing.JFrame;
 import log.Log;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 
 public class VentanaInicio extends JFrame{
@@ -15,7 +22,8 @@ public class VentanaInicio extends JFrame{
 
     private JPanel panel;
     private JPanel panelArriba;
-    private JPanel panelMedio;
+    private JPanel panelDerecha;
+    private JPanel panelIzquierda;
     private JPanel panelAbajo;
 
     JMenuBar menuBar;
@@ -30,7 +38,7 @@ public class VentanaInicio extends JFrame{
 
         setTitle("Inicio");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(500, 350));
+        setPreferredSize(new Dimension(570, 335));
         setVisible(true);
         pack();
 
@@ -42,9 +50,11 @@ public class VentanaInicio extends JFrame{
         panel.setBackground(new Color(153, 0, 102));
         panelArriba = new JPanel(new BorderLayout());
         panelArriba.setBackground(new Color(153, 0, 102));
-        panelMedio = new JPanel(new BorderLayout());
-        panelMedio.setBackground(new Color(153, 0, 102));
-        panelAbajo = new JPanel(new BorderLayout());
+        panelDerecha = new JPanel(new GridLayout(3, 1));
+        panelDerecha.setBackground(new Color(153, 0, 102));
+        panelIzquierda = new JPanel(new BorderLayout());
+        panelIzquierda.setBackground(new Color(153, 0, 102));
+        panelAbajo = new JPanel(new GridLayout(1, 2));
         panelAbajo.setBackground(new Color(153, 0, 102));
 
         contentPane.add(panel);
@@ -83,6 +93,17 @@ public class VentanaInicio extends JFrame{
 
         // panel
 		
+		// label título
+		
+		JPanel panelLabelTitulo = new JPanel();
+		panelLabelTitulo.setBackground(new Color(153, 0, 102));
+		JLabel labelTitulo = new JLabel("BUSCADOR DE VIAJES EN TREN");
+		labelTitulo.setForeground(Color.WHITE);
+		labelTitulo.setFont(new Font("Calibri", Font.BOLD, 23));
+		panelLabelTitulo.add(labelTitulo);
+		
+		panelArriba.add(panelLabelTitulo);
+		
         // botón iniciar sesión
 
         JPanel panelBotonIniciarSesion = new JPanel();
@@ -107,7 +128,7 @@ public class VentanaInicio extends JFrame{
             }
         });
 
-        panelArriba.add(panelBotonIniciarSesion);
+        panelDerecha.add(panelBotonIniciarSesion);
 
         // botón registrarse
 
@@ -133,7 +154,7 @@ public class VentanaInicio extends JFrame{
             }
         });
 
-        panelMedio.add(panelBotonRegistrarse);
+        panelDerecha.add(panelBotonRegistrarse);
 
         // botón comprar sin usuario
 
@@ -160,10 +181,27 @@ public class VentanaInicio extends JFrame{
             }
         });
 
-        panelAbajo.add(panelBotonComprarSinUsuario);
+        panelDerecha.add(panelBotonComprarSinUsuario);
+        
+		// label imagen
+
+		JPanel panelLabelImagen = new JPanel();
+		panelLabelImagen.setBackground(new Color(153, 0, 102));
+		BufferedImage bufferedImage = ImageIO.read(new File("src/img/tren.jpg"));
+		Image image = bufferedImage.getScaledInstance(250, 160, Image.SCALE_DEFAULT);
+		JLabel labelImagen = new JLabel(new ImageIcon(image));
+		panelLabelImagen.add(labelImagen);
+		
+		panelIzquierda.add(panelLabelImagen);
+		
+		panelAbajo.add(panelIzquierda);
+		panelAbajo.add(panelDerecha);
+		
+		Border border = panel.getBorder();
+		Border margin = new EmptyBorder(14, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
 
         panel.add(panelArriba, BorderLayout.NORTH);
-        panel.add(panelMedio, BorderLayout.CENTER);
         panel.add(panelAbajo, BorderLayout.SOUTH);
 
         contentPane.setVisible(true);

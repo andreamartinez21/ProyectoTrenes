@@ -13,6 +13,7 @@ import log.Log;
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -81,7 +82,7 @@ public class VentanaCompra extends JFrame {
 
 		// combo origen
 
-		HashSet<String> listaOrigen = new HashSet<String>();
+		Set<String> listaOrigen = new HashSet<String>();
 		listaOrigen = Metodos.obtenerMapaOrigenDestino().get("Origen");
 		JPanel panelComboOrigen = new JPanel();
 		panelComboOrigen.setBackground(new Color(153, 0, 102));
@@ -113,7 +114,7 @@ public class VentanaCompra extends JFrame {
 		comboOrigen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HashSet<String> listaDestino = new HashSet<String>();
+				Set<String> listaDestino = new HashSet<String>();
 				origen = comboOrigen.getSelectedItem().toString();
 				listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
 				comboDestino.removeAllItems();

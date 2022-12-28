@@ -3,14 +3,11 @@ package ventanas;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import BD.BD;
-import clases.Billete;
 import clases.Cliente;
 import log.Log;
 
@@ -29,7 +26,7 @@ public class VentanaMenuPrincipal extends JFrame {
 
 		setTitle("Menú principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 330));
+		setPreferredSize(new Dimension(490, 304));
 		setVisible(true);
 		pack();
 
@@ -53,7 +50,7 @@ public class VentanaMenuPrincipal extends JFrame {
 		JPanel panelLabelNombreUsuario = new JPanel();
 		panelLabelNombreUsuario.setBackground(new Color(153, 0, 102));
 		JLabel labelNombreUsuario = new JLabel(
-				"Hola, " + BD.clienteActual.getNombre() + " " + BD.clienteActual.getApellido() + "!");
+				"¡Hola, " + BD.clienteActual.getNombre() + " " + BD.clienteActual.getApellido() + "!");
 		labelNombreUsuario.setForeground(Color.WHITE);
 		panelLabelNombreUsuario.add(labelNombreUsuario);
 

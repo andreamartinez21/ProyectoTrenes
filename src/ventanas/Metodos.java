@@ -5,17 +5,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import BD.BD;
@@ -109,18 +106,18 @@ public class Metodos {
 					fr.close();
 				}
 			} catch (Exception e2) {
-				Log.logger.log(Level.SEVERE, "No se ha cerrar el fichero." + e2.getStackTrace());
+				Log.logger.log(Level.SEVERE, "No se ha podido cerrar el fichero." + e2.getStackTrace());
 			}
 		}
 		return true;
 	}
 
-	public static Map<String, HashSet<String>> obtenerMapaOrigenDestino() {
+	public static Map<String, Set<String>> obtenerMapaOrigenDestino() {
 
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
-		HashSet<String> listaOrigen = new HashSet<String>();
-		HashSet<String> listaDestino = new HashSet<String>();
-		Map<String, HashSet<String>> mapaOrigenDestino = new HashMap<String, HashSet<String>>();
+		Set<String> listaOrigen = new HashSet<String>();
+		Set<String> listaDestino = new HashSet<String>();
+		Map<String, Set<String>> mapaOrigenDestino = new HashMap<String, Set<String>>();
 
 		listaViajes = bd.getViajesBD();
 
@@ -473,6 +470,24 @@ public class Metodos {
 			
 		} catch (Exception e) {
 			Log.logger.log(Level.SEVERE, "No se ha podido escribir en el fichero." + e.getStackTrace());
+		}
+	}
+	
+	// recursividad
+	
+	public static void transbordo(String origen, String destino) {
+
+		List<Viaje> listaViajes = new ArrayList<Viaje>();
+		listaViajes = bd.getViajesBD();
+		
+		List<Viaje> resultado = new ArrayList<Viaje>(); // todos los viajes que hay que comprar para llegar al destino
+
+		for (Viaje viaje : listaViajes) {
+			if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)) {
+				System.out.println("Hay viaje directo.");
+			} else {
+
+			}
 		}
 	}
 }
