@@ -9,4 +9,4 @@
 086D;Bratislava;Budapest;23-11-2022;9;89.0;src/img/img9.png
 344K;Budapest;Milan;23-11-2022;9;89.0;src/img/img10.png
 274L;Milan;Madrid;20-12-2022;153;45.0;src/img/img0.png
-644N;Paris;Bucarest;23-01-2023;323;85.0;src/img/img11.png
+644N;Paris;Bucarest;23-01-2023;5;85.0;src/img/img11.png

@@ -33,7 +33,8 @@ public class VentanaCompra extends JFrame {
 	public static JTextField textFechaIda;
 	public static JTextField textFechaVuelta;
 
-	private int tipoBilleteInt = 1;
+	private int origenSeleccionado = 0;
+	public static int tipoBilleteInt = 1;
 	public static String tipoBillete = "Ida y vuelta";
 	public static String clase = "Segunda clase";
 	public static int claseInt = 2;
@@ -114,6 +115,7 @@ public class VentanaCompra extends JFrame {
 		comboOrigen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				origenSeleccionado = 1;				
 				Set<String> listaDestino = new HashSet<String>();
 				origen = comboOrigen.getSelectedItem().toString();
 				listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
@@ -175,6 +177,17 @@ public class VentanaCompra extends JFrame {
 				panelBotonFechaVuelta.setVisible(true);
 				tipoBilleteInt = 1; // ida y vuelta
 				tipoBillete = "Ida y vuelta";
+				
+				if (origenSeleccionado == 1) {
+					Set<String> listaDestino = new HashSet<String>();
+					origen = comboOrigen.getSelectedItem().toString();
+					listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
+					comboDestino.removeAllItems();
+
+					for (String ciudad : listaDestino) {
+						comboDestino.addItem(ciudad);
+					}
+				}
 			}
 		});
 
@@ -186,6 +199,17 @@ public class VentanaCompra extends JFrame {
 				panelBotonFechaVuelta.setVisible(false);
 				tipoBilleteInt = 0; // ida
 				tipoBillete = "Ida";
+				
+				if (origenSeleccionado == 1) {
+					Set<String> listaDestino = new HashSet<String>();
+					origen = comboOrigen.getSelectedItem().toString();
+					listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
+					comboDestino.removeAllItems();
+
+					for (String ciudad : listaDestino) {
+						comboDestino.addItem(ciudad);
+					}
+				}
 			}
 		});
 

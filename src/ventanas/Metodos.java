@@ -114,6 +114,7 @@ public class Metodos {
 
 	public static Map<String, Set<String>> obtenerMapaOrigenDestino() {
 
+		int tipo = VentanaCompra.tipoBilleteInt;
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		Set<String> listaOrigen = new HashSet<String>();
 		Set<String> listaDestino = new HashSet<String>();
@@ -121,15 +122,37 @@ public class Metodos {
 
 		listaViajes = bd.getViajesBD();
 
-		listaDestino.clear();
-
 		for (Viaje viaje : listaViajes) {
-
 			listaOrigen.add(viaje.getOrigen());
+		}
 
-			if (viaje.getOrigen().equals(VentanaCompra.origen)) {
-				listaDestino.add(viaje.getDestino());
+		switch (tipo) {
+		case 0: // ida
+
+			listaDestino.clear();
+
+			for (Viaje viaje : listaViajes) {
+				if (viaje.getOrigen().equals(VentanaCompra.origen) && viaje.getAforo() != 0) {
+					listaDestino.add(viaje.getDestino());
+				}
 			}
+			break;
+			
+		case 1: // ida y vuelta
+
+			listaDestino.clear();
+
+			for (Viaje viaje : listaViajes) {
+				if (viaje.getOrigen().equals(VentanaCompra.origen) && viaje.getAforo() != 0) {
+					String destino = viaje.getDestino();
+					for (Viaje viaje2 : listaViajes) {
+						if (destino.equals(viaje2.getOrigen()) && viaje.getOrigen().equals(viaje2.getDestino())) {
+							listaDestino.add(viaje.getDestino());
+						}
+					}
+				}
+			}
+			break;
 		}
 
 		mapaOrigenDestino.put("Origen", listaOrigen);
