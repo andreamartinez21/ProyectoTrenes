@@ -23,6 +23,9 @@ import log.Log;
 public class Metodos {
 	
 	static BD bd = new BD();
+	
+	public static List<Viaje> resultado = new ArrayList<Viaje>();
+	public static int numTransbordos = 0;
 
 	public static boolean register(String nombre, String apellido, String usuario, String contrasenya, String dni,
 			String email, String numTelefono, String cuentaBancaria) {
@@ -497,20 +500,47 @@ public class Metodos {
 	}
 	
 	// recursividad
-	
-	public static void transbordo(String origen, String destino) {
 
+	public static List<Viaje> transbordo(String origen, String destino) {
+
+		String nuevoOrigen = "";
+		int numMaxTransbordos = 4;
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
-		
-		List<Viaje> resultado = new ArrayList<Viaje>(); // todos los viajes que hay que comprar para llegar al destino
+		Viaje viaje = new Viaje();
 
-		for (Viaje viaje : listaViajes) {
-			if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)) {
-				System.out.println("Hay viaje directo.");
-			} else {
-
+		for (Viaje viaje1 : listaViajes) {
+			if (origen.equals(viaje1.getOrigen())) {
+				viaje = viaje1;
+//				System.out.println(viaje);
 			}
 		}
+
+		if (numTransbordos > numMaxTransbordos) {
+			System.out.println("No se ha podido hacer transbordo.");
+
+		} else {
+
+			if (viaje.getDestino().equals(destino)) {
+//				System.out.println(viaje);
+				resultado.add(viaje);
+				return resultado;
+
+			} else if (!viaje.getDestino().equals(destino)) {
+
+				for (Viaje viaje2 : listaViajes) {
+					if (viaje.getDestino().equals(viaje2.getOrigen())) {
+						nuevoOrigen = viaje2.getOrigen();
+//						System.out.println(viaje);
+						resultado.add(viaje);
+//						System.out.println(viaje2.toString());
+					}
+				}
+				numTransbordos++;
+				transbordo(nuevoOrigen, destino);
+//				resultado.remove(resultado.size() - 1);
+			}
+		}
+		return resultado;
 	}
 }
