@@ -1,6 +1,10 @@
 package ventanas;
 
 import javax.swing.JFrame;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
 import log.Log;
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +19,7 @@ public class VentanaRegistro extends JFrame {
 
 	private JPanel panel;
 	private JPanel panelArriba;
+	private JPanel panelMedio;
 	private JPanel panelAbajo;
 
 	public VentanaRegistro() throws IOException {
@@ -23,7 +28,7 @@ public class VentanaRegistro extends JFrame {
 
 		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 380));
+		setPreferredSize(new Dimension(500, 399));
 		setVisible(true);
 		pack();
 
@@ -35,8 +40,9 @@ public class VentanaRegistro extends JFrame {
 		panel.setBackground(new Color(153, 0, 102));
 		panelArriba = new JPanel(new GridLayout(8, 2));
 		panelArriba.setBackground(new Color(153, 0, 102));
-		panelAbajo = new JPanel(new GridLayout(1, 2));
-		panelAbajo.setBackground(new Color(153, 0, 102));
+		panelMedio = new JPanel(new GridLayout(1, 2));
+		panelMedio.setBackground(new Color(153, 0, 102));
+		panelAbajo = new JPanel(new BorderLayout());
 
 		contentPane.add(panel);
 
@@ -175,6 +181,15 @@ public class VentanaRegistro extends JFrame {
 
 		panelArriba.add(panelLabelCuentaBancaria);
 		panelArriba.add(panelTextoCuentaBancaria);
+		
+		// progress bar
+		
+		JPanel panelProgressBar = new JPanel();
+		panelProgressBar.setBackground(new Color(153, 0, 102));
+		JProgressBar progressBar = new JProgressBar();
+		panelProgressBar.add(progressBar);
+		panelAbajo.add(panelProgressBar);
+		progressBar.setVisible(false);
 
 		// botón volver
 
@@ -219,10 +234,31 @@ public class VentanaRegistro extends JFrame {
 					if (Metodos.register(textoNombre.getText(), textoApellido.getText(), textoUsuario.getText(),
 							textoContrasenya.getText(), textoDni.getText(), textoEmail.getText(),
 							textoNumTelefono.getText(), textoCuentaBancaria.getText())) {
-						new VentanaInicio();
-						dispose();
+
+						// hilo
+
+						Thread t = new Thread(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								try {
+									for (int i = 0; i < 100; i++) {
+										progressBar.setValue(i);
+										Thread.sleep(7);
+									}
+								} catch (Exception e2) {
+									Log.logger.log(Level.SEVERE, "No se ha podido ejecutar el hilo." + e2.getStackTrace());
+								}
+							}
+						});
+						t.start();
+						progressBar.setVisible(true);
+
 						JOptionPane.showMessageDialog(null, "Se ha registrado correctamente.");
 						Log.logger.log(Level.INFO, "Se ha registrado correctamente.");
+						new VentanaInicio();
+						dispose();
 					} else {
 						JOptionPane.showMessageDialog(null, "Ha habido un error en el registo.");
 						Log.logger.log(Level.SEVERE, "Ha habido un error en el registo.");
@@ -234,12 +270,17 @@ public class VentanaRegistro extends JFrame {
 			}
 		});
 
-		panelAbajo.add(panelBotonVolver);
-		panelAbajo.add(panelBotonRegistrarme);
+		panelMedio.add(panelBotonVolver);
+		panelMedio.add(panelBotonRegistrarme);
 
 		panel.add(panelArriba, BorderLayout.NORTH);
+		panel.add(panelMedio, BorderLayout.CENTER);
 		panel.add(panelAbajo, BorderLayout.SOUTH);
-
+		
+		Border border = panel.getBorder();
+		Border margin = new EmptyBorder(13, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
+		
 		contentPane.setVisible(true);
 		panel.setVisible(true);
 	}
