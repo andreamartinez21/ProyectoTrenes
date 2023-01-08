@@ -7,7 +7,9 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 public class ComboBoxRenderer extends BasicComboBoxRenderer {
     
-    private String prompt;
+	private static final long serialVersionUID = 1L;
+	
+	private String prompt;
 
     /*
      *  Set the text to display when no item has been selected.

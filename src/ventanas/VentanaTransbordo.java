@@ -24,8 +24,7 @@ import log.Log;
 
 public class VentanaTransbordo extends JFrame {
 
-//	private static final long serialVersionUID = 1L;
-//	https://www.javainterviewpoint.com/generate-serialversionuid-java/
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -34,6 +33,8 @@ public class VentanaTransbordo extends JFrame {
 	private JPanel panelAbajo;
 
 	public static List<Viaje> listaViajes;
+	
+	double precioTotal = 0.0;
 
 	public VentanaTransbordo() throws IOException {
 
@@ -41,7 +42,7 @@ public class VentanaTransbordo extends JFrame {
 
 		setTitle("Transbordo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(490, 250));
+		setPreferredSize(new Dimension(490, 320));
 		setVisible(true);
 		pack();
 
@@ -59,12 +60,13 @@ public class VentanaTransbordo extends JFrame {
 		panelArriba = new JPanel(new GridLayout(listaViajes.size(), 1));
 		panelArriba.setBackground(new Color(153, 0, 102));
 		panelAbajo = new JPanel(new GridLayout(1, 2));
-//		panelAbajo.setBackground(new Color(153, 0, 102));
 
 		contentPane.add(panel);
 
 		int i = 1;
-
+		
+//		int ancho = 400;
+		
 		for (Viaje viaje : listaViajes) {
 
 			JPanel panelLabelViaje = new JPanel();
@@ -78,6 +80,13 @@ public class VentanaTransbordo extends JFrame {
 
 			panelArriba.add(panelLabelViaje);
 			i++;
+
+			precioTotal += Metodos.calcularPrecioBillete(VentanaCompra.tipoBillete, viaje, null, VentanaCompra.claseInt,
+					VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual, VentanaCompra.extraSeguroViaje,
+					VentanaCompra.extraMesa, VentanaConfirmacionCompra.conUsuario);
+
+//			setPreferredSize(new Dimension(ancho, 320));
+//			ancho += 20;
 		}
 
 		// botón volver
@@ -112,7 +121,8 @@ public class VentanaTransbordo extends JFrame {
 
 		JPanel panelPrecio = new JPanel();
 		panelPrecio.setBackground(new Color(153, 0, 102));
-		JLabel labelPrecio = new JLabel("Precio total: ");
+		JLabel labelPrecio = new JLabel("Precio total: " + VentanaConfirmacionCompra.formato1.format(precioTotal) + "€");
+		labelPrecio.setFont(new Font("Yu Gothic UI", Font.BOLD, 14));
 		labelPrecio.setForeground(Color.WHITE);
 		panelPrecio.add(labelPrecio);
 

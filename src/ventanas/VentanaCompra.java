@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 
 public class VentanaCompra extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	private JPanel contentPane;
 
 	private JPanel panel;

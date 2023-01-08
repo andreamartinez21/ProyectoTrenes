@@ -403,7 +403,7 @@ public class BD {
 	// método get billetes cliente
 
 	public List<Billete> getBilletesClienteBD(Cliente clienteActual) {
-		
+
 		List<Billete> listaBilletesCliente = new ArrayList<Billete>(); // billetePrimera clase = 1, billeteSegunda clase = 2
 		List<String> listaLocalizadoresIda = new ArrayList<String>();
 		List<String> listaLocalizadoresVuelta = new ArrayList<String>();
@@ -452,9 +452,10 @@ public class BD {
 								rs2.getString("destino"), rs2.getString("fecha"), rs2.getInt("aforo"),
 								rs2.getDouble("precio"), rs2.getString("imagen"));
 						listaBilletesCliente.get(i).setViajeIda(viaje);
-						i++;
 					}
 					ps.close();
+					i++;
+
 				} catch (Exception e) {
 					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 				}
@@ -473,9 +474,10 @@ public class BD {
 								rs3.getString("destino"), rs3.getString("fecha"), rs3.getInt("aforo"),
 								rs3.getDouble("precio"), rs3.getString("imagen"));
 						listaBilletesCliente.get(i).setViajeVuelta(viaje);
-						i++;
 					}
 					ps.close();
+					i++;
+
 				} catch (Exception e) {
 					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
 				}

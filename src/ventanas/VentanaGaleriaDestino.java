@@ -26,6 +26,8 @@ import log.Log;
 
 public class VentanaGaleriaDestino extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel panelArriba;

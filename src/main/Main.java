@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,34 +18,40 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-		BD bd = new BD();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
 
-		try {
-			Log.iniciarLog();
-			PropertiesClass.getProperties();
+				BD bd = new BD();
 
-			if (bd.connect() != null) {
-				bd.borrarViajesBD();
-				Metodos.leeFicheroViajes();
-				new VentanaInicio();
-				
-				////////
-				
-//				List<Viaje> listaTransbordos = new ArrayList<Viaje>();
-//				listaTransbordos = Metodos.transbordo("Madrid", "Berlin");
-//				for (Viaje viaje : listaTransbordos) {
-//					System.out.println(viaje.toString());
-//				}
-//				System.out.println(listaTransbordos.size());
-				
-				///////
-				
-			} else {
-				Log.logger.log(Level.SEVERE, "Ha habido un problema para conectarse.");
-				// Log.cerrarLog();
+				try {
+					Log.iniciarLog();
+					PropertiesClass.getProperties();
+
+					if (bd.connect() != null) {
+						bd.borrarViajesBD();
+						Metodos.leeFicheroViajes();
+						new VentanaInicio();
+
+						////////
+
+//						List<Viaje> listaTransbordos = new ArrayList<Viaje>();
+//						listaTransbordos = Metodos.transbordo("Madrid", "Berlin");
+//						for (Viaje viaje : listaTransbordos) {
+//							System.out.println(viaje.toString());
+//						}
+//						System.out.println(listaTransbordos.size());
+
+						///////
+
+					} else {
+						Log.logger.log(Level.SEVERE, "Ha habido un problema para conectarse.");
+						// Log.cerrarLog();
+					}
+				} catch (Exception e) {
+					Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
+				}
+
 			}
-		} catch (Exception e) {
-			Log.logger.log(Level.SEVERE, "Error." + e.getStackTrace());
-		}
+		});
 	}
 }

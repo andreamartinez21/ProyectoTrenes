@@ -215,7 +215,7 @@ public class Metodos {
 			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
 			return false;
 		default:
-			System.out.println("Error.");
+			Log.logger.log(Level.SEVERE, "Error.");
 		}
 		return true;
 	}

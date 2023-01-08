@@ -14,7 +14,9 @@ import java.awt.event.ActionEvent;
 
 public class VentanaInicioSesion extends JFrame{
 
-    private JPanel contentPane;
+	private static final long serialVersionUID = 1L;
+
+	private JPanel contentPane;
 
     private JPanel panel;
     private JPanel panelArriba;

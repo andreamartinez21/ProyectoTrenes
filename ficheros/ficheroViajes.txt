@@ -1,6 +1,6 @@
 234J;Madrid;Bruselas;20-12-2022;153;45.0;src/img/img3.png
-879H;Paris;Londres;12-11-2022;9;22.22;src/img/img2.png
-798G;Londres;Paris;4-12-2022;67;50.0;src/img/img1.png
+879H;Paris;Londres;12-11-2022;8;22.22;src/img/img2.png
+798G;Londres;Paris;4-12-2022;66;50.0;src/img/img1.png
 423H;Bruselas;Berlin;4-12-2022;50;70.0;src/img/img5.png
 828V;Berlin;Amsterdam;8-12-2022;89;34.0;src/img/img4.png
 864B;Berlin;Bratislava;9-11-2022;45;99.0;src/img/img8.png

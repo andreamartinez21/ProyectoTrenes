@@ -14,7 +14,9 @@ import log.Log;
 import BD.BD;
 
 public class VentanaVerViajes extends JFrame {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	BD bd = new BD();
 
 	private JPanel contentPane;
@@ -53,11 +55,7 @@ public class VentanaVerViajes extends JFrame {
 		List<Billete> listaBilletesCliente = new ArrayList<Billete>();
 		listaBilletesCliente = bd.getBilletesClienteBD(BD.clienteActual);
 		BD.clienteActual.setListaBilletes(listaBilletesCliente);
-		
-		for (Billete billete : listaBilletesCliente) {
-			System.out.println(billete);
-		}
-	        
+	    
         // tabla
         
 		tableBillete = new JTable();

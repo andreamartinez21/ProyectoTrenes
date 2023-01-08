@@ -2,15 +2,17 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 
 public class CellRenderer extends DefaultTableCellRenderer {
 
+	private static final long serialVersionUID = 1L;
+
 	public static DefaultTableCellRenderer textRenderer = new DefaultTableCellRenderer() {
+
+		private static final long serialVersionUID = 1L;
 
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
@@ -31,6 +33,8 @@ public class CellRenderer extends DefaultTableCellRenderer {
 	};
 	
 	public static DefaultTableCellRenderer numRenderer = new DefaultTableCellRenderer() {
+
+		private static final long serialVersionUID = 1L;
 
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,

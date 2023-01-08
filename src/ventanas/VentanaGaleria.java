@@ -23,6 +23,8 @@ import BD.BD;
 
 public class VentanaGaleria extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	BD bd = new BD();
 
 	private JPanel contentPane;
