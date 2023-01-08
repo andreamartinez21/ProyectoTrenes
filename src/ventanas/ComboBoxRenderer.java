@@ -1,18 +1,18 @@
-package clases;
+package ventanas;
 
 import java.awt.Component;
 
 import javax.swing.JList;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-public class PromptComboBoxRenderer extends BasicComboBoxRenderer {
+public class ComboBoxRenderer extends BasicComboBoxRenderer {
     
     private String prompt;
 
     /*
      *  Set the text to display when no item has been selected.
      */
-    public PromptComboBoxRenderer(String prompt)
+    public ComboBoxRenderer(String prompt)
     {
         this.prompt = prompt;
     }

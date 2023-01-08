@@ -1,0 +1,11 @@
+VIAJE A LONDRES
+Nombre del comprador: Andrea Martínez
+Tipo de billete: Ida y vuelta
+Origen: Paris
+Destino: Londres
+Fecha ida: 12-11-2022
+Fecha vuelta: 4-12-2022
+Cantidad billetes: 1
+Segunda clase
+Extras: sin extras
+Precio total: 72,22 €

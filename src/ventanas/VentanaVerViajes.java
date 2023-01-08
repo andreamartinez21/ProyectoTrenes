@@ -1,6 +1,5 @@
 package ventanas;
 
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -9,9 +8,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import clases.Billete;
 import log.Log;
@@ -27,8 +23,7 @@ public class VentanaVerViajes extends JFrame {
 	private JPanel panelArriba;
 	private JPanel panelAbajo;
 	
-	private JTable table;
-	private DefaultTableModel modeloTabla;
+	public static JTable tableBillete;
 
 	public VentanaVerViajes() throws IOException {
 
@@ -36,7 +31,7 @@ public class VentanaVerViajes extends JFrame {
 
 		setTitle("Ver mis viajes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(550, 315));
+		setPreferredSize(new Dimension(655, 315));
 		setVisible(true);
 		pack();
 
@@ -59,45 +54,30 @@ public class VentanaVerViajes extends JFrame {
 		listaBilletesCliente = bd.getBilletesClienteBD(BD.clienteActual);
 		BD.clienteActual.setListaBilletes(listaBilletesCliente);
 		
-		// array columnas tabla
-		
-		String[] columnas = new String[] {"ORIGEN", "DESTINO", "LOCALIZADOR(ES)", "PRECIO", "FECHA(S)"};
-
-        // modelo de la tabla
-		
-        modeloTabla = new DefaultTableModel(columnas, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-               //all cells false
-               return false;
-            }
-        };
-        
-        // crear tabla
-        
-		table = new JTable(modeloTabla);
-		table.setBackground(new Color(204, 204, 204));
-		
-		// arrayList datos filas
-		
-		int i = 0;
-
 		for (Billete billete : listaBilletesCliente) {
-			modeloTabla.addRow(new Object[] { listaBilletesCliente.get(i).getViajeIda().getOrigen(),
-					listaBilletesCliente.get(i).getViajeIda().getDestino(),
-					listaBilletesCliente.get(i).getViajeIda().getLocalizador() + " - "
-							+ listaBilletesCliente.get(i).getViajeVuelta().getLocalizador(),
-					VentanaConfirmacionCompra.formato1.format(listaBilletesCliente.get(i).getPrecio()) + " €",
-					listaBilletesCliente.get(i).getViajeIda().getFecha() + " - "
-							+ listaBilletesCliente.get(i).getViajeVuelta().getFecha() });
-			table.setRowHeight(i, 30);
-			i++;
+			System.out.println(billete);
 		}
+	        
+        // tabla
+        
+		tableBillete = new JTable();
+		tableBillete.setModel(new BilleteTableModel(listaBilletesCliente));
+		tableBillete.setBackground(new Color(204, 204, 204));
+		tableBillete.setDefaultRenderer(Object.class, new CellRenderer());
+		
+		tableBillete.setRowHeight(30);
+		tableBillete.getColumnModel().getColumn(4).setMinWidth(118);
+		
+		tableBillete.getColumnModel().getColumn(0).setCellRenderer(CellRenderer.textRenderer);
+		tableBillete.getColumnModel().getColumn(1).setCellRenderer(CellRenderer.textRenderer);
+		tableBillete.getColumnModel().getColumn(2).setCellRenderer(CellRenderer.textRenderer);
+		tableBillete.getColumnModel().getColumn(3).setCellRenderer(CellRenderer.numRenderer);
+		tableBillete.getColumnModel().getColumn(4).setCellRenderer(CellRenderer.textRenderer);
 
         // scrollPane
         
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(500, 220));
+		JScrollPane scrollPane = new JScrollPane(tableBillete);
+		scrollPane.setPreferredSize(new Dimension(615, 220));
 		scrollPane.getViewport().setBackground(new Color(153, 0, 102));
 		panelArriba.add(scrollPane);
 

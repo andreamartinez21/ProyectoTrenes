@@ -163,6 +163,18 @@ public class Metodos {
 
 		return mapaOrigenDestino;
 	}
+	
+	public static Set<String> destinosTransbordo() {
+
+		List<Viaje> listaViajes = new ArrayList<Viaje>();
+		listaViajes = bd.getViajesBD();
+		Set<String> destinos = new HashSet<String>();
+
+		for (Viaje viaje : listaViajes) {
+			destinos.add(viaje.getDestino());
+		}
+		return destinos;
+	}
 
 	public static boolean existeViaje(String origen, String destino,
 			String fechaIda, String fechaVuelta, int cantBilletes, int tipo) {

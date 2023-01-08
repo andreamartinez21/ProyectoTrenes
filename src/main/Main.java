@@ -10,6 +10,7 @@ import clases.Viaje;
 import log.Log;
 import properties.PropertiesClass;
 import ventanas.Metodos;
+import ventanas.VentanaTransbordo;
 import ventanas.VentanaInicio;
 
 public class Main {
@@ -29,12 +30,12 @@ public class Main {
 				
 				////////
 				
-				List<Viaje> listaTransbordos = new ArrayList<Viaje>();
-				listaTransbordos = Metodos.transbordo("Madrid", "Berlin");
-				for (Viaje viaje : listaTransbordos) {
-					System.out.println(viaje.toString());
-				}
-				System.out.println(listaTransbordos.size());
+//				List<Viaje> listaTransbordos = new ArrayList<Viaje>();
+//				listaTransbordos = Metodos.transbordo("Madrid", "Berlin");
+//				for (Viaje viaje : listaTransbordos) {
+//					System.out.println(viaje.toString());
+//				}
+//				System.out.println(listaTransbordos.size());
 				
 				///////
 				

@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import clases.PromptComboBoxRenderer;
 
 public class VentanaCompra extends JFrame {
 
@@ -47,6 +46,8 @@ public class VentanaCompra extends JFrame {
 	public static int extraSeguroViaje = 0;
 	public static int extraMesa = 0;
 	
+	private int transbordo = 0;
+	
 	public static JComboBox<String> comboOrigen;
 	public static JComboBox<String> comboDestino;
 	public static JSpinner spinnerNumBilletes;
@@ -55,6 +56,8 @@ public class VentanaCompra extends JFrame {
 	
 	JPanel panelCalendarioVuelta;
 	JPanel panelBotonFechaVuelta;
+	JPanel panelCheckTransbordo;
+	JCheckBox checkTransbordo;
 
 	public VentanaCompra() throws IOException {
 
@@ -62,7 +65,7 @@ public class VentanaCompra extends JFrame {
 
 		setTitle("Compra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(530, 618));
+		setPreferredSize(new Dimension(505, 655));
 		setVisible(true);
 		pack();
 
@@ -100,7 +103,7 @@ public class VentanaCompra extends JFrame {
 		panelComboOrigen.add(comboOrigen);
 		
 		comboOrigen.setSelectedIndex(-1);
-		comboOrigen.setRenderer(new PromptComboBoxRenderer("Origen"));
+		comboOrigen.setRenderer(new ComboBoxRenderer("Origen"));
 		
 		JPanel panelCombos = new JPanel(new GridLayout(1, 2));
 		panelCombos.setBackground(new Color(153, 0, 102));
@@ -111,19 +114,24 @@ public class VentanaCompra extends JFrame {
 		panelComboDestino.setBackground(new Color(153, 0, 102));
 		comboDestino = new JComboBox<String>();
 		comboDestino.setBackground(Color.WHITE);
+		String vacio = "                ";
+		comboDestino.addItem(vacio);
 		
 		comboOrigen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				origenSeleccionado = 1;				
-				Set<String> listaDestino = new HashSet<String>();
-				origen = comboOrigen.getSelectedItem().toString();
-				listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
-				comboDestino.removeAllItems();
+				origenSeleccionado = 1;
+				if (transbordo == 0) {
+					Set<String> listaDestino = new HashSet<String>();
+					origen = comboOrigen.getSelectedItem().toString();
+					listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
+					comboDestino.removeAllItems();
 
-				for (String ciudad : listaDestino) {
-					comboDestino.addItem(ciudad);
+					for (String ciudad : listaDestino) {
+						comboDestino.addItem(ciudad);
+					}
 				}
+
 			}
 		});
 		
@@ -131,7 +139,7 @@ public class VentanaCompra extends JFrame {
 		panelComboDestino.setBorder(bordejpanel6);
 
 		comboDestino.setSelectedIndex(-1);
-		comboDestino.setRenderer(new PromptComboBoxRenderer("Destino"));
+		comboDestino.setRenderer(new ComboBoxRenderer("Destino"));
 		
 		panelComboDestino.add(comboDestino);
 		
@@ -175,10 +183,13 @@ public class VentanaCompra extends JFrame {
 				radioIda.setSelected(false);
 				panelCalendarioVuelta.setVisible(true);
 				panelBotonFechaVuelta.setVisible(true);
+				panelCheckTransbordo.setVisible(false);
 				tipoBilleteInt = 1; // ida y vuelta
 				tipoBillete = "Ida y vuelta";
+				checkTransbordo.setSelected(false);
+				transbordo = 0;
 				
-				if (origenSeleccionado == 1) {
+				if (origenSeleccionado == 1 && comboOrigen.getSelectedItem() != null) {
 					Set<String> listaDestino = new HashSet<String>();
 					origen = comboOrigen.getSelectedItem().toString();
 					listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
@@ -197,10 +208,11 @@ public class VentanaCompra extends JFrame {
 				radioIdaVuelta.setSelected(false);
 				panelCalendarioVuelta.setVisible(false);
 				panelBotonFechaVuelta.setVisible(false);
+				panelCheckTransbordo.setVisible(true);
 				tipoBilleteInt = 0; // ida
 				tipoBillete = "Ida";
 				
-				if (origenSeleccionado == 1) {
+				if (origenSeleccionado == 1 && comboOrigen.getSelectedItem() != null) {
 					Set<String> listaDestino = new HashSet<String>();
 					origen = comboOrigen.getSelectedItem().toString();
 					listaDestino = Metodos.obtenerMapaOrigenDestino().get("Destino");
@@ -227,11 +239,51 @@ public class VentanaCompra extends JFrame {
 		spinnerNumBilletes.setModel(new SpinnerNumberModel(1, 1, 6, 1));
 		panelSpinnerNumBilletes.add(spinnerNumBilletes);
 
-		JPanel panelNumBilletes = new JPanel(new GridLayout(1, 2));
+		JPanel panelNumCheck = new JPanel(new GridLayout(2, 1));
+		panelNumCheck.setBackground(new Color(153, 0, 102));
+		
+		JPanel panelNumBilletes = new JPanel();
 		panelNumBilletes.setBackground(new Color(153, 0, 102));
-
 		panelNumBilletes.add(panelLabelNumBilletes);
 		panelNumBilletes.add(panelSpinnerNumBilletes);
+
+		panelNumCheck.add(panelNumBilletes);
+		
+		// checkBox transbordo
+		
+		panelCheckTransbordo = new JPanel();
+		panelCheckTransbordo.setVisible(false);
+		panelCheckTransbordo.setBackground(new Color(153, 0, 102));
+		checkTransbordo = new JCheckBox("Transbordo ejemplo");
+		checkTransbordo.setBackground(new Color(153, 0, 102));
+		checkTransbordo.setForeground(Color.WHITE);
+		panelCheckTransbordo.add(checkTransbordo);
+		
+		checkTransbordo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (checkTransbordo.isSelected()) {
+					transbordo = 1;
+					
+					Set<String> listaDestinoTransbordo = new HashSet<String>();
+					listaDestinoTransbordo = Metodos.destinosTransbordo();
+					comboDestino.removeAllItems();
+
+					for (String ciudad : listaDestinoTransbordo) {
+						comboDestino.addItem(ciudad);
+					}
+					comboOrigen.setSelectedIndex(-1);
+					comboOrigen.setRenderer(new ComboBoxRenderer("Origen"));
+					comboDestino.setSelectedIndex(-1);
+					comboDestino.setRenderer(new ComboBoxRenderer("Destino"));
+					
+				} else if(!checkTransbordo.isSelected()) {
+					transbordo = 0;
+				}
+			}
+		});
+		
+		panelNumCheck.add(panelCheckTransbordo);
 
 		// radio button primera y segunda clase
 
@@ -383,7 +435,7 @@ public class VentanaCompra extends JFrame {
 		panelCombos.setBackground(new Color(153, 0, 102));
 		
 		panelRadioNum.add(panelRadioIdaVueltaIda);
-		panelRadioNum.add(panelNumBilletes);
+		panelRadioNum.add(panelNumCheck);
 		
 		panelArriba.add(panelRadioNum);
 		panelArriba.add(panelRadioClase);
@@ -498,7 +550,7 @@ public class VentanaCompra extends JFrame {
 						dispose();
 					}
 				} catch (Exception e) {
-					Log.logger.log(Level.SEVERE, "No se han podido abrir las ventanas" + e.getStackTrace());
+					Log.logger.log(Level.SEVERE, "No se ha podido abrir la ventana" + e.getStackTrace());
 				}
 			}
 		});
@@ -519,9 +571,13 @@ public class VentanaCompra extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					if (Metodos.existeViaje(comboOrigen.getSelectedItem().toString(),
-							comboDestino.getSelectedItem().toString(), textFechaIda.getText(), textFechaVuelta.getText(), (int) spinnerNumBilletes.getValue(),
-							tipoBilleteInt)) {
+					if (transbordo == 1 && !comboOrigen.getSelectedItem().toString().equals(null) && !comboDestino.getSelectedItem().toString().equals(null)) {
+						new VentanaTransbordo();
+						dispose();
+					}
+					else if (Metodos.existeViaje(comboOrigen.getSelectedItem().toString(),
+							comboDestino.getSelectedItem().toString(), textFechaIda.getText(),
+							textFechaVuelta.getText(), (int) spinnerNumBilletes.getValue(), tipoBilleteInt)) {
 						new VentanaConfirmacionCompra();
 						dispose();
 					}

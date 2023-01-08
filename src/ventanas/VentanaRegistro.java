@@ -245,7 +245,7 @@ public class VentanaRegistro extends JFrame {
 								try {
 									for (int i = 0; i < 100; i++) {
 										progressBar.setValue(i);
-										Thread.sleep(7);
+										Thread.sleep(9);
 									}
 								} catch (Exception e2) {
 									Log.logger.log(Level.SEVERE, "No se ha podido ejecutar el hilo." + e2.getStackTrace());
