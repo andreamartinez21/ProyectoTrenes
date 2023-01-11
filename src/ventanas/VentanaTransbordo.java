@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +37,7 @@ public class VentanaTransbordo extends JFrame {
 	
 	double precioTotal = 0.0;
 
-	public VentanaTransbordo() throws IOException {
+	public VentanaTransbordo() throws IOException, ParseException {
 
 		setBackground(new Color(153, 0, 102));
 
@@ -65,8 +66,6 @@ public class VentanaTransbordo extends JFrame {
 
 		int i = 1;
 		
-//		int ancho = 400;
-		
 		for (Viaje viaje : listaViajes) {
 
 			JPanel panelLabelViaje = new JPanel();
@@ -84,9 +83,6 @@ public class VentanaTransbordo extends JFrame {
 			precioTotal += Metodos.calcularPrecioBillete(VentanaCompra.tipoBillete, viaje, null, VentanaCompra.claseInt,
 					VentanaCompra.extraComida, VentanaCompra.extraAsientoIndividual, VentanaCompra.extraSeguroViaje,
 					VentanaCompra.extraMesa, VentanaConfirmacionCompra.conUsuario);
-
-//			setPreferredSize(new Dimension(ancho, 320));
-//			ancho += 20;
 		}
 
 		// botón volver
@@ -128,10 +124,19 @@ public class VentanaTransbordo extends JFrame {
 
 		panelAbajo.add(panelPrecio);
 
-		Border border = panel.getBorder();
-		Border margin = new EmptyBorder(20, 0, 0, 0);
-		panel.setBorder(new CompoundBorder(border, margin));
-
+		if (i == 3) {
+			Border border = panel.getBorder();
+			Border margin = new EmptyBorder(50, 0, 0, 0);
+			panel.setBorder(new CompoundBorder(border, margin));
+			
+			// poner para cuando haya 3 viajes (i == 4)
+			
+		} else if (i == 5) {
+			Border border = panel.getBorder();
+			Border margin = new EmptyBorder(20, 0, 0, 0);
+			panel.setBorder(new CompoundBorder(border, margin));
+		}
+		
 		panel.add(panelArriba, BorderLayout.NORTH);
 		panel.add(panelAbajo, BorderLayout.SOUTH);
 

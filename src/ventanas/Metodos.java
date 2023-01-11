@@ -5,7 +5,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -176,12 +179,18 @@ public class Metodos {
 		return destinos;
 	}
 
-	public static boolean existeViaje(String origen, String destino,
-			String fechaIda, String fechaVuelta, int cantBilletes, int tipo) {
-		
+	public static boolean existeViaje(String origen, String destino, String fechaIda, String fechaVuelta,
+			int cantBilletes, int tipo) throws ParseException {
+
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
 		int comp = 0;
+		boolean fechaMal = false;
+
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date fecha1 = formato.parse(fechaIda);
+		Date fecha2 = formato.parse(fechaVuelta);
 
 		switch (tipo) {
 		case 0: // ida
@@ -195,6 +204,7 @@ public class Metodos {
 			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
 			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
 			return false;
+
 		case 1: // ida y vuelta
 			for (Viaje viaje : listaViajes) {
 				if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
@@ -207,12 +217,19 @@ public class Metodos {
 					Log.logger.log(Level.INFO, "Viaje disponible.");
 					comp++;
 				}
-				if (comp == 2) {
+				if (comp == 2 && (fecha1.after(fecha2) || fecha1.equals(fecha2))) {
 					return true;
+				} else if (comp == 2 && fecha1.before(fecha2)) {
+					fechaMal = true;
 				}
 			}
-			JOptionPane.showMessageDialog(null, "Viaje no disponible.");
-			Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+			if (fechaMal) {
+				JOptionPane.showMessageDialog(null, "La fecha de ida es posterior a la de vuelta.");
+				Log.logger.log(Level.SEVERE, "La fecha de ida es posterior a la de vuelta.");
+			} else {
+				JOptionPane.showMessageDialog(null, "Viaje no disponible.");
+				Log.logger.log(Level.SEVERE, "Viaje no disponible.");
+			}
 			return false;
 		default:
 			Log.logger.log(Level.SEVERE, "Error.");
@@ -513,23 +530,30 @@ public class Metodos {
 	
 	// recursividad
 
-	public static List<Viaje> transbordo(String origen, String destino) {
+	public static List<Viaje> transbordo(String origen, String destino) throws ParseException {
 
 		String nuevoOrigen = "";
-		int numMaxTransbordos = 4;
+		int numMaxTransbordos = 4; // 3 transbordos; 4 viajes
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
 		Viaje viaje = new Viaje();
+		
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date fecha1 = null;
+		Date fecha2 = null;
 
 		for (Viaje viaje1 : listaViajes) {
 			if (origen.equals(viaje1.getOrigen())) {
 				viaje = viaje1;
+				fecha1 = formato.parse(viaje.getFecha());
 //				System.out.println(viaje);
 			}
 		}
 
 		if (numTransbordos > numMaxTransbordos) {
 			System.out.println("No se ha podido hacer transbordo.");
+			resultado.clear(); // vaciar el arrayList para que devuelva null
 
 		} else {
 
@@ -541,7 +565,8 @@ public class Metodos {
 			} else if (!viaje.getDestino().equals(destino)) {
 
 				for (Viaje viaje2 : listaViajes) {
-					if (viaje.getDestino().equals(viaje2.getOrigen())) {
+					fecha2 = formato.parse(viaje2.getFecha());
+					if (viaje.getDestino().equals(viaje2.getOrigen()) && fecha1.after(fecha2)) {
 						nuevoOrigen = viaje2.getOrigen();
 //						System.out.println(viaje);
 						resultado.add(viaje);
