@@ -14,6 +14,8 @@ import log.Log;
 public class VentanaMenuPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	BD bd = new BD();
 
 	private JPanel contentPane;
 
@@ -52,7 +54,7 @@ public class VentanaMenuPrincipal extends JFrame {
 		JPanel panelLabelNombreUsuario = new JPanel();
 		panelLabelNombreUsuario.setBackground(new Color(153, 0, 102));
 		JLabel labelNombreUsuario = new JLabel(
-				"¡Hola, " + BD.clienteActual.getNombre() + " " + BD.clienteActual.getApellido() + "!");
+				"¡Hola, " + BD.clienteActual.getNombre() + " " + BD.clienteActual.getApellido() + "!" + "\n Total gastado: " + Metodos.sumaGastadoCliente(bd.getBilletesClienteBD(bd.clienteActual), 0) + "€");
 		labelNombreUsuario.setForeground(Color.WHITE);
 		panelLabelNombreUsuario.add(labelNombreUsuario);
 

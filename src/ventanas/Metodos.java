@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 import BD.BD;
+import clases.Billete;
 import clases.Cliente;
 import clases.Viaje;
 import log.Log;
@@ -27,8 +28,8 @@ public class Metodos {
 	
 	static BD bd = new BD();
 	
-	public static List<Viaje> resultado = new ArrayList<Viaje>();
-	public static int numTransbordos = 0;
+//	public static List<Viaje> resultado = new ArrayList<Viaje>();
+//	public static int numTransbordos = 0;
 
 	public static boolean register(String nombre, String apellido, String usuario, String contrasenya, String dni,
 			String email, String numTelefono, String cuentaBancaria) {
@@ -530,24 +531,81 @@ public class Metodos {
 	
 	// recursividad
 
-	public static List<Viaje> transbordo(String origen, String destino) throws ParseException {
+//	public static List<Viaje> transbordo(String origen, String destino) throws ParseException {
+//
+//		String nuevoOrigen = "";
+//		int numMaxTransbordos = 4; // 3 transbordos; 4 viajes
+//		List<Viaje> listaViajes = new ArrayList<Viaje>();
+//		listaViajes = bd.getViajesBD();
+//		Viaje viaje = new Viaje();
+//		
+//		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//
+//		Date fecha1 = null;
+//		Date fecha2 = null;
+//
+//		for (Viaje viaje1 : listaViajes) {
+//			if (origen.equals(viaje1.getOrigen())) {
+//				viaje = viaje1;
+//				String fechaViaje1 = viaje.getFecha();
+//				fecha1 = formato.parse(fechaViaje1);
+////				System.out.println(viaje);
+//			}
+//		}
+//
+//		if (numTransbordos > numMaxTransbordos) {
+//			System.out.println("No se ha podido hacer transbordo.");
+//			resultado.clear(); // vaciar el arrayList para que devuelva null
+//
+//		} else {
+//
+//			if (viaje.getDestino().equals(destino)) {
+////				System.out.println(viaje);
+//				resultado.add(viaje);
+//				return resultado;
+//
+//			} else if (!viaje.getDestino().equals(destino)) {
+//
+//				for (Viaje viaje2 : listaViajes) {
+//					String fechaViaje2 = viaje2.getFecha();
+//					fecha2 = formato.parse(fechaViaje2);
+//					if (viaje.getDestino().equals(viaje2.getOrigen()) && (fecha1.after(fecha2) || fecha1.equals(fecha2))) {
+////						System.out.println(new SimpleDateFormat("dd-MM-yyyy").format(fecha1));
+////						System.out.println(new SimpleDateFormat("dd-MM-yyyy").format(fecha2));
+//						System.out.println(viaje.getFecha());
+//						System.out.println(viaje2.getFecha());
+//						nuevoOrigen = viaje2.getOrigen();
+////						System.out.println(viaje);
+//						resultado.add(viaje);
+////						System.out.println(viaje2.toString());
+//					}
+//				}
+//				numTransbordos++;
+//				transbordo(nuevoOrigen, destino);
+////				resultado.remove(resultado.size() - 1);
+//			}
+//		}
+//		return resultado;
+//	}
+	
+	public static List<List<Viaje>> listaDeListas = new ArrayList<List<Viaje>>();
+	public static List<Viaje> resultado = new ArrayList<Viaje>();
+	public static int numTransbordos = 0;
+	
+	public static List<String> nuevoOrigen = new ArrayList<String>();
+	public static List<Viaje> resultadoTemp = new ArrayList<Viaje>();
+	
+	public static List<Viaje> transbordo(String origen, String destino) {
 
-		String nuevoOrigen = "";
 		int numMaxTransbordos = 4; // 3 transbordos; 4 viajes
 		List<Viaje> listaViajes = new ArrayList<Viaje>();
 		listaViajes = bd.getViajesBD();
-		Viaje viaje = new Viaje();
-		
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-
-		Date fecha1 = null;
-		Date fecha2 = null;
+		List<Viaje> listaViajes1 = new ArrayList<Viaje>();
 
 		for (Viaje viaje1 : listaViajes) {
 			if (origen.equals(viaje1.getOrigen())) {
-				viaje = viaje1;
-				fecha1 = formato.parse(viaje.getFecha());
-//				System.out.println(viaje);
+				listaViajes1.add(viaje1);
+				System.out.println(listaViajes1);
 			}
 		}
 
@@ -557,27 +615,46 @@ public class Metodos {
 
 		} else {
 
-			if (viaje.getDestino().equals(destino)) {
-//				System.out.println(viaje);
-				resultado.add(viaje);
-				return resultado;
+			for (Viaje viaje2 : listaViajes1) {
+				if (viaje2.getOrigen().equals(origen) && viaje2.getDestino().equals(destino)) {
+//					resultadoTemp.add(viaje2);
+					resultado.add(viaje2);
+					return resultado;
 
-			} else if (!viaje.getDestino().equals(destino)) {
+				} else if (!viaje2.getOrigen().equals(origen) && viaje2.getDestino().equals(destino)) {
 
-				for (Viaje viaje2 : listaViajes) {
-					fecha2 = formato.parse(viaje2.getFecha());
-					if (viaje.getDestino().equals(viaje2.getOrigen()) && fecha1.after(fecha2)) {
-						nuevoOrigen = viaje2.getOrigen();
-//						System.out.println(viaje);
-						resultado.add(viaje);
-//						System.out.println(viaje2.toString());
+					for (Viaje viaje3 : listaViajes1) {
+
+						for (Viaje viaje4 : listaViajes) {
+
+							if (viaje3.getDestino().equals(viaje4.getOrigen())) {
+								List<Viaje> l = new ArrayList<Viaje>();
+								nuevoOrigen.add(viaje4.getOrigen());
+								System.out.println(nuevoOrigen);
+								l.add(viaje3);
+								l.add(viaje4);
+								listaDeListas.add(l);
+								System.out.println(listaDeListas);
+							}
+						}
+					}
+					numTransbordos++;
+					for (String string : nuevoOrigen) {
+						transbordo(string, destino);
 					}
 				}
-				numTransbordos++;
-				transbordo(nuevoOrigen, destino);
-//				resultado.remove(resultado.size() - 1);
 			}
 		}
 		return resultado;
+	}
+	
+	// otro método recursivo por si no consigo que funcione bien el otro
+	
+	public static double sumaGastadoCliente(List<Billete> listaBilletesCliente, int pos) {
+
+		if (pos < listaBilletesCliente.size()) {
+			return listaBilletesCliente.get(pos).getPrecio() + sumaGastadoCliente(listaBilletesCliente, pos + 1);
+		}
+		return 0;
 	}
 }
