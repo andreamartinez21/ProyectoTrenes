@@ -1,0 +1,10 @@
+VIAJE A BRUSELAS
+Nombre del comprador: Andrea Martínez
+Tipo de billete: Ida
+Origen: Madrid
+Destino: Bruselas
+Fecha ida: 20-12-2022
+Cantidad billetes: 1
+Segunda clase
+Extras: sin extras
+Precio total: 45,00 €

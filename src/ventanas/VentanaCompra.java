@@ -2,6 +2,8 @@ package ventanas;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
@@ -67,7 +69,7 @@ public class VentanaCompra extends JFrame {
 
 		setTitle("Compra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(505, 655));
+		setPreferredSize(new Dimension(505, 662));
 		setVisible(true);
 		pack();
 
@@ -292,11 +294,11 @@ public class VentanaCompra extends JFrame {
 		JPanel panelRadioClase = new JPanel(new GridLayout(1, 2));
 		panelRadioClase.setBackground(new Color(153, 0, 102));
 
-		JRadioButton radioSegundaClase = new JRadioButton("Segunda clase (+0.00€)", true);
+		JRadioButton radioSegundaClase = new JRadioButton("Segunda clase (+0.00 €)", true);
 		radioSegundaClase.setBackground(new Color(153, 0, 102));
 		radioSegundaClase.setForeground(Color.WHITE);
 
-		JRadioButton radioPrimeraClase = new JRadioButton("Primera clase (+12.00€)", false);
+		JRadioButton radioPrimeraClase = new JRadioButton("Primera clase (+12.00 €)", false);
 		radioPrimeraClase.setBackground(new Color(153, 0, 102));
 		radioPrimeraClase.setForeground(Color.WHITE);
 
@@ -317,7 +319,7 @@ public class VentanaCompra extends JFrame {
 		JPanel panelCheckExtras2 = new JPanel(new GridLayout(2, 1));
 		panelCheckExtras2.setBackground(new Color(153, 0, 102));
 
-		JCheckBox checkComida = new JCheckBox("Comida (+15.00€)");
+		JCheckBox checkComida = new JCheckBox("Comida (+15.00 €)");
 		checkComida.setBackground(new Color(153, 0, 102));
 		checkComida.setForeground(Color.WHITE);
 		
@@ -334,7 +336,7 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 
-		JCheckBox checkAsientoIndividual = new JCheckBox("Asiento individual (+9.00€)");
+		JCheckBox checkAsientoIndividual = new JCheckBox("Asiento individual (+9.00 €)");
 		checkAsientoIndividual.setBackground(new Color(153, 0, 102));
 		checkAsientoIndividual.setForeground(Color.WHITE);
 		
@@ -351,7 +353,7 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 		
-		JCheckBox checkSeguro = new JCheckBox("Seguro viaje (+3.00€)");
+		JCheckBox checkSeguro = new JCheckBox("Seguro viaje (+3.00 €)");
 		checkSeguro.setBackground(new Color(153, 0, 102));
 		checkSeguro.setForeground(Color.WHITE);
 		
@@ -368,7 +370,7 @@ public class VentanaCompra extends JFrame {
 			}
 		});
 		
-		JCheckBox checkMesa = new JCheckBox("Mesa (+2.00€)");
+		JCheckBox checkMesa = new JCheckBox("Mesa (+2.00 €)");
 		checkMesa.setBackground(new Color(153, 0, 102));
 		checkMesa.setForeground(Color.WHITE);
 		
@@ -591,6 +593,10 @@ public class VentanaCompra extends JFrame {
 
 		panelAbajo.add(panelBotonVolver);
 		panelAbajo.add(panelBotonSiguiente);
+		
+		Border border = panel.getBorder();
+		Border margin = new EmptyBorder(9, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
 
 		panel.add(panelArriba, BorderLayout.NORTH);
 		panel.add(panelMedio, BorderLayout.CENTER);

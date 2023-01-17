@@ -129,7 +129,10 @@ public class VentanaTransbordo extends JFrame {
 			Border margin = new EmptyBorder(50, 0, 0, 0);
 			panel.setBorder(new CompoundBorder(border, margin));
 			
-			// poner para cuando haya 3 viajes (i == 4)
+		} else if (i == 4) {
+			Border border = panel.getBorder();
+			Border margin = new EmptyBorder(35, 0, 0, 0);
+			panel.setBorder(new CompoundBorder(border, margin));
 			
 		} else if (i == 5) {
 			Border border = panel.getBorder();

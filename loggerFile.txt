@@ -1,90 +1,144 @@
-ene 16, 2023 11:42:41 A. M. log.Log iniciarLog
+ene 17, 2023 7:11:26 P. M. log.Log iniciarLog
 INFO: Iniciando Logger
-ene 16, 2023 11:42:42 A. M. BD.BD connect
+ene 17, 2023 7:11:26 P. M. BD.BD connect
 INFO: Conexión con la BD establecida.
-ene 16, 2023 11:42:42 A. M. BD.BD borrarViajesBD
+ene 17, 2023 7:11:26 P. M. BD.BD borrarViajesBD
 INFO: Se han eliminado los datos correctamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:42 A. M. BD.BD anyadirViajeBD
+ene 17, 2023 7:11:26 P. M. BD.BD anyadirViajeBD
 INFO: Los datos se han introducido correctamente en la BD.
-ene 16, 2023 11:42:42 A. M. ventanas.Metodos leeFicheroViajes
+ene 17, 2023 7:11:26 P. M. ventanas.Metodos leeFicheroViajes
 INFO: Se ha añadido el viaje corrrectamente.
-ene 16, 2023 11:42:43 A. M. BD.BD getViajesBD
+ene 17, 2023 7:11:28 P. M. BD.BD getViajesBD
 INFO: Se han obtenido los viajes correctamente.
-ene 16, 2023 11:42:52 A. M. BD.BD loginBD
+ene 17, 2023 7:11:37 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:15 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:15 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:18 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:18 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:21 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:21 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:23 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:23 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:26 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:26 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:27 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:27 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:29 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:29 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:30 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:30 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:32 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:32 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:12:33 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:45 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:45 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:45 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:12:45 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:13:05 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:13:05 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:13:14 P. M. BD.BD loginBD
 INFO: Usuario y contraseña encontrados en la BD.
-ene 16, 2023 11:42:52 A. M. BD.BD getBilletesClienteBD
-INFO: Se han obtenido los billetes correctamente.
-ene 16, 2023 11:42:52 A. M. ventanas.VentanaInicioSesion$2 actionPerformed
+ene 17, 2023 7:13:14 P. M. ventanas.VentanaInicioSesion$2 actionPerformed
 INFO: Se ha iniciado sesión correctamente.
-ene 16, 2023 11:43:19 A. M. BD.BD getBilletesClienteBD
+ene 17, 2023 7:13:16 P. M. BD.BD getViajesBD
+INFO: Se han obtenido los viajes correctamente.
+ene 17, 2023 7:13:16 P. M. ventanas.Metodos obtenerMapaOrigenDestino
+INFO: El mapa se ha creado correctamente.
+ene 17, 2023 7:13:18 P. M. BD.BD getBilletesClienteBD
 INFO: Se han obtenido los billetes correctamente.
-ene 16, 2023 11:43:20 A. M. BD.BD getBilletesClienteBD
+ene 17, 2023 7:13:29 P. M. BD.BD getBilletesClienteBD
 INFO: Se han obtenido los billetes correctamente.
-ene 16, 2023 11:43:43 A. M. BD.BD getBilletesClienteBD
+ene 17, 2023 7:13:31 P. M. BD.BD getBilletesClienteBD
 INFO: Se han obtenido los billetes correctamente.
-ene 16, 2023 11:43:45 A. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
+ene 17, 2023 7:13:39 P. M. ventanas.VentanaMenuPrincipal$4 actionPerformed
 INFO: Se ha cerrado la sesión correctamente.

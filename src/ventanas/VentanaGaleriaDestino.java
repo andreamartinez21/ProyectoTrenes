@@ -19,6 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import clases.Viaje;
@@ -40,7 +43,7 @@ public class VentanaGaleriaDestino extends JFrame {
 
 		setTitle("Galería de destinos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 415));
+		setPreferredSize(new Dimension(500, 432));
 		setVisible(true);
 		pack();
 
@@ -139,6 +142,10 @@ public class VentanaGaleriaDestino extends JFrame {
 
 		panelAbajo.add(panelLabelImagen, BorderLayout.NORTH);
 		panelAbajo.add(panelBotonVolver, BorderLayout.SOUTH);
+		
+		Border border = panel.getBorder();
+		Border margin = new EmptyBorder(8, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
 
 		panel.add(panelArriba, BorderLayout.NORTH);
 		panel.add(panelMedio, BorderLayout.CENTER);

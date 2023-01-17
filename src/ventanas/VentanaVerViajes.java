@@ -33,7 +33,7 @@ public class VentanaVerViajes extends JFrame {
 
 		setTitle("Ver mis viajes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(655, 315));
+		setPreferredSize(new Dimension(655, 312));
 		setVisible(true);
 		pack();
 

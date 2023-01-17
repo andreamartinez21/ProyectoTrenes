@@ -1,6 +1,10 @@
 package ventanas;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -13,6 +17,8 @@ import log.Log;
 public class VentanaPerfil extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	BD bd = new BD();
 
 	private JPanel contentPane;
 
@@ -26,7 +32,7 @@ public class VentanaPerfil extends JFrame {
 
 		setTitle("Perfil");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500, 350));
+		setPreferredSize(new Dimension(500, 390));
 		setVisible(true);
 		pack();
 
@@ -36,7 +42,7 @@ public class VentanaPerfil extends JFrame {
 
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(new Color(153, 0, 102));
-		panelArriba = new JPanel(new GridLayout(7, 2));
+		panelArriba = new JPanel(new GridLayout(8, 2));
 		panelArriba.setBackground(new Color(153, 0, 102));
 		panelAbajo = new JPanel(new GridLayout(1, 2));
 		panelAbajo.setBackground(new Color(153, 0, 102));
@@ -54,6 +60,7 @@ public class VentanaPerfil extends JFrame {
 		JPanel panelLabelUsuario2 = new JPanel();
 		panelLabelUsuario2.setBackground(new Color(153, 0, 102));
 		JLabel labelUsuario2 = new JLabel(BD.clienteActual.getUsuario());
+		labelUsuario2.setPreferredSize(new Dimension(150, 25));
 		labelUsuario2.setForeground(Color.WHITE);
 		panelLabelUsuario2.add(labelUsuario2);
 
@@ -161,6 +168,24 @@ public class VentanaPerfil extends JFrame {
 
 		panelArriba.add(panelLabelCuentaBancaria);
 		panelArriba.add(panelTextoCuentaBancaria);
+		
+		// labels total gastado
+
+		JPanel panelLabelTotalGastado = new JPanel();
+		panelLabelTotalGastado.setBackground(new Color(153, 0, 102));
+		JLabel labelTotalGastado = new JLabel("Total gastado: ");
+		labelTotalGastado.setForeground(Color.WHITE);
+		panelLabelTotalGastado.add(labelTotalGastado);
+
+		JPanel panelLabelTotalGastado2 = new JPanel();
+		panelLabelTotalGastado2.setBackground(new Color(153, 0, 102));
+		JLabel labelTotalGastado2 = new JLabel(Metodos.sumaGastadoCliente(bd.getBilletesClienteBD(BD.clienteActual), 0) + " €");
+		labelTotalGastado2.setPreferredSize(new Dimension(150, 25));
+		labelTotalGastado2.setForeground(Color.WHITE);
+		panelLabelTotalGastado2.add(labelTotalGastado2);
+
+		panelArriba.add(panelLabelTotalGastado);
+		panelArriba.add(panelLabelTotalGastado2);
 
 		// botón volver
 
@@ -214,6 +239,10 @@ public class VentanaPerfil extends JFrame {
 		});
 
 		panelAbajo.add(panelBotonActualizarInfo);
+
+		Border border = panel.getBorder();
+		Border margin = new EmptyBorder(10, 0, 0, 0);
+		panel.setBorder(new CompoundBorder(border, margin));
 
 		panel.add(panelArriba, BorderLayout.NORTH);
 		panel.add(panelAbajo, BorderLayout.SOUTH);
